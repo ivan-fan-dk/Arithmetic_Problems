@@ -3,6 +3,10 @@
 ## Description
 An interactive html to play with arithmetic problems
 
+## Version update
+- v.1.0.1  increase accessibility
+- v.1.0.0  original
+
 ## Intention
 I have just got a job as a tutor right now, and I saw my mentees struggling with arithmetics. Therefore an idea popped up. What if a computer can help with generating arithmetic problems so that people can train with it? That's why the project comes up.
 
