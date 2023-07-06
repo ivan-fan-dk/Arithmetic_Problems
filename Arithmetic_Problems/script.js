@@ -32,8 +32,10 @@ const calculationTypes = ["Addition", "Substraction", "Multiplication", "Divisio
 
 for (let i of calculationTypes){
     let div = calculationType.appendChild(document.createElement("div"));
-    div.textContent = i;
-    div.className = "customizeTitle"
+    div.className = "customizeTitle";
+    let label = div.appendChild(document.createElement("label"));
+    label.htmlFor = i
+    label.textContent = i;
     let input = div.appendChild(document.createElement("input"));
     input.className = "checkbox";
     input.type = "checkbox";
