@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="An interactive html to play with arithmetic problems">
+        <meta name="author" content="Ivan Fan">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Arithmetic</title>
         <link rel="stylesheet" type="text/css" href="static/style.css">
@@ -23,7 +25,7 @@
             <div id="gridCustom">
                 <div class="gridItem">
                     <div class="customizeTitle" style="margin-right: 20px;">
-                        Number of questions
+                        <label for="NOQ">Number of questions</label>
                         <select name="NOQ" id="NOQ">
 
                         </select>
@@ -31,14 +33,15 @@
                 </div>
                 <div class="gridItem">
                     <div class="customizeTitle" style="margin-right: 20px;">
-                        Difficulty
+                        <label for="difficulty">Difficulty</label>
                         <select name="difficulty" id="difficulty">
 
                         </select>
                     </div>
                 </div>
                 <div class="gridItem">
-                    <div class="customizeTitle" >Check answer right after typed
+                    <div class="customizeTitle" >
+                        <label for="right_after">Check answer right after typed</label>
                         <input class="checkbox" type="checkbox" id="right_after">
                     </div>
                 </div>
