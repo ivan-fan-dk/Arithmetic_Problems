@@ -151,6 +151,15 @@ li:hover{
 }
 */
 
+#score {
+    border-radius: 5px;
+    font-size: 25px;
+    padding: 0px 6px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    float:right;
+    outline: thick double #32a1ce;
+}
 
 .questionbox{
     width: 60px;
@@ -173,15 +182,34 @@ select {
 }
 
 #buttonfield {
+    justify-content:left;
     margin-top: 1%;
-    margin-bottom: 1%;
+    margin-bottom: 0.5%;
     width: 100%;
     text-align: center;
-    height: 20px;
+    overflow: auto;
+    align-items: center;
+    padding: 5px 0px;
 }
 
-.inner {
+.right {
+    float:right;
+}
+
+.left {
     float: left;
+}
+
+.sticky-bottom{
+    position:sticky;
+    bottom: 0px;
+}
+.link-external {
+    background-image: url(link-external.svg);
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: 0.857em;
+    padding-right: 1em;
 }
 
 .button {
@@ -190,7 +218,6 @@ select {
     font-size: 22px;
     font-family: 'Times New Roman', Times, serif;
     border-radius: 5px;
-    border-width: repeat(1%, 4);
     border-color: black;
     margin-left: 1vw;
     margin-right: 1vw;

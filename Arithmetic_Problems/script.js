@@ -1,12 +1,15 @@
+const exDays = 7;
+let scoreList;
+
 // NOQ
 const NOQ = document.querySelector("#NOQ");
 const NOQs = [10,20,30,40,50,100];
 
 for (let i of NOQs){
     let option = NOQ.appendChild(document.createElement("option"));
+    option.id = `NOQ_${i}`
     option.value = String(i);
     option.textContent = String(i);
-    if (i === 20){option.selected = true}
 }
 
 // Difficulty
@@ -15,11 +18,9 @@ const difficulties = ["Beginner", "Easy", "Intermediate", "Hard", "Hell", "Asian
 
 for (let i of difficulties){
     let option = difficulty.appendChild(document.createElement("option"));
+    option.id = i
     option.value = i;
     option.textContent = i;
-    if (i === "Easy"){
-        option.selected = true
-    }
     if (i === "Asian"){
         option.hidden = true
     }
@@ -39,61 +40,79 @@ for (let i of calculationTypes){
     let input = div.appendChild(document.createElement("input"));
     input.className = "checkbox";
     input.type = "checkbox";
-    // default setting for calculationTypes
-    if (i === "Addition" || i === "Substraction" || i === "Multiplication" || i === "Division"){
-    //if (i === "Fraction"){
-        input.checked = "checked"
-    }
     input.name = i;
     input.id = i;
 }
 
-
-
+// initilize typecheck
 let typeCheck = [];
-for (let i of Array(calculationTypes.length).keys()){
+for (let _ of Array(calculationTypes.length).keys()){
     typeCheck.push(true);
-
 }
 
-// default setting for See answer right after typed
-document.getElementById("right_after").checked = true
-
-// Set default cookies
-document.cookie = "name=oeschger; SameSite=None; Secure";// difficulty=Easy; right_after:true; Secure;max-age=60*60";
-/*
-for (let i of calculationTypes){
-    if (i === "Addition" || i === "Substraction" || i === "Multiplication" || i === "Division"){
-        document.cookie = `${i}=true; Secure`;
-    }
-    else{
-        document.cookie = `${i}=false; Secure`;
-    }
+// initilize cookies (either load default cookie or load the stored cookie)
+if (document.cookie.length === 0){
+    setDefaultCookie();
 }
-*/
-console.log(document.cookie)
+loadCookie();
 
+//Set Cookies button
+const setCookies = document.getElementById("setCookies");
+setCookies.addEventListener("click",()=>{
+    setCookie("NOQ", getOption("NOQ")); 
+    setCookie("difficulty", getOption("difficulty"));
+    setCookie("right_after", String(getChecked("right_after")));
+    for (let i of calculationTypes){
+        if (getChecked(i)){
+            setCookie(i, "true");
+        }
+        else{
+            setCookie(i, "false");
+        }
+    }
+    //console.log(document.cookie);
+    alert(`Your preference has been set successfully and remembered for ${exDays} days.\n\nPreference in json:\n${document.cookie}`);
+})
+
+//Check current cookies
+const checkCookies = document.getElementById("checkCookies");
+checkCookies.addEventListener("click",()=>{
+    alert(`Preference in json: \n ${document.cookie}`);
+})
+
+//Clear Cookies button
+const clearCookies = document.getElementById("clearCookies");
+clearCookies.addEventListener("click",()=>{
+    clearAllCookies(document.cookie);
+})
+
+//console.log(document.cookie);
+
+//Start button
 const submit = document.getElementById("submit");
 submit.addEventListener("click", generate);
 
-
-
 function generate(){
+    // clear Questions before generate
+    clearQuestions();
+
+    // get input of calculationtypes
     for (let i of Array(calculationTypes.length).keys()){
-        if (document.getElementById(calculationTypes[i]).checked){
+        if (getChecked(calculationTypes[i])){
             typeCheck[i] = true;
-            //console.log(typeCheck)
         }
         else{
             typeCheck[i] = false;
-            //console.log(typeCheck)
         }
     }
-    NOQcheck = getOption("NOQ");
-    let difficultycheck = getOption("difficulty");
 
-    let n = Number(NOQcheck);
+    // get input of dificulty level
+    let difficultycheck = getOption("difficulty");
     
+    // get input of number of questions
+    let n = Number(getOption("NOQ"));
+
+    // initilize a list (Qtype) of available calculationtypes 
     let Qtype = [];
     for (let i of Array(typeCheck.length).keys()){
         if (typeCheck[i]){
@@ -101,12 +120,14 @@ function generate(){
         }
     }
 
+    // generate n questions by their calculationtypes randomly.
     let Q = [];
-    for (let i of Array(n).keys()){
+    for (let _ of Array(n).keys()){
         let random = Math.floor((Math.random() * Qtype.length));
         Q.push(Qtype[random]);
     }
 
+    // construct a class named exercise
     class exercise{
         constructor(question, answer){
             this.question = question;
@@ -115,6 +136,7 @@ function generate(){
     }
 
     Qlist = [];
+    // The core algorithm (generate all types of questions and store in Qlist)
     for (let i of Array(n).keys()){
         if (Q[i] === 0){
             let aUpperBound;
@@ -319,16 +341,7 @@ function generate(){
         nby4 = Math.floor(n/4) + 1;
     }
     
-    clearQuestions();
-    /*
-    let ols = document.querySelectorAll(".section ol")
-    if (ols != null){
-        for (ol of ols){
-            ol.remove();
-        }
-    }
-    */
-
+    // print out in four columns
     for (let i of Array(4).keys()){
         //let section = document.getElementById(`#section_${i}`);
         let section = document.getElementById(`section_${i}`);
@@ -355,17 +368,19 @@ function generate(){
         section.hidden = false;
     }
     MathJax.typeset();
+    
+    // reset scoreList to zeros
+    scoreList = new Array(n);
+    for (let i=0; i<n; ++i){scoreList[i] = 0};
+
+    scoreUpdate();
+    
     answerCheck();
-    
-
-    
-
-
 }
 
 function answerCheck(){
     let inputs = document.querySelectorAll("#questions input");
-    let right_after = document.getElementById("right_after");
+    const right_after = document.getElementById("right_after");
     if (right_after.checked){
         let checkAnswer = document.getElementById("checkAnswer");
         checkAnswer.hidden = true;
@@ -380,20 +395,24 @@ function answerCheck(){
     else{
         let checkAnswer = document.getElementById("checkAnswer");
         checkAnswer.hidden = false;
-        checkAnswer.addEventListener("click", function(){
+        checkAnswer.addEventListener("click", async function(){
+            let score = document.getElementById("score");
+            score.className = "";
             for (let input of inputs){
                 answerResponse(input);
-                }
+            }
         })
     }
 }
 
+// check answer and return question number and score(1 for correct, 0 for wrong)
 function answerResponse(input){
+    let singleScore = 0;
     let userInput = input.value;
     let Q_Number = Number(input.id.slice(2));
     let img = input.parentElement.querySelector("img");
-    console.log(userInput);
-    console.log(Qlist[Q_Number].answer);
+    //console.log(userInput);
+    //console.log(Qlist[Q_Number].answer);
     let invalidInput = false
     if (userInput === ""){
         img.hidden = true;
@@ -422,6 +441,7 @@ function answerResponse(input){
                     else{
                         if (eval(userInput) === Qlist[Q_Number].answer){
                             imgCorrect(img);
+                            singleScore = 1;
                         }
                         else{
                             imgWrong(img);
@@ -434,15 +454,16 @@ function answerResponse(input){
                 }
             }
             else if (Number(userInput) === Qlist[Q_Number].answer){
-                img.hidden = false;
-                img.src = "static/accept.png";
-                img.alt = "Correct";
+                imgCorrect(img);
+                singleScore = 1;
             }
             else{
                 imgWrong(img);
             }
         }
     }
+    scoreList[Q_Number] = singleScore;
+    scoreUpdate();
 }
 
 function imgCorrect (img) {
@@ -468,10 +489,9 @@ function getOption(arg) {
     return selectElement.value;
 }
 
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+function getChecked(arg) {
+    selectElement = document.getElementById(arg);
+    return selectElement.checked;
 }
 
 function sleep(t) {
@@ -482,6 +502,7 @@ function sleep(t) {
 const reset = document.getElementById("reset");
 reset.addEventListener("click", clearQuestions)
 
+// clear questions and hide score
 function clearQuestions(){
     let sections = document.querySelectorAll(".section")
     for (section of sections){
@@ -493,6 +514,9 @@ function clearQuestions(){
             ol.remove();
         }
     }
+    // hide score
+    let score = document.getElementById("score");
+    score.hidden = true;
 }
 
 function properFactors(n){
@@ -551,6 +575,120 @@ function switchVariablesValues(a, b){
     return [b, a];
 }
 
+// Set default cookies
+function setDefaultCookie(){
+    setCookie("NOQ", "20"); 
+    setCookie("difficulty", "Easy");
+    setCookie("right_after", "true");
+    for (let i of calculationTypes){
+        if (i === "Addition" || i === "Substraction" || i === "Multiplication" || i === "Division"){
+            setCookie(i, "true");
+        }
+        else{
+            setCookie(i, "false");
+        }
+    }
+}
+
+
+// setCookie function
+function setCookie(cname, cvalue, exdays=exDays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";Secure";
+}
+
+// clear all cookies function
+function clearAllCookies(documentCookie){
+    let cookies = documentCookie.split(';');
+    for (let cookie of cookies){
+        let cookieName = cookie.split('=')[0];
+        setCookie(cookieName, "", 0);
+    }
+    alert(`All cookies are cleared successfully!\n${document.cookie}`);
+}
+
+function checkACookieExists(aCookieName) {
+    if (
+        document.cookie.split(";").some((item) => item.trim().startsWith(`${aCookieName}=`))
+    ){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function loadCookie(){
+    let settings = ["NOQ", "difficulty", "right_after"].concat(calculationTypes);
+    for (let setting of settings){
+        if (!(checkACookieExists(setting))){
+            cookieDeprecationAlert();
+        }
+    }
+    clearSelected();
+    for (let cookie of (document.cookie).split(';')){
+        let [key, value] = cookie.split('=').map(item => item.trim());
+        if (key === "NOQ"){
+            document.getElementById(`NOQ_${value}`).selected = true;
+        }
+        else if (key === "difficulty"){
+            document.getElementById(value).selected = true;
+        }
+        else if (key === "right_after"){
+            if (value === "true"){
+                document.getElementById("right_after").checked = true;
+            }
+            else if (value === "false"){
+                document.getElementById("right_after").checked = false;
+            }
+            else{
+                cookieDeprecationAlert();
+            }
+        }
+        else if (calculationTypes.includes(key)){
+            if (value === "true"){
+                document.getElementById(key).checked = true;
+            }
+            else if (value === "false"){
+                document.getElementById(key).checked = false;
+            }
+            else{
+                cookieDeprecationAlert();
+            }
+        }
+        else{
+            captureUnexpected("initilize cookies");
+        }
+    }
+}
+
+function cookieDeprecationAlert(){
+    alert("Warning!!! Cookies has been deprecated!!!");
+}
+
+function clearSelected(){
+    let options = document.querySelectorAll("options");
+    for (everyOption of options){
+        everyOption.selected = false;
+    }
+}
+
+function scoreUpdate(){
+    var result = 0;
+    for (var i in scoreList) {
+        result += scoreList[i];
+    }
+    let score = document.getElementById("score");
+    score.textContent = `score: ${result}/${getOption("NOQ")}`;
+    score.hidden = false;
+}
+
+function captureUnexpected(error){
+    alert("An unexpected situation has been captured!")
+    console.log(`An error has occurred! Check ${error}`)
+}
 /*
 from numpy import *
 a = linspace(0,100,101)
