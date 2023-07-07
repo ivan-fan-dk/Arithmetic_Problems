@@ -59,6 +59,20 @@ for (let i of Array(calculationTypes.length).keys()){
 // default setting for See answer right after typed
 document.getElementById("right_after").checked = true
 
+// Set default cookies
+document.cookie = "name=oeschger; SameSite=None; Secure";// difficulty=Easy; right_after:true; Secure;max-age=60*60";
+/*
+for (let i of calculationTypes){
+    if (i === "Addition" || i === "Substraction" || i === "Multiplication" || i === "Division"){
+        document.cookie = `${i}=true; Secure`;
+    }
+    else{
+        document.cookie = `${i}=false; Secure`;
+    }
+}
+*/
+console.log(document.cookie)
+
 const submit = document.getElementById("submit");
 submit.addEventListener("click", generate);
 

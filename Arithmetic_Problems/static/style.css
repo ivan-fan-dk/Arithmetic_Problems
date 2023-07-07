@@ -1,3 +1,17 @@
+/*  if header is wanted to be sticky all the way, the following code is to handle float element
+body:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+*/
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 header {
     background-color: #333;
     max-width: 100%;
@@ -6,16 +20,20 @@ header {
     text-align: center;
     background-image: url("trust.png");
     background-repeat: no-repeat;
-    background-position: right 2px top 2px;
+    background-position: right 4px top 50%;
     background-size: 80px 80px;
+    /*position: sticky;*/
+    top: 0px;
 }
 
 header:hover {
     background-image: url("closedEyes.jpg");
 }
 
-header h1 {
-    text-align: center;
+header h1, header h3 {
+    display: inline-flex;
+    border-radius: 5px;
+    margin-right: 5px;
 }
 
 
@@ -27,6 +45,7 @@ header, div{
     margin-top: 10px;
     text-align: center;
     background-color: #00220022;
+    overflow-x: auto;
 }
 
 #customize h2{
@@ -91,6 +110,7 @@ header, div{
     width: 17px;
     aspect-ratio: 1;
     border-radius: 5px;
+    accent-color: auto;
 }
 
 #calculationType {
@@ -154,9 +174,10 @@ select {
 
 #buttonfield {
     margin-top: 1%;
+    margin-bottom: 1%;
     width: 100%;
     text-align: center;
-    height: 6vh;
+    height: 20px;
 }
 
 .inner {

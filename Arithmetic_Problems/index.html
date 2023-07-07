@@ -2,24 +2,36 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <meta name="description" content="An interactive html to play with arithmetic problems">
         <meta name="author" content="Ivan Fan">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Arithmetic</title>
         <link rel="stylesheet" type="text/css" href="static/style.css">
-        <link rel="icon" type="image/png" href="static/icon.png">
+        <link rel="icon" type="image/png" href="static/icon2.png">
     </head>
     <body>
-
-
         <header>
             <h1>
                 Arithmetic problems
             </h1>
+            <h3>
+                (version 1.0.1)
+            </h3>
+            <!--
+            <h1>
+                <img src="static/accept.png" alt="Correct"/>
+            </h1>
+            <h1>
+                <img src="static/cross.png" alt="Wrong"/>
+            </h1>
+            <h1>
+                <img src="static/warning.png" alt="Invalid"/>
+            </h1>
+            -->
         </header>
 
-
+        <div>
         <div id="customize">
             <h2>Customize</h2>
             <div id="gridCustom">
@@ -48,7 +60,6 @@
                 <div class="gridItem">
                     <div class="customizeTitle" >Types of problems:</div>
                     <div id="calculationType">
-                    
                     </div>
                 </div>
             </div>
@@ -64,6 +75,19 @@
             <div class="inner">
                 <input class="button" type="button" value="Check Answer" id="checkAnswer" hidden>
             </div>
+            <div class="inner">
+                <input class="button" type="button" value="Set Cookies" id="setCookies">
+            </div>
+            <div class="inner">
+                <input class="button" type="button" value="Clear Cookies" id="clearCookies">
+            </div>
+            <!--
+            <div class="inner">
+                <div class="customizeTitle" id="github">
+                    Project Resource is also available on <a href="https://github.com/ivan-fan-dk/Arithmetic_Problems">GITHUB</a>.
+                </div>
+            </div>
+            -->
         </div>
 
         <div id="questions">
@@ -78,6 +102,7 @@
 
             <div class="section" id="section_3" hidden>
             </div>
+        </div>
         </div>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script type="text/javascript" id="MathJax-script" async
