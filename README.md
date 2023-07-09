@@ -4,6 +4,7 @@
 An interactive html to play with arithmetic problems
 
 ## Version update
+- v.1.0.2  add cookies and score evaluation
 - v.1.0.1  increase accessibility
 - v.1.0.0  original
 
