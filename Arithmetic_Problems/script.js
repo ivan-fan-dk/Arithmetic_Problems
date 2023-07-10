@@ -71,13 +71,13 @@ setCookies.addEventListener("click",()=>{
         }
     }
     //console.log(document.cookie);
-    alert(`Your preferences has been set successfully and remembered for ${exDays} days.\n\nPreferences in json:\n${document.cookie}`);
+    alert(`Your preference has been set successfully and remembered for ${exDays} days.\n\nPreference in json:\n${document.cookie}`);
 })
 
 //Check current cookies
 const checkCookies = document.getElementById("checkCookies");
 checkCookies.addEventListener("click",()=>{
-    alert(`Preferences in json: \n ${document.cookie}`);
+    alert(`Preference in json: \n ${document.cookie}`);
 })
 
 //Clear Cookies button

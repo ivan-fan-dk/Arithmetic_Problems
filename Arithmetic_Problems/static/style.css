@@ -51,6 +51,7 @@ header, div{
 #customize h2{
     display: inline-flex;
     padding-top: 5px;
+    margin-top: 5px;
     margin-bottom: 0px;
     padding: 5px;
     background-color: #0000;
@@ -101,7 +102,6 @@ header, div{
 
 #calculationType {
     display: grid;
-    grid-template-rows: auto auto;
 }
 
 
@@ -130,6 +130,47 @@ header, div{
     background-color: #dcdcdc;
     margin: 0.5%;
     padding: 0.5%;
+}
+
+@media screen and (max-width: 800px) {
+    .section{
+        width: 100%
+    }
+
+    #gridCustom{
+        grid-template-columns: auto;
+        width: 100%;
+    }
+
+    .gridItem{
+        width: 100%;
+        /*display: flex;*/
+    }
+
+    #calculationType{
+        display:block;
+    }
+
+    header{
+        background-size: 12vw, 12vw;
+    }
+    header h1{
+        font-size: 24px;
+        display: block;
+        margin-bottom: 0px;
+    }
+
+    header h3{
+        font-size: 10px;
+    }
+
+    #customize h2{
+        font-size: 16px;
+    }
+}
+
+.clear-both{
+    clear: both;
 }
 
 li{
