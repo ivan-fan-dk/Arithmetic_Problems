@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Arithmetic</title>
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+        <link rel="icon" type="image/png" href="static/icon.png">
+    </head>
+    <body>
+
+
+        <header>
+            <h1>
+                Arithmetic problems
+            </h1>
+        </header>
+
+
+        <div id="customize">
+            <h2>Customize</h2>
+            <div id="gridCustom">
+                <div class="gridItem">
+                    <div class="customizeTitle" style="margin-right: 20px;">
+                        Number of questions
+                        <select name="NOQ" id="NOQ">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="gridItem">
+                    <div class="customizeTitle" style="margin-right: 20px;">
+                        Difficulty
+                        <select name="difficulty" id="difficulty">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="gridItem">
+                    <div class="customizeTitle" >Check answer right after typed
+                        <input class="checkbox" type="checkbox" id="right_after">
+                    </div>
+                </div>
+                <div class="gridItem">
+                    <div class="customizeTitle" >Types of problems:</div>
+                    <div id="calculationType">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="buttonfield">
+            <div class="inner">
+                <input class="button" type="button" value="Start" id="submit" autofocus>
+            </div>
+            <div class="inner">
+                <input class="button" type="button" value="Reset" id="reset">
+            </div>
+            <div class="inner">
+                <input class="button" type="button" value="Check Answer" id="checkAnswer" hidden>
+            </div>
+        </div>
+
+        <div id="questions">
+            <div class="section" id="section_0" hidden>
+            </div>
+
+            <div class="section" id="section_1" hidden>
+            </div>
+
+            <div class="section" id="section_2" hidden>
+            </div>
+
+            <div class="section" id="section_3" hidden>
+            </div>
+        </div>
+        <md-block>
+            - v.1.0.0   original
+        </md-block>
+        <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+        <script src="script.js" defer></script>
+    </body>
+</html>
