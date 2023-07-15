@@ -1,5 +1,6 @@
 const exDays = 7;
 let scoreList;
+var printTime;
 const body = document.querySelector("body");
 const right_after = document.getElementById("right_after");
 const checkAnswer = document.getElementById("checkAnswer");
@@ -22,8 +23,6 @@ const navigationMenu = document.getElementById("navigationMenu");
 const navigationBar = document.getElementById("navigationBar");
 const overlay = document.querySelector(".overlay");
 
-var printTime;
-
 
 const NOQ = document.querySelector("#NOQ");
 const NOQs = [10,20,30,40,50,100];
@@ -36,7 +35,9 @@ const calculationTypes = ["Addition", "Substraction", "Multiplication", "Divisio
 
 const settings = ["NOQ", "difficulty", "right_after"].concat(calculationTypes);
 
+// Navigation
 close.addEventListener("click",closeNavigationMenu);
+navigationBar.addEventListener("click", openNavigationMenu);
 
 function closeNavigationMenu(){
     navigationMenu.style.outline = "none";
@@ -44,7 +45,6 @@ function closeNavigationMenu(){
     overlay.classList.remove("open");
 }
 
-navigationBar.addEventListener("click", openNavigationMenu);
 function openNavigationMenu(){
     navigationMenu.style.outline = "solid thin black";
     navigationMenu.style.width = "20%";
@@ -69,7 +69,6 @@ for (let i of difficulties){
         option.hidden = true
     }
 }
-
 
 // calculationType
 for (let i of calculationTypes){
@@ -110,7 +109,6 @@ setCookies.addEventListener("click",()=>{
             setCookie(i, "false");
         }
     }
-    //console.log(document.cookie);
     alert(`Your preferences has been set successfully and remembered for ${exDays} days.\n\nPreferences in json:\n${document.cookie}`);
 })
 
@@ -124,12 +122,10 @@ clearCookies.addEventListener("click",()=>{
     clearAllCookies(document.cookie);
 })
 
-//console.log(document.cookie);
-
 // mode code (0: normal mode, 1: time trial mode)
 let mode;
 
-//timeTrial buttom
+//timeTrial button
 normalMode();
 
 function normalMode(){
@@ -137,9 +133,6 @@ function normalMode(){
     changeBackgroundColor();
     right_after.disabled = false;
     stop.hidden = true;
-    /*
-    header.style.backgroundColor = "#333";
-    */
     if (right_after.checked){
         checkAnswer.hidden = true;
     }
@@ -156,33 +149,13 @@ function timeTrialMode(){
     changeBackgroundColor();
     right_after.disabled = true;
     stop.hidden = true;
-    /*
-    header.style.backgroundColor = "blue";
-    header.style.color = "yellow";
-    */
     timeTrial.removeEventListener("click", timeTrialClickInNormalMode);
     timeTrial.addEventListener("click", timeTrialClickInTimeTrialMode);
     console.log(`mode is ${mode}.`);
 }
 
-function timer(){
-    var startTime = new Date().getTime();
-    printTime = setInterval(function(){
-        var now = new Date().getTime();
-        var distance = now - startTime;
-        var minutes = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)), 2);
-        var seconds = pad(Math.floor((distance % (1000 * 60)) / 1000),2);
-        var miliseconds = pad(Math.floor((distance % 1000)/100),1);
-        time.textContent = `time: ${minutes}:${seconds}.${miliseconds}`;/* ${minutes}:${seconds}.${distance} */
-    },100)
-    stop.addEventListener("click", stopper);
-}
-
-
 //Start button
 submit.addEventListener("click", generate);
-
-
 
 function generate(){
     changeBackgroundColor();
@@ -231,6 +204,7 @@ function generate(){
     Qlist = [];
     // The core algorithm (generate all types of questions and store in Qlist)
     for (let i of Array(n).keys()){
+        // Addition
         if (Q[i] === 0){
             let aUpperBound;
             let bUpperBound;
@@ -262,6 +236,7 @@ function generate(){
             let b = Math.floor((Math.random() * bUpperBound));
             Qlist.push(new exercise(`\\(${a} + ${b} = \\)`, Number(a + b)));
         }
+        // Substraction
         else if (Q[i] === 1){
             let aUpperBound;
             let bUpperBound;
@@ -293,6 +268,7 @@ function generate(){
             let b = Math.floor((Math.random() * bUpperBound));
             Qlist.push(new exercise(`\\(${a} - ${b} = \\)`, Number(a - b)));
         }
+        // Multiplication
         else if (Q[i] === 2){
             let aUpperBound;
             let bUpperBound;
@@ -335,6 +311,7 @@ function generate(){
 
             Qlist.push(new exercise(`\\(${a} \\times ${b} = \\)`, Number(a * b)));
         }
+        // Division
         else if (Q[i] === 3){
             let aUpperBound;
             if (difficultycheck === difficulties[0]){
@@ -394,9 +371,7 @@ function generate(){
                 aUpperBound = 1000;
                 bUpperBound = 1000;
             }
-        
-            
-
+                 
             // change sequence of a and b in 50% chance
             if (Math.floor(Math.random()*2) === 1){
                 [firstTerm, secondTerm] = switchVariablesValues(firstTerm, secondTerm);
@@ -436,7 +411,6 @@ function generate(){
     
     // print out in four columns
     for (let i of Array(4).keys()){
-        //let section = document.getElementById(`#section_${i}`);
         let section = document.getElementById(`section_${i}`);
         let ol = section.appendChild(document.createElement("ol"));
         ol.type = "1";
@@ -460,16 +434,21 @@ function generate(){
         }
         section.hidden = false;
     }
+
+    // load MathJax
     MathJax.typeset();
     
     // reset scoreList to zeros
     scoreList = new Array(n);
     for (let i=0; i<n; ++i){scoreList[i] = 0};
 
+    // update score
     scoreUpdate();
     
+    // check answers
     answerCheck();
 
+    // if it is in Time Trial mode, initilize timer, make "time stop" button visible and start timer.
     if (mode === 1){
         clearInterval(printTime);
         stop.hidden = false;
@@ -479,17 +458,19 @@ function generate(){
 
 function answerCheck(){
     let inputs = document.querySelectorAll("#questions input");
+    // if the user want to check answer right after typed and it is in normal mode, 
     if (right_after.checked && mode === 0){
         checkAnswer.hidden = true;
         for (let input of inputs){
-            //console.log(input)
             input.addEventListener('input', async function() {
                 await sleep(1);
                 answerResponse(input);
             });
         }
     }
+    // if the user want to check answer when he/she click "check answer" or in Time Trial Mode.
     else{
+        // hide the "check answer" because they need to click "time stop" button first in Time Trial Mode.
         if (mode === 1){
             checkAnswer.hidden = true;
         }
@@ -505,47 +486,50 @@ function answerCheck(){
     }
 }
 
-// check answer and return question number and score(1 for correct, 0 for wrong)
+// check answer and store every single score (1 for correct, 0 for wrong) in variable "scoreList".
 function answerResponse(input){
     let singleScore = 0;
-    let userInput = input.value;
-    let Q_Number = Number(input.id.slice(2));
-    let img = input.parentElement.querySelector("img");
-    //console.log(userInput);
-    //console.log(Qlist[Q_Number].answer);
-    let invalidInput = false
+    let userInput = input.value;                // fetch user input value
+    let Q_Number = Number(input.id.slice(2));   // fetch question number
+    let img = input.parentElement.querySelector("img"); // make image element inside parent element of input
+    let invalidInput = false;
+    // if the user didn't type anything in input, don't judge them (be kind).
     if (userInput === ""){
         img.hidden = true;
     }
+    // Ester Egg: if "spare me" is typed, then it counts as correct.
+    else if (userInput === "spare me"){
+        imgCorrect(img);
+        singleScore = 1;
+    }
     else{
+        // typo check mechanism. Only these chars "0123456789/-." are valid.
         for (i of userInput){
             if (!("0123456789/-.".includes(i))){
                 imgWarning(img);
                 invalidInput = true;
             }
-            // '-' does not occur as regular minus sign
-            else if(userInput.includes('-') && userInput[0] != '-'){
-                imgWarning(img);
-                invalidInput = true;
-            }
         }
-        //else if ((userInput.includes("/") && eval(userInput) === Qlist[Q_Number].answer) || Number(userInput) === Qlist[Q_Number].answer){
+
+        // '-' that does not placed first as regular minus sign is considered invalid.
+        if(userInput.includes('-') && userInput[0] != '-'){
+            imgWarning(img);
+            invalidInput = true;
+        }
+
+        // if input is considered valid,
         if (!(invalidInput)){
+            // if input is a fraction,
             if (userInput.includes("/")){
                 let str = userInput.split("/")
+                // if there is and only one "/" which divide userinput in two strings, and first string is non-zero long, and second is not equal to 0 nor empty.
                 if (str.length === 2 && str[0].length != 0 && str[1] != 0){
-                    if (str[1] === "0"){
-                        // divided by zero
-                        imgWarning(img);
+                    if (eval(userInput) === Qlist[Q_Number].answer){
+                        imgCorrect(img);
+                        singleScore = 1;
                     }
                     else{
-                        if (eval(userInput) === Qlist[Q_Number].answer){
-                            imgCorrect(img);
-                            singleScore = 1;
-                        }
-                        else{
-                            imgWrong(img);
-                        }
+                        imgWrong(img);
                     }
                 }
                 else{
@@ -553,6 +537,7 @@ function answerResponse(input){
                     imgWarning(img);
                 }
             }
+            // if input is just a integer
             else if (Number(userInput) === Qlist[Q_Number].answer){
                 imgCorrect(img);
                 singleScore = 1;
@@ -603,6 +588,7 @@ reset.addEventListener("click", clearQuestions);
 
 // clear questions and hide score
 function clearQuestions(){
+    // hide all sections
     let sections = document.querySelectorAll(".section")
     for (let section of sections){
         section.hidden=true;
@@ -628,7 +614,7 @@ function clearQuestions(){
         time.hidden = false;
     }
     else{
-        captureUnexpected();
+        captureUnexpected("clearQuestions");
     }
 }
 
@@ -719,9 +705,15 @@ function clearAllCookies(documentCookie){
         let cookieName = cookie.split('=')[0];
         setCookie(cookieName, "", 0);
     }
-    alert(`All cookies are cleared successfully!\n${document.cookie}`);
+    if (document.cookie.length === 0){
+        alert(`All cookies within this tab are cleared successfully!`);
+    }
+    else {
+        alert(`Most of the cookies are cleared successfully!\n\nRemaining cookies in json:\n${document.cookie}`);
+    }
 }
 
+// a helper function, but not used in the main code structure.
 function checkACookieExists(aCookieName) {
     if (
         document.cookie.split(";").some((item) => item.trim().startsWith(`${aCookieName}=`))
@@ -734,11 +726,6 @@ function checkACookieExists(aCookieName) {
 }
 
 function loadCookie(){
-    for (let setting of settings){
-        if (!(checkACookieExists(setting))){
-            cookieDeprecationAlert();
-        }
-    }
     clearSelected();
     for (let cookie of (document.cookie).split(';')){
         let [key, value] = cookie.split('=').map(item => item.trim());
@@ -756,7 +743,7 @@ function loadCookie(){
                 document.getElementById("right_after").checked = false;
             }
             else{
-                cookieDeprecationAlert();
+                cookieDeprecationAlert("right_after");
             }
         }
         else if (calculationTypes.includes(key)){
@@ -767,17 +754,16 @@ function loadCookie(){
                 document.getElementById(key).checked = false;
             }
             else{
-                cookieDeprecationAlert();
+                cookieDeprecationAlert(key);
             }
         }
-        else{
-            captureUnexpected("initilize cookies");
-        }
+        else{;}
     }
 }
 
-function cookieDeprecationAlert(){
+function cookieDeprecationAlert(error){
     alert("Warning!!! Cookies has been deprecated!!!");
+    console.log(`Decprecated cookies in ${error}`)
 }
 
 function clearSelected(){
@@ -800,6 +786,7 @@ function captureUnexpected(error){
     console.log(`An error has occurred! Check ${error}`)
 }
 
+// rewrite a number to a string with expected length, e.g. pad(2,3) returns "002"
 function pad(num, size) {
     num = num.toString();
     while (num.length < size) num = "0" + num;
@@ -840,6 +827,18 @@ function changeBackgroundColor(){
     }
 }
 
+function timer(){
+    var startTime = new Date().getTime();
+    printTime = setInterval(function(){
+        var now = new Date().getTime();
+        var distance = now - startTime;
+        var minutes = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)), 2);
+        var seconds = pad(Math.floor((distance % (1000 * 60)) / 1000),2);
+        var miliseconds = pad(Math.floor((distance % 1000)/100),1);
+        time.textContent = `time: ${minutes}:${seconds}.${miliseconds}`;
+    },100)
+    stop.addEventListener("click", stopper);
+}
 /*
 from numpy import *
 a = linspace(0,100,101)
