@@ -1,11 +1,3 @@
-fetch("myText.txt")
-  .then((res) => res.text())
-  .then((text) => {
-    // do something with "text"
-    console.log(text);
-   })
-  .catch((e) => console.error(e));
-
 const exDays = 30;
 const defaultNOQ = "20";
 const defaultDifficulty = "Easy";
