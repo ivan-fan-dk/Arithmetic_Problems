@@ -1,4 +1,18 @@
-const exDays = 7;
+fetch("myText.txt")
+  .then((res) => res.text())
+  .then((text) => {
+    // do something with "text"
+    console.log(text);
+   })
+  .catch((e) => console.error(e));
+
+const exDays = 30;
+const defaultNOQ = "20";
+const defaultDifficulty = "Easy";
+const defaultRight_after = true;
+const defaultCalculationTypes = ["Addition", "Substraction", "Multiplication", "Division"];
+const versions = ["1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
+
 let scoreList;
 var printTime;
 const body = document.querySelector("body");
@@ -34,6 +48,14 @@ const calculationType = document.querySelector("#calculationType");
 const calculationTypes = ["Addition", "Substraction", "Multiplication", "Division", "Fraction"];
 
 const settings = ["NOQ", "difficulty", "right_after"].concat(calculationTypes);
+
+// version
+for (let version of versions){
+    let li = navigationMenu.appendChild(document.createElement("li"));
+    let a = li.appendChild(document.createElement("a"));
+    a.href = `../Arithmetic_Problems v.${version}/index.html`;
+    a.textContent = `version ${version}`;
+}
 
 // Navigation
 close.addEventListener("click",closeNavigationMenu);
@@ -90,10 +112,7 @@ for (let _ of Array(calculationTypes.length).keys()){
     typeCheck.push(true);
 }
 
-// initilize cookies (either load default cookie or load the stored cookie)
-if (document.cookie.length === 0){
-    setDefaultCookie();
-}
+// load cookies (either load default cookie or load the stored cookie)
 loadCookie();
 
 //Set Cookies button
@@ -674,28 +693,12 @@ function switchVariablesValues(a, b){
     return [b, a];
 }
 
-// Set default cookies
-function setDefaultCookie(){
-    setCookie("NOQ", "20"); 
-    setCookie("difficulty", "Easy");
-    setCookie("right_after", "true");
-    for (let i of calculationTypes){
-        if (i === "Addition" || i === "Substraction" || i === "Multiplication" || i === "Division"){
-            setCookie(i, "true");
-        }
-        else{
-            setCookie(i, "false");
-        }
-    }
-}
-
-
 // setCookie function
 function setCookie(cname, cvalue, exdays=exDays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";Secure";
+    document.cookie = String(cname) + "=" + String(cvalue) + ";" + expires + ";Secure";
 }
 
 // clear all cookies function
@@ -727,13 +730,21 @@ function checkACookieExists(aCookieName) {
 
 function loadCookie(){
     clearSelected();
+    // make boolean expressions
+    let boolNOQ = false;
+    let boolDifficulty = false;
+    let boolRight_after = false;
+    let boolCalculationTypes = [false,false,false,false];
+
     for (let cookie of (document.cookie).split(';')){
         let [key, value] = cookie.split('=').map(item => item.trim());
         if (key === "NOQ"){
             document.getElementById(`NOQ_${value}`).selected = true;
+            boolNOQ = true;
         }
         else if (key === "difficulty"){
             document.getElementById(value).selected = true;
+            boolDifficulty = true;
         }
         else if (key === "right_after"){
             if (value === "true"){
@@ -745,6 +756,7 @@ function loadCookie(){
             else{
                 cookieDeprecationAlert("right_after");
             }
+            boolRight_after = true;
         }
         else if (calculationTypes.includes(key)){
             if (value === "true"){
@@ -756,8 +768,30 @@ function loadCookie(){
             else{
                 cookieDeprecationAlert(key);
             }
+            boolCalculationTypes[calculationTypes.indexOf(key)] = true;
         }
         else{;}
+    }
+
+    // Set default cookie if its key didn't exist in document.cookie.
+    if (boolNOQ === false){
+        document.getElementById(`NOQ_${defaultNOQ}`).selected = true;
+    }
+    if (boolDifficulty === false){
+        document.getElementById(defaultDifficulty).selected = true;
+    }
+    if (boolRight_after === false){
+        document.getElementById("right_after").checked = defaultRight_after;
+    }
+    for (let i of calculationTypes){
+        if (boolCalculationTypes[calculationTypes.indexOf(i)] == false){
+            if (defaultCalculationTypes.includes(i)){
+                document.getElementById(i).checked = true;
+            }
+            else{
+                document.getElementById(i).checked = false;
+            }
+        }
     }
 }
 
