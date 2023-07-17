@@ -18,11 +18,6 @@ I have just got a job as a tutor right now, and I saw my mentees struggling with
 ## How to play with it?
 ### Online
 1. Click link her [https://arithmetic.neocities.org/](https://arithmetic.neocities.org/) (A great thanks to **neocities**)
-### Download locally
-1. Download the whole folder/repository **"Arithmetic_Problems"**.
-2. Open file named **"index.html"** using an modern browser.
-3. Enjoy working with problems and the feeling.
-
 
 ## Some improvements can be done in the future.
 - ... Well, there were some before, but not right now. &#128541;
