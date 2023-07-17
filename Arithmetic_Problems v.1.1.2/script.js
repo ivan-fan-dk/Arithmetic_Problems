@@ -29,6 +29,7 @@ const navigationMenu = document.getElementById("navigationMenu");
 const navigationBar = document.getElementById("navigationBar");
 const overlay = document.querySelector(".overlay");
 const once = {once: true};
+const peek = document.getElementById("peek");
 
 
 const NOQ = document.querySelector("#NOQ");
@@ -169,8 +170,12 @@ submit.addEventListener("click", generate);
 
 function generate(){
     changeBackgroundColor();
+    
     // clear Questions before generate
     clearQuestions();
+
+    // hide peek message
+    peek.hidden = true;
 
     // get input of calculationtypes
     for (let i of Array(calculationTypes.length).keys()){
@@ -639,6 +644,9 @@ function clearQuestions(){
     }
     // nullify score
     score.hidden = true;
+
+    // show peek message
+    peek.hidden = false;
 
     //nullify timer
     clearInterval(printTime);
