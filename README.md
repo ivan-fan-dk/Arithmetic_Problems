@@ -25,7 +25,7 @@ I have just got a job as a tutor right now, and I saw my mentees struggling with
 
 
 ## Some improvements can be done in the future.
-- There are no answers of the questions, if one constant failing to find the correct answer.
+- There are no answers for the questions, if one constant fails to find the correct answer.
 
 ## Easter Eggs
 1. A hidden difficulty level is **Asian** (inspired by a Youtuber *Steven He* who ranks **Asian** as the most difficult level). You might unlock this feature if you dive into the developers tools of the browser, unfold the code, and delete `hidden` in `<option value="Asian" hidden>Asian</option>`.
