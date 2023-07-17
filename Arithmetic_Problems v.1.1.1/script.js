@@ -68,7 +68,7 @@ function openNavigationMenu(){
 // NOQ
 for (let i of NOQs){
     let option = NOQ.appendChild(document.createElement("option"));
-    option.id = `NOQ_${i}`
+    option.id = `NOQ_${i}`;
     option.value = String(i);
     option.textContent = String(i);
 }
@@ -126,12 +126,12 @@ setCookies.addEventListener("click",()=>{
 //Check current cookies
 checkCookies.addEventListener("click",()=>{
     alert(`Preferences in json: \n ${document.cookie}`);
-})
+});
 
 //Clear Cookies button
 clearCookies.addEventListener("click",()=>{
     clearAllCookies(document.cookie);
-})
+});
 
 // mode code (0: normal mode, 1: time trial mode)
 let mode;
@@ -515,7 +515,7 @@ function answerResponse(input){
     }
     else{
         // typo check mechanism. Only these chars "0123456789/-." are valid.
-        for (i of userInput){
+        for (var i of userInput){
             if (!("0123456789/-.".includes(i))){
                 imgWarning(img);
                 invalidInput = true;
@@ -606,7 +606,7 @@ function clearQuestions(){
     }
     let ols = document.querySelectorAll(".section ol");
     if (ols != null){
-        for (ol of ols){
+        for (var ol of ols){
             ol.remove();
         }
     }
@@ -654,7 +654,7 @@ function commonFactors(a, b){
     if (!pb.includes(b)){
         pb.push(b);
     }
-    for (i of pa){
+    for (var i of pa){
         if (pb.includes(i)){
             ls.push(i);
         }
@@ -763,7 +763,6 @@ function loadCookie(){
             }
             boolCalculationTypes[calculationTypes.indexOf(key)] = true;
         }
-        else{;}
     }
 
     // Set default cookie if its key didn't exist in document.cookie.
@@ -794,7 +793,7 @@ function cookieDeprecationAlert(error){
 }
 
 function clearSelected(){
-    for (everyOption of options){
+    for (var everyOption of options){
         everyOption.selected = false;
     }
 }
@@ -863,7 +862,7 @@ function timer(){
         var seconds = pad(Math.floor((distance % (1000 * 60)) / 1000),2);
         var miliseconds = pad(Math.floor((distance % 1000)/100),1);
         time.textContent = `time: ${minutes}:${seconds}.${miliseconds}`;
-    },100)
+    },100);
     stop.addEventListener("click", stopper);
 }
 /*
