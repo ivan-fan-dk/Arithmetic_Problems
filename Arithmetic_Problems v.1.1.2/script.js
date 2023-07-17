@@ -522,7 +522,7 @@ function getAnswer(input){
     input.value = String(Qlist[Q_Number].printOutAnswer);
     imgQuestion(img);
     scoreList[Q_Number] = 0;
-    scoreUpdate()
+    scoreUpdate();
 }
 
 // check answer and store every single score (1 for correct, 0 for wrong) in variable "scoreList".
