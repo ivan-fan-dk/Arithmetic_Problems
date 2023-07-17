@@ -24,7 +24,7 @@ const reset = document.getElementById("reset");
 const options = document.querySelectorAll("options");
 const header = document.querySelector("header");
 const backgroundColor = ["#cbffcd","#ffe1c8"];
-const close = document.getElementById("close");
+const closeButton = document.getElementById("close");
 const navigationMenu = document.getElementById("navigationMenu");
 const navigationBar = document.getElementById("navigationBar");
 const overlay = document.querySelector(".overlay");
@@ -50,7 +50,7 @@ for (let version of versions){
 }
 
 // Navigation
-close.addEventListener("click",closeNavigationMenu);
+closeButton.addEventListener("click",closeNavigationMenu);
 navigationBar.addEventListener("click", openNavigationMenu);
 
 function closeNavigationMenu(){
@@ -76,11 +76,11 @@ for (let i of NOQs){
 // Difficulty
 for (let i of difficulties){
     let option = difficulty.appendChild(document.createElement("option"));
-    option.id = i
+    option.id = i;
     option.value = i;
     option.textContent = i;
     if (i === "Asian"){
-        option.hidden = true
+        option.hidden = true;
     }
 }
 
@@ -89,7 +89,7 @@ for (let i of calculationTypes){
     let div = calculationType.appendChild(document.createElement("div"));
     div.className = "customizeTitle";
     let label = div.appendChild(document.createElement("label"));
-    label.htmlFor = i
+    label.htmlFor = i;
     label.textContent = i;
     let input = div.appendChild(document.createElement("input"));
     input.className = "checkbox";
@@ -121,7 +121,7 @@ setCookies.addEventListener("click",()=>{
         }
     }
     alert(`Your preferences has been set successfully and remembered for ${exDays} days.\n\nPreferences in json:\n${document.cookie}`);
-})
+});
 
 //Check current cookies
 checkCookies.addEventListener("click",()=>{
@@ -153,7 +153,7 @@ function normalMode(){
     timeTrial.removeEventListener("click", timeTrialClickInTimeTrialMode);
     timeTrial.addEventListener("click", timeTrialClickInNormalMode);
     console.log(`mode is ${mode}.`);
-};
+}
 
 function timeTrialMode(){
     mode = 1;
@@ -317,7 +317,7 @@ function generate(){
             
             // change sequence of a and b in 50% chance
             if (Math.floor(Math.random()*2) === 1){
-                [a,b] = switchVariablesValues(a,b)
+                [a,b] = switchVariablesValues(a,b);
             }
 
             Qlist.push(new exercise(`\\(${a} \\times ${b} = \\)`, Number(a * b)));
@@ -348,7 +348,7 @@ function generate(){
             let a;
             while (divls.length === 0){
                 a = Math.floor((Math.random() * aUpperBound));
-                divls = properFactors(a)
+                divls = properFactors(a);
             }
             
             let b = divls[Math.floor((Math.random() * divls.length))];
@@ -393,7 +393,7 @@ function generate(){
             [secondTerm, secondTermToEvaluate] = properFraction(aUpperBound, bUpperBound);
             [a,b] = firstTermToEvaluate.split("/");
             [c,d] = secondTermToEvaluate.split("/");
-            [a,b,c,d] = [Number(a),Number(b),Number(c),Number(d)]
+            [a,b,c,d] = [Number(a),Number(b),Number(c),Number(d)];
 
             if (calculationTypeForFraction === 0){
                 Qlist.push(new exercise(`\\( ${firstTerm} + ${secondTerm} = \\)`, (a*d+b*c)/(b*d)));
@@ -493,7 +493,7 @@ function answerCheck(){
             for (let input of inputs){
                 answerResponse(input);
             }
-        })
+        });
     }
 }
 
@@ -532,7 +532,7 @@ function answerResponse(input){
         if (!(invalidInput)){
             // if input is a fraction,
             if (userInput.includes("/")){
-                let str = userInput.split("/")
+                let str = userInput.split("/");
                 // if there is and only one "/" which divide userinput in two strings, and first string is non-zero long, and second is not equal to 0 nor empty.
                 if (str.length === 2 && str[0].length != 0 && str[1] != 0){
                     if (eval(userInput) === Qlist[Q_Number].answer){
@@ -591,8 +591,8 @@ function getChecked(arg) {
 }
 
 function sleep(t) {
-    return new Promise(resolve => setTimeout(resolve, t*1000))
-};
+    return new Promise(resolve => setTimeout(resolve, t*1000));
+}
 
 // reset button
 reset.addEventListener("click", clearQuestions);
@@ -600,11 +600,11 @@ reset.addEventListener("click", clearQuestions);
 // clear questions and hide score
 function clearQuestions(){
     // hide all sections
-    let sections = document.querySelectorAll(".section")
+    let sections = document.querySelectorAll(".section");
     for (let section of sections){
         section.hidden=true;
     }
-    let ols = document.querySelectorAll(".section ol")
+    let ols = document.querySelectorAll(".section ol");
     if (ols != null){
         for (ol of ols){
             ol.remove();
@@ -663,13 +663,13 @@ function commonFactors(a, b){
 }
 
 function properFraction(aUpperBound, bUpperBound){
-    a = Math.floor(Math.random()*aUpperBound) + 1
+    a = Math.floor(Math.random()*aUpperBound) + 1;
     if (a === 1){
         b = Math.floor(Math.random()*bUpperBound) + 1;  // [1,bUpperBound]
     }
     else{
-        bCandidates = [...Array(bUpperBound).keys()].map(i => i + 1).filter(number => commonFactors(a,number).length === 0)
-        b = bCandidates[Math.floor(Math.random() * bCandidates.length)]
+        bCandidates = [...Array(bUpperBound).keys()].map(i => i + 1).filter(number => commonFactors(a,number).length === 0);
+        b = bCandidates[Math.floor(Math.random() * bCandidates.length)];
     }
 
     // b could be 1
@@ -712,7 +712,8 @@ function clearAllCookies(documentCookie){
 function checkACookieExists(aCookieName) {
     if (
         document.cookie.split(";").some((item) => item.trim().startsWith(`${aCookieName}=`))
-    ){
+    )
+    {
         return true;
     }
     else{
@@ -789,7 +790,7 @@ function loadCookie(){
 
 function cookieDeprecationAlert(error){
     alert("Warning!!! Cookies has been deprecated!!!");
-    console.log(`Decprecated cookies in ${error}`)
+    console.log(`Decprecated cookies in ${error}`);
 }
 
 function clearSelected(){
@@ -808,8 +809,8 @@ function scoreUpdate(){
 }
 
 function captureUnexpected(error){
-    alert("An unexpected situation has been captured!")
-    console.log(`An error has occurred! Check ${error}`)
+    alert("An unexpected situation has been captured!");
+    console.log(`An error has occurred! Check ${error}`);
 }
 
 // rewrite a number to a string with expected length, e.g. pad(2,3) returns "002"
