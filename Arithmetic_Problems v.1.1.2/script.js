@@ -521,6 +521,8 @@ function getAnswer(input){
     let img = input.parentElement.querySelector("img"); // make image element inside parent element of input
     input.value = String(Qlist[Q_Number].printOutAnswer);
     imgQuestion(img);
+    scoreList[Q_Number] = 0;
+    scoreUpdate()
 }
 
 // check answer and store every single score (1 for correct, 0 for wrong) in variable "scoreList".
