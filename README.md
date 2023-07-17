@@ -4,7 +4,7 @@
 An interactive html to play with arithmetic problems
 
 ## Version update
-- v.1.1.2   Enable functionality to take a peek at the answers by right-click on a text field. Correct severe errors and improve algorithms.
+- v.1.1.2   Enable functionality to take a peek at the answers by right clicking on a text field. Correct severe errors and improve algorithms.
 - v.1.1.1   make a navigation menu of older versions; extend expiration for cookies to 30 days.
 - v.1.1.0   add **Time Trial Mode** with timer; redesign webpage
 - v.1.0.3   increase accessibility on mobile devices
@@ -25,7 +25,7 @@ I have just got a job as a tutor right now, and I saw my mentees struggling with
 
 
 ## Some improvements can be done in the future.
-- There are no answers for the questions, if one constant fails to find the correct answer.
+- ... Well, there were some before, but not right now. &#128541;
 
 ## Easter Eggs
 1. A hidden difficulty level is **Asian** (inspired by a Youtuber *Steven He* who ranks **Asian** as the most difficult level). You might unlock this feature if you dive into the developers tools of the browser, unfold the code, and delete `hidden` in `<option value="Asian" hidden>Asian</option>`.
