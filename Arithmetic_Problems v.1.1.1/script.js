@@ -2,7 +2,7 @@ const exDays = 30;
 const defaultNOQ = "20";
 const defaultDifficulty = "Easy";
 const defaultRight_after = true;
-const defaultCalculationTypes = ["Addition", "Substraction", "Multiplication", "Division"];
+const defaultCalculationTypes = ["Addition", "Subtraction", "Multiplication", "Division"];
 const versions = ["1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
 
 let scoreList;
@@ -37,7 +37,7 @@ const difficulty = document.querySelector("#difficulty");
 const difficulties = ["Beginner", "Easy", "Intermediate", "Hard", "Hell", "Asian"];
 
 const calculationType = document.querySelector("#calculationType");
-const calculationTypes = ["Addition", "Substraction", "Multiplication", "Division", "Fraction"];
+const calculationTypes = ["Addition", "Subtraction", "Multiplication", "Division", "Fraction"];
 
 const settings = ["NOQ", "difficulty", "right_after"].concat(calculationTypes);
 
@@ -247,7 +247,7 @@ function generate(){
             let b = Math.floor((Math.random() * bUpperBound));
             Qlist.push(new exercise(`\\(${a} + ${b} = \\)`, Number(a + b)));
         }
-        // Substraction
+        // Subtraction
         else if (Q[i] === 1){
             let aUpperBound;
             let bUpperBound;
