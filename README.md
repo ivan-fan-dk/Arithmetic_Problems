@@ -4,6 +4,7 @@
 An interactive html to play with arithmetic problems
 
 ## Version update
+- v.1.1.2   Enable functionality to take a peek at the answers by right-click on a text field. Correct severe errors and improve algorithms.
 - v.1.1.1   make a navigation menu of older versions; extend expiration for cookies to 30 days.
 - v.1.1.0   add **Time Trial Mode** with timer; redesign webpage
 - v.1.0.3   increase accessibility on mobile devices
