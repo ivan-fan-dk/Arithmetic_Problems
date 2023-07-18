@@ -262,6 +262,10 @@ header h1, header h3 {
     #navigation, #navigationBar{
         visibility: hidden;
     }
+
+    #github {
+        position: inherit;
+    }
 }
 
 .clear-both{

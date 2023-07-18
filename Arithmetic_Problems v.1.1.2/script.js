@@ -30,7 +30,9 @@ const navigationBar = document.getElementById("navigationBar");
 const overlay = document.querySelector(".overlay");
 const once = {once: true};
 const peek = document.getElementById("peek");
+const currentTime = document.getElementById("currentTime");
 
+setInterval(()=>{currentTime.textContent = new Date().toLocaleString()}, 50);
 
 const NOQ = document.querySelector("#NOQ");
 const NOQs = [10,20,30,40,50,100];
