@@ -576,7 +576,7 @@ function answerResponse(input){
         img.hidden = true;
     }
     // Ester Egg: if "spare me" is typed, then it counts as correct.
-    else if (userInput === "spare me"){
+    else if (userInput === "spare me" || userInput === "饶了我吧"){
         imgCorrect(img);
         singleScore = 1;
     }
