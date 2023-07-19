@@ -119,7 +119,6 @@ for (let i of difficulties){
     option.id = i;
     option.value = i;
     option.textContent = i;
-    console.log(i);
     if (i == "亚洲"){
         option.hidden = true;
     }
