@@ -4,7 +4,7 @@
 An interactive html to play with arithmetic problems
 
 ## Version update
-- v.1.1.2   Enable functionality to take a peek at the answers by right clicking on a text field. Correct severe errors and improve algorithms.
+- v.1.1.2   Enable functionality to take a peek at the answers by right clicking on a text field. Correct severe errors and improve algorithms. Add Chinese-Simplified version.
 - v.1.1.1   make a navigation menu of older versions; extend expiration for cookies to 30 days.
 - v.1.1.0   add **Time Trial Mode** with timer; redesign webpage
 - v.1.0.3   increase accessibility on mobile devices
@@ -18,6 +18,7 @@ I have just got a job as a tutor right now, and I saw my mentees struggling with
 ## How to play with it?
 ### Online
 1. Click link her [https://arithmetic.neocities.org/](https://arithmetic.neocities.org/) (A great thanks to **neocities**)
+2. **(Chinese simplified version/简体中文版本)**[https://arithmetic.neocities.org/zh/](https://arithmetic.neocities.org/zh/).
 
 ## Some improvements can be done in the future.
 - ... Well, there were some before, but not right now. &#128541;
