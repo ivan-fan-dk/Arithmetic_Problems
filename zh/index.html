@@ -34,7 +34,7 @@
             <div id="gridCustom">
                 <div class="gridItem">
                     <div class="customizeTitle">
-                        <label for="NOQ">Number of questions</label>
+                        <label for="NOQ" id="NOQName">Number of questions</label>
                         <select name="NOQ" id="NOQ">
 
                         </select>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="gridItem">
                     <div class="customizeTitle">
-                        <label for="difficulty">Difficulty</label>
+                        <label for="difficulty" id="difficultyName">Difficulty</label>
                         <select name="difficulty" id="difficulty">
 
                         </select>
@@ -50,12 +50,12 @@
                 </div>
                 <div class="gridItem">
                     <div class="customizeTitle" >
-                        <label for="right_after">Check answer right after typed</label>
+                        <label for="right_after" id="right_afterName">Check answer right after typed</label>
                         <input class="checkbox" type="checkbox" id="right_after">
                     </div>
                 </div>
                 <div class="gridItem">
-                    <div class="customizeTitle" >Types of problems:</div>
+                    <div class="customizeTitle" id="calculationTypeName">Types of problems:</div>
                     <div id="calculationType">
                     </div>
                 </div>
@@ -91,8 +91,8 @@
             <span class="right"><div id="time" class="customizeTitle" hidden></div></span>
         </div>
         <ul id="peek">
-            <li>Right click on a text field if you want to peek at the answer. &#128541;</li>
-            <li><span lang="zh-Hans"><a href="../zh/index.html">简体中文版本入口</a></span></li>
+            <li id="peekContent">Right click on a text field if you want to peek at the answer. &#128541;</li>
+            <li><span lang="en" style="font-family: cursive;"><a href="../">English version entrance</a></span></li>
         </ul>
         <div id="questions">
             <div class="section" id="section_0" hidden>
@@ -107,7 +107,6 @@
             <div class="section" id="section_3" hidden>
             </div>
         </div>
-        <h4 class="left sticky-bottom clear-both" id="github">Resources are also available on <a class="link-external" href="https://github.com/ivan-fan-dk/Arithmetic_Problems" target="_blank">GITHUB</a>.</h4>
         <h4 class="right sticky-bottom" id="currentTime"></h4>
         <!--
         <br>
