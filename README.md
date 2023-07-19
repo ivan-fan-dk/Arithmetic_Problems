@@ -28,6 +28,7 @@ I have just got a job as a tutor right now, and I saw my mentees struggling with
 2. **(for version 1.1.1 and forward)** If "spare me" is typed in the textbox, then it still counts as correct. Just for fun!
 
 ## Last words
+- There might be a few changes between code on website and code here (mostly on path references). This is to make it in accordance to **neocities** way of web setup.
 - Feel free to download and modify the source code. I will be more than glad if you can share it with students who struggle with it.
 - Feel free to give advice on github.
 
