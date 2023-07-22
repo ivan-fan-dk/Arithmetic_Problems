@@ -1,44 +1,8 @@
-function zh(cname,cvalue){
-    let it = document.querySelector(cname);
-    it.textContent = cvalue;
-}
-function zhButton(cname,cvalue){
-    let it = document.querySelector(cname);
-    it.value = cvalue;
-}
-document.documentElement.setAttribute('lang', "zh-Hans");
-zh("#h13 h1","算术");
-zh("#h13 h3","版本：1.1.3");
-zh("#customize h2","私人定制");
-zh("#NOQName","题目数量");
-zh("#difficultyName","难度");
-zh("#right_afterName","即时评估");
-zh("#calculationTypeName","计算类型:");
-zh("#close","关闭")
-zhButton("#setCookies","记录喜好在cookies");
-zhButton("#clearCookies","清除cookies");
-zhButton("#submit", "开始");
-zhButton("#reset", "重置");
-zhButton("#timeTrial", "计时模式");
-zhButton("#stop", "停止计时");
-zhButton("#checkAnswer", "评估答案");
-zhButton("#score", "成绩");
-zhButton("#time", "计时");
-zh("#peekContent", "如果想要悄咪咪地瞄一眼答案，可以在想要的文本框内右键。" + String.fromCodePoint(128541));
-
-
-
-
-
-
-
-
-/****************************************************************************************/
 const exDays = 30;
 const defaultNOQ = "20";
-const defaultDifficulty = "简单";
+const defaultDifficulty = "Easy";
 const defaultRight_after = true;
-const defaultCalculationTypes = ["加法", "减法", "乘法", "除法"];
+const defaultCalculationTypes = ["Addition", "Subtraction", "Multiplication", "Division"];
 const versions = ["1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
 
 let scoreList;
@@ -74,10 +38,10 @@ const NOQ = document.querySelector("#NOQ");
 const NOQs = [10,20,30,40,50,100];
 
 const difficulty = document.querySelector("#difficulty");
-const difficulties = ["小白", "简单", "中等", "困难", "地狱", "亚洲"];
+const difficulties = ["Beginner", "Easy", "Intermediate", "Hard", "Hell", "Asian"];
 
 const calculationType = document.querySelector("#calculationType");
-const calculationTypes = ["加法", "减法", "乘法", "除法", "分数"];
+const calculationTypes = ["Addition", "Subtraction", "Multiplication", "Division", "Fraction"];
 
 const settings = ["NOQ", "difficulty", "right_after"].concat(calculationTypes);
 
@@ -86,7 +50,7 @@ for (let version of versions){
     let li = navigationMenu.appendChild(document.createElement("li"));
     let a = li.appendChild(document.createElement("a"));
     a.href = `../Arithmetic_Problems v.${version}/index.html`;
-    a.textContent = `版本 ${version}`;
+    a.textContent = `version ${version}`;
 }
 
 // Navigation
@@ -119,7 +83,7 @@ for (let i of difficulties){
     option.id = i;
     option.value = i;
     option.textContent = i;
-    if (i == "亚洲"){
+    if (i === "Asian"){
         option.hidden = true;
     }
 }
@@ -160,12 +124,12 @@ setCookies.addEventListener("click",()=>{
             setCookie(i, "false");
         }
     }
-    alert(`你的喜好已成功保存。保存时长为${exDays}天.`);
+    alert(`Your preferences has been set successfully and remembered for ${exDays} days.\n\nPreferences in json:\n${document.cookie}`);
 });
 
 //Check current cookies
 checkCookies.addEventListener("click",()=>{
-    alert(`喜好 in json: \n ${document.cookie}`);
+    alert(`Preferences in json: \n ${document.cookie}`);
 });
 
 //Clear Cookies button
@@ -574,7 +538,7 @@ function answerResponse(input){
         img.hidden = true;
     }
     // Ester Egg: if "spare me" is typed, then it counts as correct.
-    else if (userInput === "spare me" || userInput === "饶了我吧"){
+    else if (userInput === "spare me"){
         imgCorrect(img);
         singleScore = 1;
     }
@@ -822,10 +786,10 @@ function clearAllCookies(documentCookie){
         setCookie(cookieName, "", 0);
     }
     if (document.cookie.length === 0){
-        alert(`所有的cookies都已被成功清除！`);
+        alert(`All cookies within this tab are cleared successfully!`);
     }
     else {
-        alert(`大部分cookies已被成功清除！\n\n剩余的cookies:\n${document.cookie}`);
+        alert(`Most of the cookies are cleared successfully!\n\nRemaining cookies in json:\n${document.cookie}`);
     }
 }
 
@@ -924,7 +888,7 @@ function scoreUpdate(){
     for (var i in scoreList) {
         result += scoreList[i];
     }
-    score.textContent = `成绩: ${result}/${getOption("NOQ")}`;
+    score.textContent = `score: ${result}/${getOption("NOQ")}`;
     score.hidden = false;
 }
 
@@ -941,23 +905,23 @@ function pad(num, size) {
 }
 
 function timeTrialClickInNormalMode(){
-    header_h1.textContent = "计时模式";
+    header_h1.textContent = "Time Trial Mode";
     time.hidden = false;
     setTimeToZero();
-    timeTrial.value = "回到普通模式";
+    timeTrial.value = "Return to normal mode";
     clearInterval(printTime);
     timeTrialMode();
 }
 
 function timeTrialClickInTimeTrialMode(){
-    header_h1.textContent = "算术";
+    header_h1.textContent = "Arithmetic problems";
     time.hidden = true;
-    timeTrial.value = "计时模式";
+    timeTrial.value = "Time trial mode";
     normalMode();
 }
 
 function setTimeToZero(){
-    time.textContent = "时间: 00:00.0";
+    time.textContent = "time: 00:00.0";
 }
 
 function stopper(){
@@ -981,7 +945,7 @@ function timer(){
         var minutes = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)), 2);
         var seconds = pad(Math.floor((distance % (1000 * 60)) / 1000),2);
         var miliseconds = pad(Math.floor((distance % 1000)/100),1);
-        time.textContent = `时间: ${minutes}:${seconds}.${miliseconds}`;
+        time.textContent = `time: ${minutes}:${seconds}.${miliseconds}`;
     },100);
     stop.addEventListener("click", stopper, once);
 }

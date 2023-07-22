@@ -4,6 +4,7 @@
 An interactive html to play with arithmetic problems
 
 ## Version update
+- v.1.1.3   Add sponsorship and Paypal donatin links on the webpage. Eliminate negative results for subtraction when it comes to "Beginner" and "Easy" mode.
 - v.1.1.2   Enable functionality to take a peek at the answers by right clicking on a text field. Correct severe errors and improve algorithms. Add Chinese-Simplified version.
 - v.1.1.1   make a navigation menu of older versions; extend expiration for cookies to 30 days.
 - v.1.1.0   add **Time Trial Mode** with timer; redesign webpage
