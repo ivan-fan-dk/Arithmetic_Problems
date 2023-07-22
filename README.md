@@ -4,9 +4,9 @@
 An interactive html to play with arithmetic problems
 
 ## Version update
-- v.1.1.3   Add sponsorship and Paypal donatin links on the webpage. Eliminate negative results for subtraction when it comes to "Beginner" and "Easy" mode.
+- v.1.1.3   Add sponsorship and Paypal donation links on the webpage. Eliminate negative results for subtraction and fraction subtraction when it comes to "Beginner" and "Easy" mode. Split fraction calculation into fraction(+-) and fraction(/*). Adjust difficulty for fraction calculations.
 - v.1.1.2   Enable functionality to take a peek at the answers by right clicking on a text field. Correct severe errors and improve algorithms. Add Chinese-Simplified version.
-- v.1.1.1   make a navigation menu of older versions; extend expiration for cookies to 30 days.
+- v.1.1.1   make a navigation menu of older versions. extend expiration for cookies to 30 days.
 - v.1.1.0   add **Time Trial Mode** with timer; redesign webpage
 - v.1.0.3   increase accessibility on mobile devices
 - v.1.0.2   add cookies and score evaluation
