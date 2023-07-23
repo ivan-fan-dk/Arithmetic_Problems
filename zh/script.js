@@ -126,11 +126,11 @@ for (let i of difficulties){
 
 // calculationType
 for (let i of calculationTypes){
-    let div = calculationType.appendChild(document.createElement("div"));
-    div.className = "customizeTitle";
-    let label = div.appendChild(document.createElement("label"));
+    let label = calculationType.appendChild(document.createElement("label"));
     label.htmlFor = i;
-    label.textContent = i;
+    let div = label.appendChild(document.createElement("div"));
+    div.className = "customizeTitle";
+    div.textContent = i;
     let input = div.appendChild(document.createElement("input"));
     input.className = "checkbox";
     input.type = "checkbox";
