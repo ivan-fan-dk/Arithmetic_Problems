@@ -476,12 +476,10 @@ function generate(){
                 input.type = "text";
                 let img = li.appendChild(document.createElement("img"));
                 img.hidden = true
-                if (i === 0 && j === 0){
-                    input.focus();
-                }
             }
         }
         section.hidden = false;
+        // document.getElementById("Q_0").focus();
     }
     
     // Load Katex, if Katex is used.
