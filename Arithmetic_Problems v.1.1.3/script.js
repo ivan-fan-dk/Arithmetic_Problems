@@ -1,7 +1,7 @@
 // peek and exDays are defined in the relevant language javascript.
 const defaultNOQ = "20";
 const defaultRight_after = true;
-const versions = ["1.1.3","1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
+const versions = ["1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
 
 let scoreList;
 var printTime;
@@ -858,7 +858,6 @@ function loadCookie(){
             boolNOQ = true;
         }
         else if (key === "difficulty"){
-            console.log(value);
             document.getElementById(value).selected = true;
             boolDifficulty = true;
         }
