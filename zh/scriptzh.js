@@ -1,6 +1,7 @@
 const exDays = 30;
 const peek = document.getElementById("peek");
 const github = document.getElementById("github");
+const inAFolder = ".";    //used when this script is in a folder.
 // Chinese version
 const defaultDifficulty = "简单";
 const defaultCalculationTypes = ["加法", "减法", "乘法", "除法"];

@@ -44,7 +44,7 @@ const settings = ["NOQ", "difficulty", "right_after"].concat(calculationTypes);
 for (let version of versions){
     let li = navigationMenu.appendChild(document.createElement("li"));
     let a = li.appendChild(document.createElement("a"));
-    a.href = `../Arithmetic_Problems v.${version}/index.html`;
+    a.href = inAFolder + `./Arithmetic_Problems v.${version}/index.html`;
     a.textContent = versionName + ` ${version}`;
 }
 
