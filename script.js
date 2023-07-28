@@ -469,6 +469,7 @@ function generate(){
                 input.name = "name";
                 input.id = `Q_${nby4*i+j}`;
                 input.type = "text";
+                input.inputMode = "numeric";
                 let img = li.appendChild(document.createElement("img"));
                 img.hidden = true
             }
