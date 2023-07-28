@@ -485,18 +485,25 @@ function generate(){
         // document.getElementById("Q_0").focus();
     }
     
-    // Get all of the input fields on the page. When "Enter" is pressed on one textfield, it will move to the next textfield.
+    // Get all of the input fields on the page. When "Enter" is pressed on one textfield, it will move to the next textfield. When "Shift + Enter" is pressed on one textfield, it will move to the previous textfield.
     var inputFields = document.querySelectorAll("#questions input");
     // Add an event listener to the enter key on each input field.
     inputFields.forEach((inputField) => {
         inputField.addEventListener("keydown", (event) => {
             if (event.key == "Enter"){
-                // Get the next input field.
-                var Q_Next = Number(inputField.id.slice(2)) + 1;   // fetch question number
-                var nextInputField = document.getElementById(`Q_${Q_Next}`);
-                // If there is a next input field, focus on it.
-                if (nextInputField) {
-                    nextInputField.focus();
+                var Q_tmp;
+                if (!event.shiftKey) {
+                    // Get the next input field.
+                    Q_tmp = Number(inputField.id.slice(2)) + 1;   // fetch question number
+                }
+                else{
+                    // Get the previous input field
+                    Q_tmp = Number(inputField.id.slice(2)) - 1;   // fetch question number
+                }                
+                var aInputField = document.getElementById(`Q_${Q_tmp}`);
+                // If there exists a input field, focus on it.
+                if (aInputField) {
+                    aInputField.focus();
                 }
             }
         });
