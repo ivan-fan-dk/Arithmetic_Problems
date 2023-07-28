@@ -1,8 +1,6 @@
-const exDays = 30;
+// peek and exDays are defined in the relevant language javascript.
 const defaultNOQ = "20";
-const defaultDifficulty = "Easy";
 const defaultRight_after = true;
-const defaultCalculationTypes = ["Addition", "Subtraction", "Multiplication", "Division"];
 const versions = ["1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
 
 let scoreList;
@@ -29,7 +27,6 @@ const navigationMenu = document.getElementById("navigationMenu");
 const navigationBar = document.getElementById("navigationBar");
 const overlay = document.querySelector(".overlay");
 const once = {once: true};
-const peek = document.getElementById("peek");
 const currentTime = document.getElementById("currentTime");
 
 setInterval(()=>{currentTime.textContent = new Date().toLocaleString()}, 50);
@@ -38,10 +35,8 @@ const NOQ = document.querySelector("#NOQ");
 const NOQs = [10,20,30,40,50,100];
 
 const difficulty = document.querySelector("#difficulty");
-const difficulties = ["Beginner", "Easy", "Intermediate", "Hard", "Hell", "Asian"];
 
 const calculationType = document.querySelector("#calculationType");
-const calculationTypes = ["Addition", "Subtraction", "Multiplication", "Division", "Fraction(+-)", "Fraction(*/)"];
 
 const settings = ["NOQ", "difficulty", "right_after"].concat(calculationTypes);
 
@@ -50,7 +45,7 @@ for (let version of versions){
     let li = navigationMenu.appendChild(document.createElement("li"));
     let a = li.appendChild(document.createElement("a"));
     a.href = `../Arithmetic_Problems v.${version}/index.html`;
-    a.textContent = `version ${version}`;
+    a.textContent = versionName + ` ${version}`;
 }
 
 // Navigation
@@ -83,7 +78,7 @@ for (let i of difficulties){
     option.id = i;
     option.value = i;
     option.textContent = i;
-    if (i === "Asian"){
+    if (i === AsianName){
         option.hidden = true;
     }
 }
@@ -124,12 +119,12 @@ setCookies.addEventListener("click",()=>{
             setCookie(i, "false");
         }
     }
-    alert(`Your preferences has been set successfully and remembered for ${exDays} days.\n\nPreferences in json:\n${document.cookie}`);
+    alert(alertPreferencesStored + `\n${document.cookie}`);
 });
 
 //Check current cookies
 checkCookies.addEventListener("click",()=>{
-    alert(`Preferences in json: \n ${document.cookie}`);
+    alert(preferencesCheck + `\n${document.cookie}`);
 });
 
 //Clear Cookies button
@@ -563,7 +558,7 @@ function answerResponse(input){
         img.hidden = true;
     }
     // Ester Egg: if "spare me" is typed, then it counts as correct.
-    else if (userInput === "spare me"){
+    else if (userInput === spareMe){
         imgCorrect(img);
         singleScore = 1;
     }
@@ -820,10 +815,10 @@ function clearAllCookies(documentCookie){
         setCookie(cookieName, "", 0);
     }
     if (document.cookie.length === 0){
-        alert(`All cookies within this tab are cleared successfully!`);
+        alert(alertCookiesCleared);
     }
     else {
-        alert(`Most of the cookies are cleared successfully!\n\nRemaining cookies in json:\n${document.cookie}`);
+        alert(alertMostCookiesCleared + `\n${document.cookie}`);
     }
 }
 
@@ -922,7 +917,7 @@ function scoreUpdate(){
     for (var i in scoreList) {
         result += scoreList[i];
     }
-    score.textContent = `score: ${result}/${getOption("NOQ")}`;
+    score.textContent = scoreName + `: ${result}/${getOption("NOQ")}`;
     score.hidden = false;
 }
 
@@ -939,23 +934,23 @@ function pad(num, size) {
 }
 
 function timeTrialClickInNormalMode(){
-    header_h1.textContent = "Time Trial Mode";
+    header_h1.textContent = timeTrialModeName;
     time.hidden = false;
     setTimeToZero();
-    timeTrial.value = "Return to normal mode";
+    timeTrial.value = returnToNormalModeName;
     clearInterval(printTime);
     timeTrialMode();
 }
 
 function timeTrialClickInTimeTrialMode(){
-    header_h1.textContent = "Arithmetic problems";
+    header_h1.textContent = arithmetricProblemsTitleName;
     time.hidden = true;
-    timeTrial.value = "Time trial mode";
+    timeTrial.value = timeTrialModeName;
     normalMode();
 }
 
 function setTimeToZero(){
-    time.textContent = "time: 00:00.0";
+    time.textContent = timeName + ": 00:00.0";
 }
 
 function stopper(){
@@ -979,7 +974,7 @@ function timer(){
         var minutes = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)), 2);
         var seconds = pad(Math.floor((distance % (1000 * 60)) / 1000),2);
         var miliseconds = pad(Math.floor((distance % 1000)/100),1);
-        time.textContent = `time: ${minutes}:${seconds}.${miliseconds}`;
+        time.textContent = timeName + `: ${minutes}:${seconds}.${miliseconds}`;
     },100);
     stop.addEventListener("click", stopper, once);
 }
