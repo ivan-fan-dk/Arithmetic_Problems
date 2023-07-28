@@ -33,29 +33,35 @@
             <h2>Customize</h2>
             <div id="gridCustom">
                 <div class="gridItem">
-                    <div class="customizeTitle">
-                        <label for="NOQ">Number of questions</label>
-                        <select name="NOQ" id="NOQ">
+                    <label for="NOQ">
+                        <div class="customizeTitle">
+                            <span id="NOQName">Number of questions</span>
+                            <select name="NOQ" id="NOQ">
 
-                        </select>
-                    </div>
+                            </select>
+                        </div>
+                    </label>
                 </div>
                 <div class="gridItem">
-                    <div class="customizeTitle">
-                        <label for="difficulty">Difficulty</label>
-                        <select name="difficulty" id="difficulty">
+                    <label for="difficulty">
+                        <div class="customizeTitle">
+                            <span id="difficultyName">Difficulty</span>
+                            <select name="difficulty" id="difficulty">
 
-                        </select>
+                            </select>
+                    </label>
                     </div>
                 </div>
                 <div class="gridItem">
-                    <div class="customizeTitle" >
-                        <label for="right_after">Check answer right after typed</label>
-                        <input class="checkbox" type="checkbox" id="right_after">
-                    </div>
+                    <label for="right_after">
+                        <div class="customizeTitle" >
+                            <span id="right_afterName">Check answer right after typed</span>
+                            <input class="checkbox" type="checkbox" id="right_after">
+                        </div>
+                    </label>
                 </div>
                 <div class="gridItem">
-                    <div class="customizeTitle" >Types of problems:</div>
+                    <div class="customizeTitle" id="calculationTypeName">Types of problems:</div>
                     <div id="calculationType">
                     </div>
                 </div>
@@ -90,12 +96,10 @@
             <span class="right"><div id="score" class="customizeTitle" hidden></div></span>
             <span class="right"><div id="time" class="customizeTitle" hidden></div></span>
         </div>
+
         <ul id="peek">
-            <li>Right click on a text field if you want to peek at the answer. &#128541;</li>
-            <li><span lang="zh-Hans"><a href="../zh/index.html">简体中文版本入口</a></span></li>
-            <li>Wanna <u>join the community</u> or <u>give feedbacks</u> to make this website better? Please check out <strong><a href="https://github.com/ivan-fan-dk/Arithmetic_Problems/discussions">GitHub Discussions</a></strong>. Issues can be reported on <strong><a href="https://github.com/ivan-fan-dk/Arithmetic_Problems/issues">GitHub Issues</a></strong>.</li>
-            <li>If you would like to donate a small amount, you can use either <strong><a href="https://github.com/sponsors/ivan-fan-dk?o=esb">GitHub Sponsor</a></strong> or <strong><a href="https://www.paypal.com/donate/?hosted_button_id=AQ84UJJGKMNFW">Paypal</a></strong>. Thanks! &#128522;</li>
         </ul>
+        
         <div id="questions">
             <div class="section" id="section_0" hidden>
             </div>
@@ -109,7 +113,7 @@
             <div class="section" id="section_3" hidden>
             </div>
         </div>
-        <h4 class="left sticky-bottom clear-both" id="github">Code resources are available on <a class="link-external" href="https://github.com/ivan-fan-dk/Arithmetic_Problems" target="_blank">GitHub</a>.</h4>
+        <h4 class="left sticky-bottom clear-both" id="github"></h4>
         <h4 class="right sticky-bottom" id="currentTime"></h4>
         <!--
         <br>
@@ -123,6 +127,7 @@
         <script type="text/javascript" id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
         </script>
+        <script src="scripten.js" defer></script>
         <script src="script.js" defer></script>
     </body>
 </html>

@@ -24,7 +24,7 @@
                     Arithmetic problems
                 </h1>
                 <h3>
-                    (version 1.1.2)
+                    (version 1.1.3)
                 </h3>
             </div>
         </header>
@@ -33,26 +33,32 @@
             <h2>Customize</h2>
             <div id="gridCustom">
                 <div class="gridItem">
-                    <div class="customizeTitle">
-                        <label for="NOQ" id="NOQName">Number of questions</label>
-                        <select name="NOQ" id="NOQ">
+                    <label for="NOQ">
+                        <div class="customizeTitle">
+                            <span id="NOQName">Number of questions</span>
+                            <select name="NOQ" id="NOQ">
 
-                        </select>
+                            </select>
+                        </div>
+                    </label>
+                </div>
+                <div class="gridItem">
+                    <label for="difficulty">
+                        <div class="customizeTitle">
+                            <span id="difficultyName">Difficulty</span>
+                            <select name="difficulty" id="difficulty">
+
+                            </select>
+                    </label>
                     </div>
                 </div>
                 <div class="gridItem">
-                    <div class="customizeTitle">
-                        <label for="difficulty" id="difficultyName">Difficulty</label>
-                        <select name="difficulty" id="difficulty">
-
-                        </select>
-                    </div>
-                </div>
-                <div class="gridItem">
-                    <div class="customizeTitle" >
-                        <label for="right_after" id="right_afterName">Check answer right after typed</label>
-                        <input class="checkbox" type="checkbox" id="right_after">
-                    </div>
+                    <label for="right_after">
+                        <div class="customizeTitle" >
+                            <span id="right_afterName">Check answer right after typed</span>
+                            <input class="checkbox" type="checkbox" id="right_after">
+                        </div>
+                    </label>
                 </div>
                 <div class="gridItem">
                     <div class="customizeTitle" id="calculationTypeName">Types of problems:</div>
@@ -90,12 +96,10 @@
             <span class="right"><div id="score" class="customizeTitle" hidden></div></span>
             <span class="right"><div id="time" class="customizeTitle" hidden></div></span>
         </div>
+
         <ul id="peek">
-            <li id="peekContent">Right click on a text field if you want to peek at the answer. &#128541;</li>
-            <li><span lang="en" style="font-family: cursive;"><a href="../">English version entrance</a></span></li>
-            <li>想<u>加入社区</u>或<u>提供反馈</u>使该网站变得更好吗?可以来<strong lang="en" style="font-family: cursive;"><a href="https://github.com/ivan-fan-dk/Arithmetic_Problems/discussions">GitHub Discussions</a></strong>转转。在<strong lang="en" style="font-family: cursive;"><a href="https://github.com/ivan-fan-dk/Arithmetic_Problems/issues">GitHub Issues</a></strong>上可以报告你遇到的问题。</li>
-            <li>如果您想捐赠一小笔金额，可以使用<strong lang="en" style="font-family: cursive;"><a href="https://github.com/sponsors/ivan-fan-dk?o=esb">GitHub Sponsor</a></strong>或者<strong lang="en" style="font-family: cursive;"><a href="https://www.paypal.com/donate/?hosted_button_id=AQ84UJJGKMNFW">Paypal</a></strong>. 谢谢! &#128522;</li>
         </ul>
+        
         <div id="questions">
             <div class="section" id="section_0" hidden>
             </div>
@@ -109,12 +113,21 @@
             <div class="section" id="section_3" hidden>
             </div>
         </div>
-        <h4 class="left sticky-bottom clear-both" id="github">代码资源可以在<a class="link-external" href="https://github.com/ivan-fan-dk/Arithmetic_Problems" target="_blank" lang="en" style="font-family: cursive;">GitHub</a>上找到.</h4>
+        <h4 class="left sticky-bottom clear-both" id="github"></h4>
         <h4 class="right sticky-bottom" id="currentTime"></h4>
+        <!--
+        <br>
+        <br>
+        <md-block>
+            - v.1.1.3   Add sponsorship and Paypal donatin links on the webpage. Eliminate negative results for subtraction when it comes to "Beginner" and "Easy" mode.
+        </md-block>
+        <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+        -->
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script type="text/javascript" id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
         </script>
-        <script src="script.js" defer></script>
+        <script src="scriptzh.js" defer></script>
+        <script src="../Arithmetic_Problems v.1.1.3/script.js" defer></script>
     </body>
 </html>

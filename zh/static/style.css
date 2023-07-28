@@ -171,7 +171,7 @@ header h1, header h3 {
 
 #calculationType {
     display: flex;
-    margin: 20px;
+    margin: 10px;
     gap: 20px;
 }
 

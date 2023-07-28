@@ -1,39 +1,3 @@
-function zh(cname,cvalue){
-    let it = document.querySelector(cname);
-    it.textContent = cvalue;
-}
-function zhButton(cname,cvalue){
-    let it = document.querySelector(cname);
-    it.value = cvalue;
-}
-document.documentElement.setAttribute('lang', "zh-Hans");
-zh("#h13 h1","算术");
-zh("#h13 h3","版本：1.1.3");
-zh("#customize h2","私人定制");
-zh("#NOQName","题目数量");
-zh("#difficultyName","难度");
-zh("#right_afterName","即时评估");
-zh("#calculationTypeName","计算类型:");
-zh("#close","关闭")
-zhButton("#setCookies","记录喜好在cookies");
-zhButton("#clearCookies","清除cookies");
-zhButton("#submit", "开始");
-zhButton("#reset", "重置");
-zhButton("#timeTrial", "计时模式");
-zhButton("#stop", "停止计时");
-zhButton("#checkAnswer", "评估答案");
-zhButton("#score", "成绩");
-zhButton("#time", "计时");
-zh("#peekContent", "如果想要悄咪咪地瞄一眼答案，可以在想要的文本框内右键。" + String.fromCodePoint(128541));
-
-
-
-
-
-
-
-
-/****************************************************************************************/
 const exDays = 30;
 const defaultNOQ = "20";
 const defaultDifficulty = "简单";
@@ -401,6 +365,7 @@ function generate(){
             Qlist.push(new exercise(`\\(${a} \\div ${b} = \\)`, Number(a / b)));
         }
         else if (Q[i] === 4 || Q[i] === 5){
+            // Caution!!! aUpperBound should always smaller than bUpperBound.
             let aUpperBound, bUpperBound, firstTerm, secondTerm, firstTermToEvaluate, secondTermToEvaluate, firstTermIsInteger, secondTermIsInteger, a, b, c, d;
             let calculationTypeForFraction = Math.floor(Math.random() * 2);
             
@@ -598,7 +563,7 @@ function answerResponse(input){
         img.hidden = true;
     }
     // Ester Egg: if "spare me" is typed, then it counts as correct.
-    else if (userInput === "spare me" || userInput === "饶了我吧"){
+    else if (userInput === "饶了我吧"){
         imgCorrect(img);
         singleScore = 1;
     }
@@ -813,7 +778,7 @@ function reduceFraction(a,b) {
 }
 
 function fraction(aUpperBound, bUpperBound, proper=false){
-    let bCandidates,a;
+    let bCandidates, a;
     do {
         a = Math.floor(Math.random()*aUpperBound) + 1;      // [1,aUpperBound]
         if (proper){
