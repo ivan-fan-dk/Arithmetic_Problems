@@ -27,14 +27,14 @@ body:after {
 :root {
     --dark: #333;
     --light: #00002222;
-    --textfont: cursive;
+    --textfont: "Comic Sans MS", "KaiTi";
     --buttonfontsize: 22px;
     --textfontsize: 22.3px;
     --questionsfontsize: 25px;
 }
 
 body {
-    font-family: var(--textfont);
+    font-family: var(--textfont), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 header, div {

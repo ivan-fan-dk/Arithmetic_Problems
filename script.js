@@ -452,7 +452,6 @@ function generate(){
     else{
         nby4 = Math.floor(n/4) + 1;
     }
-    
     // print out in four columns
     for (let i of Array(4).keys()){
         let section = document.getElementById(`section_${i}`);
@@ -469,7 +468,15 @@ function generate(){
                 input.name = "name";
                 input.id = `Q_${nby4*i+j}`;
                 input.type = "text";
-                input.inputMode = "numeric";
+                
+                // determine inputmode (when there are fractions, change to textpad due to stupid Gboard which doesn't have forward slash in numericpad)
+                if (Q[nby4*i + j] == 4 || Q[nby4*i + j] == 5){
+                    input.inputMode = "text";
+                }
+                else{
+                    input.inputMode = "numeric";
+                }
+
                 let img = li.appendChild(document.createElement("img"));
                 img.hidden = true
             }
