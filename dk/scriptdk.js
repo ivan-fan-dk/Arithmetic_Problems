@@ -5,7 +5,7 @@ const inAFolder = ".";    //used when this script is in a folder.
 // Chinese version
 const defaultDifficulty = "let";
 const defaultCalculationTypes = ["Addition", "Subtraktion", "Multiplikation", "Division"];
-const difficulties = ["extra let", "let", "middel", "svær", "extra svær", "asien"];
+const difficulties = ["begynder", "let", "middel", "svær", "extra svær", "asien"];
 const calculationTypes = ["Addition", "Subtraktion", "Multiplikation", "Division", "brøk(+-)", "brøk(*/)"];
 const versionName = "version";
 const AsianName = "asien";

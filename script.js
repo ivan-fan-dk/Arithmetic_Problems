@@ -220,6 +220,8 @@ function generate(){
 
     Qlist = [];
     // The core algorithm (generate all types of questions and store in Qlist)
+    let zeroInMultiplication = false;
+    let oneInMultiplication = false;
     for (let i of Array(n).keys()){
         // Addition
         if (Q[i] === 0){
@@ -230,8 +232,8 @@ function generate(){
                 bUpperBound = 10;
             }
             else if (difficultycheck === difficulties[1]){
-                aUpperBound = 20;
-                bUpperBound = 20;
+                aUpperBound = 30;
+                bUpperBound = 30;
             }
             else if (difficultycheck === difficulties[2]){
                 aUpperBound = 50;
@@ -262,8 +264,8 @@ function generate(){
                 bUpperBound = 10;
             }
             else if (difficultycheck === difficulties[1]){
-                aUpperBound = 20;
-                bUpperBound = 20;
+                aUpperBound = 30;
+                bUpperBound = 30;
             }
             else if (difficultycheck === difficulties[2]){
                 aUpperBound = 50;
@@ -290,36 +292,73 @@ function generate(){
         }
         // Multiplication
         else if (Q[i] === 2){
-            let aUpperBound;
-            let bUpperBound;
+            // aUpperBound, bUpperBound should be >= 4 at least.
+            let a, b, aUpperBound, bUpperBound;
             if (difficultycheck === difficulties[0]){
-                aUpperBound = 10;
-                bUpperBound = 10;
+                aUpperBound = 5;
+                bUpperBound = 5;
             }
             else if (difficultycheck === difficulties[1]){
                 aUpperBound = 10;
-                bUpperBound = 20;
+                bUpperBound = 10;
             }
             else if (difficultycheck === difficulties[2]){
                 aUpperBound = 20;
                 bUpperBound = 20;
             }
             else if (difficultycheck === difficulties[3]){
-                aUpperBound = 20;
-                bUpperBound = 100;
+                aUpperBound = 50;
+                bUpperBound = 50;
             }
             else if (difficultycheck === difficulties[4]){
                 aUpperBound = 100;
                 bUpperBound = 100;
             }
             else if (difficultycheck === difficulties[5]){
-                aUpperBound = 10000;
-                bUpperBound = 10000;
+                aUpperBound = 1000;
+                bUpperBound = 1000;
+            }
+            
+            // 0 times non-zero should highest exist once. 1 times non-zero should highest exist once.
+            if (zeroInMultiplication){
+                // both 0 times non-zero and 1 times non-zero already exist. (do not choose 0 and 1)
+                if (oneInMultiplication){
+                    a = Math.floor((Math.random() * (aUpperBound - 2))) + 2;
+                    b = Math.floor((Math.random() * (bUpperBound - 2))) + 2;
+                }
+                // 0 times non-zero already exists, 1 times non-zero does not exist. (do not choose 0)
+                else{
+                    a = Math.floor((Math.random() * (aUpperBound - 1))) + 1;
+                    b = Math.floor((Math.random() * (bUpperBound - 1))) + 1;
+                }
+            }
+            else{
+                // 0 times non-zero does not exist, 1 times non-zero already exist. (do not choose 1)
+                if (oneInMultiplication){
+                    do {
+                        let candidates = [0].concat([...Array(aUpperBound - 2).keys()].map(i => i + 2));
+                        a = candidates[Math.floor(Math.random() * candidates.length)];
+                        b = candidates[Math.floor(Math.random() * candidates.length)];
+                    } while (a == 0 && b == 0)  // delete possibilities to have 0 times 0
+                }
+                // Neither 0 times non-zero nor 1 times non-zero exist. (choose freely)
+                else{
+                    do {
+                        a = Math.floor((Math.random() * aUpperBound));
+                        b = Math.floor((Math.random() * bUpperBound));
+                    } while (a == 0 && b == 0)  // delete possibilities to have 0 times 0
+                }
+            }
+            
+            // register if 0 already exists
+            if (a == 0 || b == 0){
+                zeroInMultiplication = true;
+            }
+            // register if 1 already exists
+            if (a == 1 || b == 1){
+                oneInMultiplication = true;
             }
 
-            let a = Math.floor((Math.random() * aUpperBound));
-            let b = Math.floor((Math.random() * bUpperBound));
-            
             // change sequence of a and b in 50% chance
             if (Math.floor(Math.random()*2) === 1){
                 [a,b] = switchVariablesValues(a,b);
@@ -359,18 +398,19 @@ function generate(){
             let b = divls[Math.floor((Math.random() * divls.length))];
             Qlist.push(new exercise(`\\(${a} \\div ${b} = \\)`, Number(a / b)));
         }
-        else if (Q[i] === 4 || Q[i] === 5){
-            // Caution!!! aUpperBound should always smaller than bUpperBound.
+        // fraction(+-)
+        else if (Q[i] === 4){
+            // Caution!!! aUpperBound should always smaller than or equal to bUpperBound.
             let aUpperBound, bUpperBound, firstTerm, secondTerm, firstTermToEvaluate, secondTermToEvaluate, firstTermIsInteger, secondTermIsInteger, a, b, c, d;
             let calculationTypeForFraction = Math.floor(Math.random() * 2);
             
             if (difficultycheck === difficulties[0]){
-                aUpperBound = 3;
-                bUpperBound = 5;
+                aUpperBound = 10;
+                bUpperBound = 10;
             }
             else if (difficultycheck === difficulties[1]){
-                aUpperBound = 4;
-                bUpperBound = 8;
+                aUpperBound = 20;
+                bUpperBound = 20;
             }
             else if (difficultycheck === difficulties[2]){
                 aUpperBound = 10;
@@ -389,20 +429,18 @@ function generate(){
                 bUpperBound = 1000;
             }
             
-            let proper;
             if (difficultycheck === difficulties[0] || difficultycheck === difficulties[1]){
-                proper = true;
+                // Do calculations of two fractions with the same denominator if it is at the easiest two levels.
+                [firstTerm, firstTermToEvaluate, secondTerm, secondTermToEvaluate] = twoFractionsWithSameDenominator(aUpperBound, bUpperBound);
             }
-            else {
-                proper = false;
+            else{
+                // make sure that there are highest one integer in the question.
+                do{
+                    [firstTerm, firstTermToEvaluate, firstTermIsInteger] = fraction(aUpperBound, bUpperBound, proper=false);
+                    [secondTerm, secondTermToEvaluate, secondTermIsInteger] = fraction(aUpperBound, bUpperBound, proper=false);
+                } while (firstTermIsInteger && secondTermIsInteger);
             }
-
-            // make sure that there are highest one integer in the question.
-            do{
-                [firstTerm, firstTermToEvaluate, firstTermIsInteger] = fraction(aUpperBound, bUpperBound, proper);
-                [secondTerm, secondTermToEvaluate, secondTermIsInteger] = fraction(aUpperBound, bUpperBound, proper);
-            } while (firstTermIsInteger && secondTermIsInteger);
-
+            
             /*
             // change sequence of a and b in 50% chance
             if (Math.floor(Math.random()*2) === 1){
@@ -414,32 +452,71 @@ function generate(){
             [a,b] = firstTermToEvaluate.split("/");
             [c,d] = secondTermToEvaluate.split("/");
             [a,b,c,d] = [Number(a),Number(b),Number(c),Number(d)];
-            if (Q[i] === 4){
-                // fraction(addition)
-                if (calculationTypeForFraction === 0){
-                    Qlist.push(new exercise(`\\( ${firstTerm} + ${secondTerm} = \\)`, (a*d+b*c)/(b*d), reduceFraction((a*d+b*c), (b*d))));
-                }
-                // fraction(subtraction)
-                else if (calculationTypeForFraction === 1){
-                    if (a*d-b*c < 0 && (difficultycheck === difficulties[0] || difficultycheck === difficulties[1])){
-                        // switch fractions if subtraction's result is negative and difficulty level is either beginner or easy.
-                        [firstTerm, secondTerm] = switchVariablesValues(firstTerm, secondTerm);
-                        [firstTermToEvaluate, secondTermToEvaluate] = switchVariablesValues(firstTermToEvaluate, secondTermToEvaluate);
-                        [a,c] = switchVariablesValues(a,c);
-                        [b,d] = switchVariablesValues(b,d);
-                    }
-                    Qlist.push(new exercise(`\\( ${firstTerm} - ${secondTerm} = \\)`, (a*d-b*c)/(b*d), reduceFraction((a*d-b*c), (b*d))));
-                }
+
+            // fraction(addition)
+            if (calculationTypeForFraction === 0){
+                Qlist.push(new exercise(`\\( ${firstTerm} + ${secondTerm} = \\)`, (a*d+b*c)/(b*d), reduceFraction((a*d+b*c), (b*d))));
             }
-            if (Q[i] === 5){
-                // fraction(multiplication)
-                if (calculationTypeForFraction === 0){
-                    Qlist.push(new exercise(`\\( ${firstTerm} \\times ${secondTerm} = \\)`, (a*c)/(b*d), reduceFraction((a*c), (b*d))));
+            // fraction(subtraction)
+            else if (calculationTypeForFraction === 1){
+                // switch fractions if subtraction's result is negative and difficulty level is either beginner or easy.
+                if (a*d-b*c < 0 && (difficultycheck === difficulties[0] || difficultycheck === difficulties[1])){
+                    [firstTerm, secondTerm] = switchVariablesValues(firstTerm, secondTerm);
+                    [firstTermToEvaluate, secondTermToEvaluate] = switchVariablesValues(firstTermToEvaluate, secondTermToEvaluate);
+                    [a,c] = switchVariablesValues(a,c);
+                    [b,d] = switchVariablesValues(b,d);
                 }
-                // fraction(division)
-                else if (calculationTypeForFraction === 1){
-                    Qlist.push(new exercise(`\\( ${firstTerm} \\div ${secondTerm} = \\)`, (a*d)/(b*c), reduceFraction((a*d), (b*c))));
-                }
+                Qlist.push(new exercise(`\\( ${firstTerm} - ${secondTerm} = \\)`, (a*d-b*c)/(b*d), reduceFraction((a*d-b*c), (b*d))));
+            }
+        }
+        // fraction(*/)
+        else if (Q[i] === 5){
+            // Caution!!! aUpperBound should always smaller than or equal to bUpperBound.
+            let aUpperBound, bUpperBound, firstTerm, secondTerm, firstTermToEvaluate, secondTermToEvaluate, firstTermIsInteger, secondTermIsInteger, a, b, c, d;
+            let calculationTypeForFraction = Math.floor(Math.random() * 2);
+
+            if (difficultycheck === difficulties[0]){
+                aUpperBound = 5;
+                bUpperBound = 5;
+            }
+            else if (difficultycheck === difficulties[1]){
+                aUpperBound = 10;
+                bUpperBound = 10;
+            }
+            else if (difficultycheck === difficulties[2]){
+                aUpperBound = 20;
+                bUpperBound = 20;
+            }
+            else if (difficultycheck === difficulties[3]){
+                aUpperBound = 50;
+                bUpperBound = 50;
+            }
+            else if (difficultycheck === difficulties[4]){
+                aUpperBound = 100;
+                bUpperBound = 100;
+            }
+            else if (difficultycheck === difficulties[5]){
+                aUpperBound = 1000;
+                bUpperBound = 1000;
+            }
+
+            // make sure that there are highest one integer in the question.
+            do{
+                [firstTerm, firstTermToEvaluate, firstTermIsInteger] = fraction(aUpperBound, bUpperBound, proper=false);
+                [secondTerm, secondTermToEvaluate, secondTermIsInteger] = fraction(aUpperBound, bUpperBound, proper=false);
+            } while (firstTermIsInteger && secondTermIsInteger);
+
+            [a,b] = firstTermToEvaluate.split("/");
+            [c,d] = secondTermToEvaluate.split("/");
+            [a,b,c,d] = [Number(a),Number(b),Number(c),Number(d)];
+
+            // fraction(multiplication)
+            if (calculationTypeForFraction === 0){
+                Qlist.push(new exercise(`\\( ${firstTerm} \\times ${secondTerm} = \\)`, (a*c)/(b*d), reduceFraction((a*c), (b*d))));
+            }
+            // fraction(division)
+            else if (calculationTypeForFraction === 1){
+                Qlist.push(new exercise(`\\( ${firstTerm} \\div ${secondTerm} = \\)`, (a*d)/(b*c), reduceFraction((a*d), (b*c))));
             }
         }
     }
@@ -809,9 +886,11 @@ function fraction(aUpperBound, bUpperBound, proper=false){
     do {
         a = Math.floor(Math.random()*aUpperBound) + 1;      // [1,aUpperBound]
         if (proper){
+            // [a,bUpperBound] where there is only one common factor
             bCandidates = [...Array(bUpperBound - a + 1).keys()].map(i => i + a).filter(number => commonFactors(a,number).length === 1);
         }
         else{
+            // [1,bUpperBound] where there is only one common factor
             bCandidates = [...Array(bUpperBound).keys()].map(i => i + 1).filter(number => commonFactors(a,number).length === 1);
         }
     } while (bCandidates.length == 0)
@@ -825,6 +904,17 @@ function fraction(aUpperBound, bUpperBound, proper=false){
     else{
         return [`\\frac{${a}}{${b}}`, String(`${a}/${b}`), false];  // the third boolean value shows whether this is an integer.
     }
+}
+
+function twoFractionsWithSameDenominator(aUpperBound, bUpperBound){
+    let aCandidates, b;
+    b = Math.floor(Math.random()*(bUpperBound - 1)) + 2;      // [2,bUpperBound]
+    aCandidates = [...Array(aUpperBound).keys()].map(i => i + 1).filter(number => commonFactors(b,number).length === 1);// [a,bUpperBound] where there is only one common factor
+    
+    // get two nominators(can be the same).
+    var [a1, a2] = [aCandidates[Math.floor(Math.random() * aCandidates.length)], aCandidates[Math.floor(Math.random() * aCandidates.length)]];
+
+    return [`\\frac{${a1}}{${b}}`, String(`${a1}/${b}`), `\\frac{${a2}}{${b}}`, String(`${a2}/${b}`)];  // return two fractions 
 }
 
 function switchVariablesValues(a, b){
@@ -882,7 +972,6 @@ function loadCookie(){
             boolNOQ = true;
         }
         else if (key === "difficulty"){
-            console.log(value);
             document.getElementById(value).selected = true;
             boolDifficulty = true;
         }
