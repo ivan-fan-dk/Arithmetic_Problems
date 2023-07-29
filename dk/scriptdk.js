@@ -2,7 +2,7 @@ const exDays = 30;
 const peek = document.getElementById("peek");
 const github = document.getElementById("github");
 const inAFolder = ".";    //used when this script is in a folder.
-// Chinese version
+// Danish version
 const defaultDifficulty = "let";
 const defaultCalculationTypes = ["Addition", "Subtraktion", "Multiplikation", "Division"];
 const difficulties = ["begynder", "let", "middel", "svær", "extra svær", "asien"];
