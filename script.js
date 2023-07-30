@@ -220,13 +220,13 @@ function generate(){
 
     Qlist = [];
     // The core algorithm (generate all types of questions and store in Qlist)
+    let zeroInAddition = false;
     let zeroInMultiplication = false;
     let oneInMultiplication = false;
     for (let i of Array(n).keys()){
         // Addition
         if (Q[i] === 0){
-            let aUpperBound;
-            let bUpperBound;
+            let a, b, aUpperBound, bUpperBound;
             if (difficultycheck === difficulties[0]){
                 aUpperBound = 10;
                 bUpperBound = 10;
@@ -251,8 +251,18 @@ function generate(){
                 aUpperBound = 10000;
                 bUpperBound = 10000;
             }
-            let a = Math.floor((Math.random() * aUpperBound));
-            let b = Math.floor((Math.random() * bUpperBound));
+            if (zeroInAddition){
+                a = Math.floor((Math.random() * (aUpperBound - 1))) + 1;
+                b = Math.floor((Math.random() * (bUpperBound - 1))) + 1;
+            }
+            else{
+                a = Math.floor((Math.random() * aUpperBound));
+                b = Math.floor((Math.random() * bUpperBound));
+            }
+            if (a == 0 || b == 0){
+                zeroInAddition = true;
+            }
+            
             Qlist.push(new exercise(`\\(${a} + ${b} = \\)`, Number(a + b)));
         }
         // Subtraction
