@@ -346,6 +346,17 @@ select {
     bottom: 0px;
 }
 
+/* if github icon is used
+.link-external {
+    background-image: url(github-mark.svg), url(link-external.svg);
+    background-position: center left, center right;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 0.95em, 0.857em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+*/
+
 .link-external {
     background-image: url(link-external.svg);
     background-position: center right;
