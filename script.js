@@ -3,6 +3,7 @@ const defaultNOQ = "20";
 const defaultRight_after = true;
 const versions = ["1.1.3","1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
 
+var result;
 let scoreList;
 var printTime;
 const body = document.querySelector("body");
@@ -164,6 +165,8 @@ function timeTrialMode(){
 
 //Start button
 submit.addEventListener("click", generate);
+
+window.addEventListener("DOMContentLoaded", confettiSchoolPride, false);
 
 function generate(){
     changeBackgroundColor();
@@ -635,6 +638,7 @@ function answerCheck(){
             input.addEventListener('input', async function() {
                 await sleep(1);
                 answerResponse(input);
+                correctHurray();
             });
         }
     }
@@ -652,7 +656,15 @@ function answerCheck(){
             for (let input of inputs){
                 answerResponse(input);
             }
+            correctHurray();
         });
+    }
+}
+
+function correctHurray(){
+    // make confetti if all correct.
+    if (result == Number(getOption("NOQ"))){
+        confettiCannon();
     }
 }
 
@@ -1045,7 +1057,7 @@ function clearSelected(){
 }
 
 function scoreUpdate(){
-    var result = 0;
+    result = 0;
     for (var i in scoreList) {
         result += scoreList[i];
     }
@@ -1109,6 +1121,70 @@ function timer(){
         time.textContent = timeName + `: ${minutes}:${seconds}.${miliseconds}`;
     },100);
     stop.addEventListener("click", stopper, once);
+}
+
+function confettiCannon(){
+    var count = 200;
+    var defaults = {
+    origin: { y: 0.75 }
+    };
+
+    function fire(particleRatio, opts) {
+    confetti(Object.assign({}, defaults, opts, {
+        particleCount: Math.floor(count * particleRatio)
+    }));
+    }
+
+    fire(0.25, {
+    spread: 26,
+    startVelocity: 55,
+    });
+    fire(0.2, {
+    spread: 60,
+    });
+    fire(0.35, {
+    spread: 100,
+    decay: 0.91,
+    scalar: 0.8
+    });
+    fire(0.1, {
+    spread: 120,
+    startVelocity: 25,
+    decay: 0.92,
+    scalar: 1.2
+    });
+    fire(0.1, {
+    spread: 120,
+    startVelocity: 45,
+    });
+}
+
+function confettiSchoolPride(){
+    // do this for 30 seconds
+    var duration = 2 * 1000;
+    var end = Date.now() + duration;
+
+    (function frame() {
+    // launch a few confetti from the left edge
+    confetti({
+        particleCount: 7,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+    });
+    // and launch a few from the right edge
+    confetti({
+        particleCount: 7,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+    });
+
+    // keep going until we are out of time
+    if (Date.now() < end) {
+        requestAnimationFrame(frame);
+    }
+    }());
 }
 /*
 from numpy import *
