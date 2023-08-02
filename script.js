@@ -151,7 +151,7 @@ function normalMode(){
         checkAnswer.hidden = false;
     }
     timeTrial.addEventListener("click", timeTrialClickInNormalMode, once);
-    console.log(`mode is ${mode}.`);
+    // console.log(`mode is ${mode}.`);
 }
 
 function timeTrialMode(){
@@ -160,7 +160,7 @@ function timeTrialMode(){
     right_after.disabled = true;
     stop.hidden = true;
     timeTrial.addEventListener("click", timeTrialClickInTimeTrialMode, once);
-    console.log(`mode is ${mode}.`);
+    // console.log(`mode is ${mode}.`);
 }
 
 //Start button
