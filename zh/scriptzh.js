@@ -6,7 +6,7 @@ const inAFolder = ".";    //used when this script is in a folder.
 const defaultDifficulty = "简单";
 const defaultCalculationTypes = ["加法", "减法", "乘法", "除法"];
 const difficulties = ["小白", "简单", "中等", "困难", "地狱", "亚洲"];
-const calculationTypes = ["加法", "减法", "乘法", "除法", "分数加减法", "分数乘除法"];
+const calculationTypes = ["加法", "减法", "乘法", "除法", "分数加减法", "分数乘除法", "一元一次方程"];
 const versionName = "版本";
 const AsianName = "亚洲";
 const alertPreferencesStored = `你的喜好已成功保存。保存时长为${exDays}天.\n\n喜好 in json:`;
@@ -38,7 +38,7 @@ function zhButton(cname,cvalue){
 
 document.documentElement.setAttribute('lang', "zh-Hans");
 zh("#h13 h1", arithmetricProblemsTitleName);
-zh("#h13 h3", versionName + "：1.1.4");
+zh("#h13 h3", versionName + "：1.2.0");
 zh("#customize h2","私人定制");
 zh("#NOQName","题目数量");
 zh("#difficultyName","难度");

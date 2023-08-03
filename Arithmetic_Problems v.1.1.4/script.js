@@ -1,7 +1,7 @@
 // peek and exDays are defined in the relevant language javascript.
 const defaultNOQ = "20";
 const defaultRight_after = true;
-const versions = ["1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
+const versions = ["1.1.3","1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
 
 var result;
 let scoreList;
@@ -532,92 +532,6 @@ function generate(){
                 Qlist.push(new exercise(`\\( ${firstTerm} \\div ${secondTerm} = \\)`, (a*d)/(b*c), reduceFraction((a*d), (b*c))));
             }
         }
-        // Linear equation (coef[0]*answer + coef[1] = coef[2], or coef[1] + coef[0]*answer = coef[2])
-        else if (Q[i] === 6){
-            let answerBound, answer;
-            let coef = [];
-            let coefBound = [];
-            let coefSign = [];
-            
-            let answerField = "<br>\\(x=\\)";
-
-            if (difficultycheck === difficulties[0]){
-                answerBound = [1,5];
-                coefBound = [[1,5], [-5,5]];
-            }
-            else if (difficultycheck === difficulties[1]){
-                answerBound = [1,10];
-                coefBound = [[1,10], [-10,10]];
-            }
-            else if (difficultycheck === difficulties[2]){
-                answerBound = [-5,5];
-                coefBound = [[-5,5], [-10,10]];
-            }
-            else if (difficultycheck === difficulties[3]){
-                answerBound = [-10,10];
-                coefBound = [[-10,10], [-10,10]];
-            }
-            else if (difficultycheck === difficulties[4]){
-                answerBound = [-30,30];
-                coefBound = [[-30,30], [-100,100]];
-            }
-            else if (difficultycheck === difficulties[5]){
-                answerBound = [-100,1000];
-                coefBound = [[-100,100], [-100,100]];
-            }
-            // determine answer
-            do {
-                answer = Math.floor(Math.random()*(answerBound[1] - answerBound[0] + 1)) + answerBound[0];    //[answerBound[0], answerBound[1]] without 0
-            } while (answer == 0);
-            // determine three coefficients, and register the first two coefficients' signs.
-            for (let i of Array(2).keys()){
-                let tmp;
-                do {
-                    tmp = Math.floor(Math.random()*(coefBound[i][1] - coefBound[i][0] + 1)) + coefBound[i][0];    //[coef_1Bound[0], coef_1Bound[0´1]] without 0
-                } while (tmp == 0);
-                coef.push(tmp);
-                if (tmp > 0){
-                    coefSign.push("+");
-                }
-                else{
-                    coefSign.push("-");
-                }
-            }
-            coef.push(answer*coef[0] + coef[1]);
-
-            // change 1x and -1x to x and -x.
-            if (coef[0] == 1 || coef[0] == -1){
-                coef[0] = String(coef[0]).slice(0, -1);
-            }
-            
-            let signInBetween = "";
-            // coef[0]*answer + coef[1] = coef[2]
-            if (difficultycheck === difficulties[0] || difficultycheck === difficulties[1] || Math.floor(Math.random()*2) == 0){
-                if (coefSign[1] == "+"){
-                    signInBetween = "+";
-                }
-
-                Qlist.push(new exercise(`\\( ${coef[0]}x ${signInBetween} ${coef[1]} = ${coef[2]} \\)` + answerField, answer));
-            }
-            // coef[1] + coef[0]*answer = coef[2]
-            else{
-                if (coefSign[0] == "+"){
-                    signInBetween = "+";
-                }
-                Qlist.push(new exercise(`\\( ${coef[1]} ${signInBetween} ${coef[0]}x = ${coef[2]} \\)` + answerField, answer));
-            }
-        }
-        /*
-        else if (Q[i] === 6){
-            let answer = [];
-            let answerBound = [[1,5],[1,5]];
-            
-            for (let i of Array(2).keys()){
-                answer.push(Math.floor(Math.random()*(answerBound[i][1] - answerBound[i][0] + 1)) + answerBound[i][0]);    //[answerBound[0], answerBound[1]]
-            }
-
-        }
-        */
     }
 
     let nby4;
@@ -637,7 +551,7 @@ function generate(){
         for (j of Array(nby4).keys()){
             if (nby4*i + j < n){
                 let li = ol.appendChild(document.createElement("li"));
-                li.innerHTML = Qlist[nby4*i + j].question + " ";
+                li.textContent = Qlist[nby4*i + j].question + " ";
                 let input = li.appendChild(document.createElement("input"));
                 input.className = "questionbox";
                 input.autocomplete = "off";

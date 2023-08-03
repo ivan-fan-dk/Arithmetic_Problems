@@ -149,10 +149,6 @@ header h1, header h3 {
 }
 */
 
-#calculationType {
-    display: grid;
-}
-
 .checkbox {
     width: 17px;
     aspect-ratio: 1;
@@ -160,10 +156,16 @@ header h1, header h3 {
     accent-color: auto;
 }
 
+#gridItemForCalculationType{
+    display: inline-flex;
+    gap: 20px;
+}
+
 #calculationType {
-    display: flex;
-    /*margin: 20px;*/
-    gap: 5px;
+    display: grid;
+    gap: 10px;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 #questions{
@@ -180,21 +182,17 @@ header h1, header h3 {
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
     .section{
-        width: 100%
+        width: 100%;
     }
 
     #gridCustom{
         grid-template-columns: auto;
-        width: 100%;
     }
 
-    .gridItem{
-        width: 100%;
-        /*display: flex;*/
-    }
-
-    #calculationType{
-        display:block;
+    #calculationType {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: auto;
     }
 
     header{
@@ -221,21 +219,17 @@ header h1, header h3 {
 
 @media screen and (max-width: 499px) {
     .section{
-        width: 100%
+        width: 100%;
     }
 
     #gridCustom{
         grid-template-columns: auto;
-        width: 100%;
     }
 
-    .gridItem{
-        width: 100%;
-        /*display: flex;*/
-    }
-
-    #calculationType{
-        display:block;
+    #calculationType {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: auto;
     }
 
     header{

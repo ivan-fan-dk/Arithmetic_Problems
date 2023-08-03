@@ -27,14 +27,10 @@ body:after {
 :root {
     --dark: #333;
     --light: #00002222;
-    --textfont: "KaiTi";
-    --buttonfontsize: 27px;
-    --textfontsize: 27px;
+    --textfont: "Comic Sans MS", "KaiTi";
+    --buttonfontsize: 22px;
+    --textfontsize: 22.3px;
     --questionsfontsize: 25px;
-}
-
-.en{
-    font-family: "Comic Sans MS";
 }
 
 body {
@@ -69,14 +65,6 @@ header {
 
 header:hover {
     background-image: url("closedEyes.jpg");
-}
-
-header h1 {
-    font-size: 39px;
-}
-
-header h3 {
-    font-size: 23px;
 }
 
 header h1, header h3 {
@@ -120,7 +108,6 @@ header h1, header h3 {
     animation-name: reverseCustomizeTitleAnimation;
     animation-duration: 1s;
     animation-iteration-count: 1;
-    font-size: 30px;
 }
 
 #customize h2:hover{
@@ -162,6 +149,10 @@ header h1, header h3 {
 }
 */
 
+#calculationType {
+    display: grid;
+}
+
 .checkbox {
     width: 17px;
     aspect-ratio: 1;
@@ -169,16 +160,10 @@ header h1, header h3 {
     accent-color: auto;
 }
 
-#gridItemForCalculationType{
-    display: inline-flex;
-    gap: 20px;
-}
-
 #calculationType {
-    display: grid;
-    gap: 10px;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    /*margin: 20px;*/
+    gap: 15px;
 }
 
 #questions{
@@ -195,17 +180,21 @@ header h1, header h3 {
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
     .section{
-        width: 100%;
+        width: 100%
     }
 
     #gridCustom{
         grid-template-columns: auto;
+        width: 100%;
     }
 
-    #calculationType {
-        display: grid;
-        gap: 10px;
-        grid-template-columns: auto;
+    .gridItem{
+        width: 100%;
+        /*display: flex;*/
+    }
+
+    #calculationType{
+        display:block;
     }
 
     header{
@@ -213,16 +202,16 @@ header h1, header h3 {
     }
 
     header h1{
-        font-size: 30px;
+        font-size: 24px;
         margin-bottom: 0px;
     }
 
     header h3{
-        font-size: 13px;
+        font-size: 10px;
     }
 
     #customize h2{
-        font-size: 20px;
+        font-size: 16px;
     }
 
     #navigationBar {
@@ -232,17 +221,21 @@ header h1, header h3 {
 
 @media screen and (max-width: 499px) {
     .section{
-        width: 100%;
+        width: 100%
     }
 
     #gridCustom{
         grid-template-columns: auto;
+        width: 100%;
     }
 
-    #calculationType {
-        display: grid;
-        gap: 10px;
-        grid-template-columns: auto;
+    .gridItem{
+        width: 100%;
+        /*display: flex;*/
+    }
+
+    #calculationType{
+        display:block;
     }
 
     header{
@@ -319,7 +312,7 @@ li:hover{
     width: 27px;
     aspect-ratio: 1;
     float: right;
-    padding: 2.5px 0px;
+    padding: 5px 0px;
 }
 
 select {
@@ -352,6 +345,17 @@ select {
     position:sticky;
     bottom: 0px;
 }
+
+/* if github icon is used
+.link-external {
+    background-image: url(github-mark.svg), url(link-external.svg);
+    background-position: center left, center right;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 0.95em, 0.857em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+*/
 
 .link-external {
     background-image: url(link-external.svg);
