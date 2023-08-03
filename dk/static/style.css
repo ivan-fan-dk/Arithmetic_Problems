@@ -8,6 +8,11 @@ body:after {
 }
 */
 
+#peek{
+    outline: medium dashed #00ff00;
+    border-radius: 30px;
+}
+
 .overlay{
     height: 100%;
     width: 100%;
