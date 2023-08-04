@@ -17,7 +17,7 @@ const alertMostCookiesCleared = "De fleste cookies er blevet slettet！\n\nReste
 const scoreName = "pointer";
 const timeTrialModeName = "Tidskørseltilstand";
 const returnToNormalModeName = "Tilbage til normal tilstand ";
-const arithmetricProblemsTitleName = "Regneopgaver";
+const arithmetricProblemsTitleName = "Regnestykker";
 const timeName = "Tid";
 peek.innerHTML = `
     <li>Hvis du vil tage et kig på svaret, kan du højreklikke i den ønskede tekstboks. &#128541;</li>
