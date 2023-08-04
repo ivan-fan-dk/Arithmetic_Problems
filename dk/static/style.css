@@ -81,6 +81,7 @@ header h1, header h3 {
     margin: 12px 5px 12px 0px;
     /*background-color: rgb(0, 0, 183);*/
     box-shadow: inset 0px 0px 4px yellow, 0px 0px 15px yellow;
+    transition-duration: 0.5s;
 }
 
 #navigationBar {
@@ -88,6 +89,7 @@ header h1, header h3 {
     height: 70px;
     padding: 10px;
     cursor: pointer;
+    transition-duration: 0.5s;
 }
 
 #customize {
@@ -366,6 +368,7 @@ select {
     animation-duration: 1s;
     animation-iteration-count: 1;
     box-shadow: 5px 5px 5px black;
+    transition-duration: 0.5s;
 }
 
 .button:hover{
@@ -389,6 +392,7 @@ select {
     background-color: white;
     color: black;
     box-shadow: 5px 5px 5px green;
+    transition-duration: 0s;
 }
 
 
