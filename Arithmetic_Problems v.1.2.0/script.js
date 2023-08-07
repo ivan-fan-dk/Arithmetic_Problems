@@ -1,7 +1,7 @@
 // peek and exDays are defined in the relevant language javascript.
 const defaultNOQ = "20";
 const defaultRight_after = true;
-const versions = ["1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
+const versions = ["1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
 
 var result;
 let scoreList;
@@ -206,7 +206,7 @@ function generate(){
     }
 
     // generate n questions by their calculationtypes randomly.
-    var Q = [];
+    let Q = [];
     for (let _ of Array(n).keys()){
         let random = Math.floor((Math.random() * Qtype.length));
         Q.push(Qtype[random]);
@@ -214,7 +214,7 @@ function generate(){
 
     // construct a class named exercise
     class exercise{
-        constructor(question, answer, printOutAnswer=answer){
+        constructor(question, answer, printOutAnswer=String(answer)){
             this.question = question;
             this.answer = answer;
             this.printOutAnswer = printOutAnswer;
@@ -607,79 +607,17 @@ function generate(){
                 Qlist.push(new exercise(`\\( ${coef[1]} ${signInBetween} ${coef[0]}x = ${coef[2]} \\)` + answerField, answer));
             }
         }
-        // Quadratic equation
-        else if (Q[i] === 7){
-            let answer = [], coef = [];
-            let tmp, answerBound, coefBound;
-            if (difficultycheck === difficulties[0]){
-                answerBound = [[1,5],[1,5]];
-                coefBound = [1,1];
-            }
-            else if (difficultycheck === difficulties[1]){
-                answerBound = [[1,10],[1,10]];
-                coefBound = [1,1];
-            }
-            else if (difficultycheck === difficulties[2]){
-                answerBound = [[-5,5],[-5,5]];
-                coefBound = [-1,1];
-            }
-            else if (difficultycheck === difficulties[3]){
-                answerBound = [[-5,5],[-5,5]];
-                coefBound = [-5,5];
-            }
-            else if (difficultycheck === difficulties[4]){
-                answerBound = [[-10,10],[-10,10]];
-                coefBound = [-5,5];
-            }
-            else if (difficultycheck === difficulties[5]){
-                answerBound = [[-10,10],[-10,10]];
-                coefBound = [-10,10];
-            }
-
-            for (let i of Array(2).keys()){
-                // determine answer
-                do {
-                    tmp = Math.floor(Math.random()*(answerBound[i][1] - answerBound[i][0] + 1)) + answerBound[i][0];    //[answerBound[0], answerBound[1]] without 0
-                } while (tmp == 0);
-                answer.push(tmp);    //[answerBound[0], answerBound[1]]
-            }
+        /*
+        else if (Q[i] === 6){
+            let answer = [];
+            let answerBound = [[1,5],[1,5]];
             
-            // make sure answer[0] <= answer[1]
-            if (answer[0] > answer[1]){
-                [answer[0], answer[1]] = switchVariablesValues(answer[0], answer[1]);
-            }
-
-            // generate coefs
-            do {
-                tmp = Math.floor(Math.random()*(coefBound[1] - coefBound[0] + 1)) + coefBound[0];
-            } while (tmp == 0);
-            coef.push(tmp);
-            coef.push(-(answer[0]+answer[1])*coef[0]);
-            coef.push(answer[0]*answer[1]*coef[0]);
-
-            let signInBetween = [];
             for (let i of Array(2).keys()){
-                if (coef[i + 1] < 0){
-                    signInBetween.push("");
-                }
-                else{
-                    signInBetween.push("+");
-                }
+                answer.push(Math.floor(Math.random()*(answerBound[i][1] - answerBound[i][0] + 1)) + answerBound[i][0]);    //[answerBound[0], answerBound[1]]
             }
 
-            // change 1x and -1x to x and -x.
-            for (let i of [0,1]){
-                if (coef[i] == 1 || coef[i] == -1){
-                    coef[i] = String(coef[i]).slice(0, -1);
-                }
-            }
-            let firstOrderTerm = `${coef[1]}x`;
-            if (coef[1] === 0){
-                firstOrderTerm = "";
-                signInBetween[0] = "";
-            }
-            Qlist.push(new exercise(`\\( ${coef[0]} x^2 ${signInBetween[0]}` + firstOrderTerm + `${signInBetween[1]} ${coef[2]} = 0 \\)`, answer));
         }
+        */
     }
 
     let nby4;
@@ -699,52 +637,28 @@ function generate(){
         for (j of Array(nby4).keys()){
             if (nby4*i + j < n){
                 let li = ol.appendChild(document.createElement("li"));
-                if (Q[nby4*i + j] != 7){
-                    li.innerHTML = Qlist[nby4*i + j].question + " ";
-                    let input = li.appendChild(document.createElement("input"));
-                    input.className = "questionbox";
-                    input.autocomplete = "off";
-                    input.name = "name";
-                    input.id = `Q_${nby4*i+j}`;
-                    input.type = "text";
-                    
-                    // determine inputmode (when there are fractions, change to textpad due to stupid Gboard which doesn't have forward slash in numericpad)
-                    if (Q[nby4*i + j] == 4 || Q[nby4*i + j] == 5){
-                        input.inputMode = "text";
-                    }
-                    else{
-                        input.inputMode = "numeric";
-                    }
-
-                    let img = li.appendChild(document.createElement("img"));
-                    img.hidden = true
+                li.innerHTML = Qlist[nby4*i + j].question + " ";
+                let input = li.appendChild(document.createElement("input"));
+                input.className = "questionbox";
+                input.autocomplete = "off";
+                input.name = "name";
+                input.id = `Q_${nby4*i+j}`;
+                input.type = "text";
+                
+                // determine inputmode (when there are fractions, change to textpad due to stupid Gboard which doesn't have forward slash in numericpad)
+                if (Q[nby4*i + j] == 4 || Q[nby4*i + j] == 5){
+                    input.inputMode = "text";
                 }
                 else{
-                    // special for quadratic equation
-                    li.innerHTML = Qlist[nby4*i + j].question + "<br>";
-                    for (let k of Array(2).keys()){
-                        let span = li.appendChild(document.createElement("span"));
-                        if (k == 0){
-                            span.textContent = `\\(x_{1}=\\) `;
-                        }
-                        else{
-                            span.textContent = `\\(,x_{2}=\\) `;
-                        }
-                        let input = li.appendChild(document.createElement("input"));
-                        input.className = "questionboxForQuadraticEquation";
-                        input.autocomplete = "off";
-                        input.name = "name";
-                        input.id = `Q_${nby4*i+j}_${k}`;
-                        input.type = "text";
-                        input.inputMode = "numeric";
-                        let img = li.appendChild(document.createElement("img"));
-                        img.id = `img_${nby4*i+j}_${1-k}`;
-                        img.hidden = true;
-                    }
+                    input.inputMode = "numeric";
                 }
+
+                let img = li.appendChild(document.createElement("img"));
+                img.hidden = true
             }
         }
         section.hidden = false;
+        // document.getElementById("Q_0").focus();
     }
     
     // Get all of the input fields on the page. When "Enter" is pressed on one textfield, it will move to the next textfield. When "Shift + Enter" is pressed on one textfield, it will move to the previous textfield.
@@ -753,67 +667,16 @@ function generate(){
     inputFields.forEach((inputField) => {
         inputField.addEventListener("keydown", (event) => {
             if (event.key == "Enter"){
-                let aInputField;
-                let inputIdInfo = inputField.id.split("_");
-                let Q_tmp = inputIdInfo[1];
-                    if (!event.shiftKey) {
-                        // Get the next input field.
-                        if (inputIdInfo.length === 3){
-                            let subNumber = Number(inputIdInfo[2]);
-                            if (subNumber === 0){
-                                aInputField = document.getElementById(`Q_${Q_tmp}_1`);
-                            }
-                            ////(1)
-                            else{
-                                let Q_tmp_adjacent = Number(inputIdInfo[1]) + 1;   // fetch question number
-                                if (Q[Q_tmp_adjacent] === 7){
-                                    aInputField = document.getElementById(`Q_${Q_tmp_adjacent}_0`);
-                                }
-                                else{
-                                    aInputField = document.getElementById(`Q_${Q_tmp_adjacent}`);
-                                }
-                            }
-                        }
-                        ////(1)
-                        else{
-                            let Q_tmp_adjacent = Number(inputIdInfo[1]) + 1;   // fetch question number
-                            if (Q[Q_tmp_adjacent] === 7){
-                                aInputField = document.getElementById(`Q_${Q_tmp_adjacent}_0`);
-                            }
-                            else{
-                                aInputField = document.getElementById(`Q_${Q_tmp_adjacent}`);
-                            }
-                        }
-                    }
-                    else{
-                        // Get the previous input field
-                        if (inputIdInfo.length === 3){
-                            let subNumber = Number(inputIdInfo[2]);
-                            if (subNumber === 1){
-                                aInputField = document.getElementById(`Q_${Q_tmp}_0`);
-                            }
-                            ////(2)
-                            else{
-                                let Q_tmp_adjacent = Number(inputIdInfo[1]) - 1;   // fetch question number
-                                if (Q[Q_tmp_adjacent] === 7){
-                                    aInputField = document.getElementById(`Q_${Q_tmp_adjacent}_1`);
-                                }
-                                else{
-                                    aInputField = document.getElementById(`Q_${Q_tmp_adjacent}`);
-                                }
-                            }
-                        }
-                        ////(2)
-                        else{
-                            let Q_tmp_adjacent = Number(inputIdInfo[1]) - 1;   // fetch question number
-                            if (Q[Q_tmp_adjacent] === 7){
-                                aInputField = document.getElementById(`Q_${Q_tmp_adjacent}_1`);
-                            }
-                            else{
-                                aInputField = document.getElementById(`Q_${Q_tmp_adjacent}`);
-                            }
-                        }
-                    }                
+                var Q_tmp;
+                if (!event.shiftKey) {
+                    // Get the next input field.
+                    Q_tmp = Number(inputField.id.slice(2)) + 1;   // fetch question number
+                }
+                else{
+                    // Get the previous input field
+                    Q_tmp = Number(inputField.id.slice(2)) - 1;   // fetch question number
+                }                
+                var aInputField = document.getElementById(`Q_${Q_tmp}`);
                 // If there exists a input field, focus on it.
                 if (aInputField) {
                     aInputField.focus();
@@ -830,7 +693,7 @@ function generate(){
     
     // reset scoreList to zeros
     scoreList = new Array(n);
-    for (let i=0; i<n; ++i){scoreList[i] = 0;}
+    for (let i=0; i<n; ++i){scoreList[i] = 0};
 
     // update score
     scoreUpdate();
@@ -892,63 +755,20 @@ function correctHurray(){
 }
 
 function getAnswer(input){
-    let inputIdInfo = input.id.split("_");
-    let Q_Number = Number(inputIdInfo[1]);   // fetch question number
-    if (inputIdInfo.length == 2){
-        let img = input.parentElement.querySelector("img"); // make image element inside parent element of input
-        input.value = String(Qlist[Q_Number].printOutAnswer);
-        imgQuestion(img);
-        scoreList[Q_Number] = 0;
-    }
-    else{
-        // special for Quadratic questions
-        let subNumber = Number(inputIdInfo[2]);
-        let img = document.getElementById(`img_${Q_Number}_${subNumber}`)
-        input.value = String(Qlist[Q_Number].printOutAnswer[subNumber]);
-        imgQuestion(img);
-        scoreList[Q_Number][subNumber] = 0;
-    }
-    
+    let Q_Number = Number(input.id.slice(2));   // fetch question number
+    let img = input.parentElement.querySelector("img"); // make image element inside parent element of input
+    input.value = String(Qlist[Q_Number].printOutAnswer);
+    imgQuestion(img);
+    scoreList[Q_Number] = 0;
     scoreUpdate();
 }
 
 // check answer and store every single score (1 for correct, 0 for wrong) in variable "scoreList".
 function answerResponse(input){
+    let singleScore = 0;
     let userInput = input.value;                // fetch user input value
-    let inputIdInfo = input.id.split("_");
-    let Q_Number = Number(inputIdInfo[1]);   // fetch question number
-    let subNumber, singleScore;
-    if (inputIdInfo.length === 2){
-        img = input.parentElement.querySelector("img"); // make image element inside parent element of input
-        singleScore = inputCheck(userInput, img, Q_Number);
-    }
-    // special for Quadratic equation
-    else if (inputIdInfo.length === 3){
-        subNumber = Number(inputIdInfo[2]);
-        let img = document.getElementById(`img_${Q_Number}_${subNumber}`);
-        let anotherInput = document.getElementById(`Q_${Q_Number}_${1-subNumber}`).value;
-        let anotherImg = document.getElementById(`img_${Q_Number}_${1-subNumber}`);
-        
-        let [singleScore_0, singleScore_1] = [inputCheck(userInput, img, Q_Number), inputCheck(anotherInput, anotherImg, Q_Number)];
-
-        // capture special case (e.g x^2-3x+2=0 where answer x1=1, x2=1 is not accepted)
-        if (Qlist[Q_Number].answer.includes(Number(userInput)) && Qlist[Q_Number].answer.includes(Number(anotherInput))){
-            if ((Number(userInput) == Number(anotherInput)) && (Qlist[Q_Number].answer[0] != Qlist[Q_Number].answer[1])){
-                // half right, half wrong
-                imgCorrect(anotherImg);
-                imgWrong(img);
-                [singleScore_0, singleScore_1] = [0, 0.5];
-            }
-        }
-        singleScore = [singleScore_0, singleScore_1];
-    }
-
-    scoreList[Q_Number] = singleScore;
-    scoreUpdate();
-}
-
-// check answer for every input
-function inputCheck(userInput, img, Q_Number, singleScore=0){
+    let Q_Number = Number(input.id.slice(2));   // fetch question number
+    let img = input.parentElement.querySelector("img"); // make image element inside parent element of input
     let invalidInput = false;
     // if the user didn't type anything in input, don't judge them (be kind).
     if (userInput === ""){
@@ -994,17 +814,6 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
                     imgWarning(img);
                 }
             }
-            // if there are two answers (special for Quadratic equation)
-            else if (Qlist[Q_Number].answer.length === 2){
-                if (Qlist[Q_Number].answer.includes(Number(userInput))){
-                    // every correct input in Quadratic equation counts 0.5 point.
-                    imgCorrect(img);
-                    singleScore = 0.5;
-                }
-                else{
-                    imgWrong(img);
-                }
-            }
             // if input is just a integer
             else if (Number(userInput) === Qlist[Q_Number].answer){
                 imgCorrect(img);
@@ -1015,7 +824,8 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
             }
         }
     }
-    return singleScore;
+    scoreList[Q_Number] = singleScore;
+    scoreUpdate();
 }
 
 function imgCorrect (img) {
@@ -1334,16 +1144,8 @@ function clearSelected(){
 
 function scoreUpdate(){
     result = 0;
-    for (let i of scoreList) {
-        // special for Quadratic equation
-        if (i.length == 2){
-            for (let j = 0; j < 2; ++j){
-                result += i[j];
-            }
-        }
-        else{
-            result += i;
-        }
+    for (var i in scoreList) {
+        result += scoreList[i];
     }
     score.textContent = scoreName + `: ${result}/${getOption("NOQ")}`;
     score.hidden = false;
@@ -1470,8 +1272,6 @@ function confettiSchoolPride(){
     }
     }());
 }
-
-const repeat = (arr, n) => [].concat(...Array(n).fill(arr));
 /*
 from numpy import *
 a = linspace(0,100,101)

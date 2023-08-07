@@ -32,14 +32,10 @@ body:after {
 :root {
     --dark: #333;
     --light: #00002222;
-    --textfont: "KaiTi";
-    --buttonfontsize: 27px;
-    --textfontsize: 27px;
+    --textfont: "Comic Sans MS", "KaiTi";
+    --buttonfontsize: 22px;
+    --textfontsize: 22.3px;
     --questionsfontsize: 25px;
-}
-
-.en{
-    font-family: "Comic Sans MS";
 }
 
 body {
@@ -74,14 +70,6 @@ header {
 
 header:hover {
     background-image: url("closedEyes.jpg");
-}
-
-header h1 {
-    font-size: 39px;
-}
-
-header h3 {
-    font-size: 23px;
 }
 
 header h1, header h3 {
@@ -127,7 +115,6 @@ header h1, header h3 {
     animation-name: reverseCustomizeTitleAnimation;
     animation-duration: 1s;
     animation-iteration-count: 1;
-    font-size: 30px;
 }
 
 #customize h2:hover{
@@ -220,16 +207,16 @@ header h1, header h3 {
     }
 
     header h1{
-        font-size: 30px;
+        font-size: 24px;
         margin-bottom: 0px;
     }
 
     header h3{
-        font-size: 13px;
+        font-size: 10px;
     }
 
     #customize h2{
-        font-size: 20px;
+        font-size: 16px;
     }
 
     #navigationBar {
@@ -326,7 +313,7 @@ li:hover{
     width: 27px;
     aspect-ratio: 1;
     float: right;
-    padding: 2.5px 0px;
+    padding: 5px 0px;
 }
 
 select {
@@ -359,6 +346,17 @@ select {
     position:sticky;
     bottom: 0px;
 }
+
+/* if github icon is used
+.link-external {
+    background-image: url(github-mark.svg), url(link-external.svg);
+    background-position: center left, center right;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 0.95em, 0.857em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+*/
 
 .link-external {
     background-image: url(link-external.svg);

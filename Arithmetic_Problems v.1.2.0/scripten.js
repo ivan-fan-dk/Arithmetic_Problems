@@ -1,12 +1,12 @@
 const exDays = 30;
 const peek = document.getElementById("peek");
 const github = document.getElementById("github");
-const inAFolder = "";    //used when this script is in a folder.
+const inAFolder = ".";    //used when this script is in a folder.
 // English version
 const defaultDifficulty = "Easy";
 const defaultCalculationTypes = ["Addition", "Subtraction", "Multiplication", "Division"];
 const difficulties = ["Beginner", "Easy", "Intermediate", "Hard", "Hell", "Asian"];
-const calculationTypes = ["Addition", "Subtraction", "Multiplication", "Division", "Fraction(+-)", "Fraction(*/)", "Linear equation", "Quadratic Equation"]
+const calculationTypes = ["Addition", "Subtraction", "Multiplication", "Division", "Fraction(+-)", "Fraction(*/)", "Linear equation"]//, "Quadratic equation"]
 const versionName = "version";
 const AsianName = "Asian";
 const alertPreferencesStored = `Your preferences have been set successfully and remembered for ${exDays} days.\n\nPreferences in json:`;

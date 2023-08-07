@@ -35,7 +35,7 @@ body:after {
     --textfont: "Comic Sans MS", "KaiTi";
     --buttonfontsize: 22px;
     --textfontsize: 22.3px;
-    --questionsfontsize: 25px;
+    --questionsfontsize: 24px;
 }
 
 body {
@@ -172,7 +172,7 @@ header h1, header h3 {
     display: grid;
     gap: 10px;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 0.8fr 0.8fr 0.9fr 1.1fr;
 }
 
 #questions{
@@ -309,11 +309,22 @@ li:hover{
     text-align: center;
 }
 
+.questionboxForQuadraticEquation{
+    width: 40px;
+    font-size: 22px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.section span{
+    font-size: 20px;
+}
+
 #questions img{
     width: 27px;
     aspect-ratio: 1;
     float: right;
-    padding: 5px 0px;
+    padding: 5px 0px 0px 2px;
 }
 
 select {

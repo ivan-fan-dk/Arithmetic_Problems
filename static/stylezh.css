@@ -32,10 +32,14 @@ body:after {
 :root {
     --dark: #333;
     --light: #00002222;
-    --textfont: "Comic Sans MS", "KaiTi";
-    --buttonfontsize: 22px;
-    --textfontsize: 22.3px;
-    --questionsfontsize: 25px;
+    --textfont: "KaiTi";
+    --buttonfontsize: 27px;
+    --textfontsize: 27px;
+    --questionsfontsize: 24px;
+}
+
+.en{
+    font-family: "Comic Sans MS";
 }
 
 body {
@@ -70,6 +74,14 @@ header {
 
 header:hover {
     background-image: url("closedEyes.jpg");
+}
+
+header h1 {
+    font-size: 39px;
+}
+
+header h3 {
+    font-size: 23px;
 }
 
 header h1, header h3 {
@@ -115,6 +127,7 @@ header h1, header h3 {
     animation-name: reverseCustomizeTitleAnimation;
     animation-duration: 1s;
     animation-iteration-count: 1;
+    font-size: 30px;
 }
 
 #customize h2:hover{
@@ -207,16 +220,16 @@ header h1, header h3 {
     }
 
     header h1{
-        font-size: 24px;
+        font-size: 30px;
         margin-bottom: 0px;
     }
 
     header h3{
-        font-size: 10px;
+        font-size: 13px;
     }
 
     #customize h2{
-        font-size: 16px;
+        font-size: 20px;
     }
 
     #navigationBar {
@@ -309,11 +322,22 @@ li:hover{
     text-align: center;
 }
 
+.questionboxForQuadraticEquation{
+    width: 40px;
+    font-size: 22px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.section span{
+    font-size: 20px;
+}
+
 #questions img{
     width: 27px;
     aspect-ratio: 1;
     float: right;
-    padding: 5px 0px;
+    padding: 5px 0px 0px 2px;
 }
 
 select {

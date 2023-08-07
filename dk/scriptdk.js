@@ -6,7 +6,7 @@ const inAFolder = ".";    //used when this script is in a folder.
 const defaultDifficulty = "let";
 const defaultCalculationTypes = ["Addition", "Subtraktion", "Multiplikation", "Division"];
 const difficulties = ["begynder", "let", "middel", "svær", "extra svær", "asien"];
-const calculationTypes = ["Addition", "Subtraktion", "Multiplikation", "Division", "brøk(+-)", "brøk(*/)", "lineær ligning"];
+const calculationTypes = ["Addition", "Subtraktion", "Multiplikation", "Division", "Brøk(+-)", "Brøk(*/)", "Lineær ligning", "Andengradsligning"];
 const versionName = "version";
 const AsianName = "asien";
 const alertPreferencesStored = `Dine præferencer er blevet gemt for ${exDays} dage.\n\nPræferencer i json:`;
@@ -38,7 +38,7 @@ function dkButton(cname,cvalue){
 
 document.documentElement.setAttribute('lang', "da-DK");
 dk("#h13 h1", arithmetricProblemsTitleName);
-dk("#h13 h3", versionName + "：1.2.0");
+dk("#h13 h3", versionName + "：1.3.0");
 dk("#customize h2", "Personlig tilpasning");
 dk("#NOQName", "Antal spørgsmål");
 dk("#difficultyName", "Sværhedsgrad");

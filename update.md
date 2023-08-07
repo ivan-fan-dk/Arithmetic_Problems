@@ -1,4 +1,6 @@
 # Version update
+## v.1.3.0
+- Add **Quadratic equation**. Rearrange static folders and css files.
 ## v.1.2.0
 - Add **linear equation**
 - Add **[difficulty.md](difficulty.md)**.
