@@ -172,7 +172,7 @@ header h1, header h3 {
     display: grid;
     gap: 10px;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: 0.8fr 0.8fr 0.9fr 1.1fr;
+    grid-template-columns: 0.8fr 0.8fr 1fr 1.1fr;
 }
 
 #questions{
