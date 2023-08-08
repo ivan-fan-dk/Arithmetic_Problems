@@ -1,4 +1,8 @@
-# Version update
+# Version update (v.MAJOR.MINOR.PATCH)
+Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
+## v.1.4.0
+- Functionaility: Press and hold ArrowUp key (&#11014;) or ArrowDown key (&#11015;) to display your answer beautifully (LaTeX supported).&#128516;
+- v.1.3.0 is temporarily not added in Navigation Bar.
 ## v.1.3.0
 - Add **Quadratic equation**. Rearrange static folders and css files.
 ## v.1.2.0

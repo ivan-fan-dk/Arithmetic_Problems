@@ -819,6 +819,40 @@ function generate(){
                     aInputField.focus();
                 }
             }
+            // Press and hold ArrowUp key or ArrowDown key to display your answer beautifully (LaTeX supported).
+            else if (event.key == "ArrowDown" || event.key == "ArrowUp"){
+                event.preventDefault();
+                if (!event.repeat){
+                    let span = inputField.parentElement.appendChild(document.createElement("span"));
+                    span.className = "spanMath";
+                    let str = inputField.value;
+                    if (str != ""){
+                        let frac = true;
+                        if (str.includes("/")){
+                            for (let i of str){
+                                if (!("0123456789/-.".includes(i))){
+                                    frac = false;
+                                }
+                            }
+                            if (frac){
+                                s = str.split("/");
+                                if (s.length == 2){
+                                    str = `\\frac{${s[0]}}{${s[1]}}`;
+                                }
+                            }
+                        }
+                        span.innerHTML = " \\(" + str + "\\)";
+                        MathJax.typeset([span]);
+                        window.addEventListener("keyup", function(){
+                            let elems = document.getElementsByClassName("spanMath");
+                            for (let elem of elems){
+                                elem.parentElement.removeChild(elem);
+                            }
+                        })
+                    }
+                }
+            }
+            
         });
     });
 

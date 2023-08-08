@@ -20,10 +20,10 @@ const returnToNormalModeName = "回到普通模式";
 const arithmetricProblemsTitleName = "算术";
 const timeName = "时间";
 peek.innerHTML = `
-    <li>如果想要悄咪咪地瞄一眼答案，可以在想要的文本框内右键。&#128541;</li>
+    <li>如果想要悄咪咪地瞄一眼答案，可以在想要的文本框内右键。&#128541;按住向上键(&#11014;)或者向下键(&#11015;)可以漂亮地显示您的答案(支持<span lang="da-DK" class="en">LaTeX</span>).&#128516;</li>
     <li><span lang="en" class="en"><a href="../">English version entrance</a></span>, <span lang="da-DK" class="en"><a href="../dk/index.html">Indgang til dansk version</a></span></li>
     <li>想<u>加入社区</u>或<u>提供反馈</u>使该网站变得更好吗?可以来<strong lang="en" class="en"><a href="https://github.com/ivan-fan-dk/Arithmetic_Problems/discussions">GitHub Discussions</a></strong>转转。在<strong lang="en" class="en"><a href="https://github.com/ivan-fan-dk/Arithmetic_Problems/issues">GitHub Issues</a></strong>上可以报告你遇到的问题。</li>
-    <li>如果您想捐赠一小笔金额，可以使用<strong lang="en" class="en"><a href="https://github.com/sponsors/ivan-fan-dk?o=esb">GitHub Sponsor</a></strong>或者<strong lang="en" class="en"><a href="https://www.paypal.com/donate/?hosted_button_id=AQ84UJJGKMNFW">Paypal</a></strong>. 谢谢! &#128522;</li>
+    <li>如果您想捐赠一小笔金额，可以使用<strong lang="en" class="en"><a href="https://github.com/sponsors/ivan-fan-dk?o=esb">GitHub Sponsor</a></strong>或者<strong lang="en" class="en"><a href="https://www.paypal.com/donate/?hosted_button_id=AQ84UJJGKMNFW">Paypal</a></strong>. 谢谢!&#128522;</li>
 `;
 github.innerHTML = `代码资源可以在<a class="link-external en" href="https://github.com/ivan-fan-dk/Arithmetic_Problems" target="_blank" lang="en">GitHub</a>上找到.`;
 
@@ -38,7 +38,7 @@ function zhButton(cname,cvalue){
 
 document.documentElement.setAttribute('lang', "zh-Hans");
 zh("#h13 h1", arithmetricProblemsTitleName);
-zh("#h13 h3", versionName + "：1.3.0");
+zh("#h13 h3", versionName + "：1.4.0");
 zh("#customize h2","私人定制");
 zh("#NOQName","题目数量");
 zh("#difficultyName","难度");
