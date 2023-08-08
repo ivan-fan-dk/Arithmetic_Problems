@@ -1020,25 +1020,25 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
 
 function imgCorrect (img) {
     img.hidden = false;
-    img.src = "static/accept.png";
+    img.src = inAFolder + "./static/accept.png";
     img.alt = "Correct";
 }
 
 function imgWrong (img) {
     img.hidden = false;
-    img.src = "static/cross.png";
+    img.src = inAFolder + "./static/cross.png";
     img.alt = "Wrong";
 }
 
 function imgWarning (img) {
     img.hidden = false;
-    img.src = "static/warning.png";
+    img.src = inAFolder + "./static/warning.png";
     img.alt = "Invalid";
 }
 
 function imgQuestion (img){
     img.hidden = false;
-    img.src = "static/common-answers.png";
+    img.src = inAFolder + "./static/common-answers.png";
     img.alt = "Explore further";
 }
 
