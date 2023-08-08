@@ -704,7 +704,7 @@ function generate(){
                     let input = li.appendChild(document.createElement("input"));
                     input.className = "questionbox";
                     input.autocomplete = "off";
-                    input.name = "name";
+                    input.name = "userinput";
                     input.id = `Q_${nby4*i+j}`;
                     input.type = "text";
                     
@@ -733,7 +733,7 @@ function generate(){
                         let input = li.appendChild(document.createElement("input"));
                         input.className = "questionboxForQuadraticEquation";
                         input.autocomplete = "off";
-                        input.name = "name";
+                        input.name = "userinput";
                         input.id = `Q_${nby4*i+j}_${k}`;
                         input.type = "text";
                         input.inputMode = "numeric";
