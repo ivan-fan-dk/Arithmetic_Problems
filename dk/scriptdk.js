@@ -1,3 +1,4 @@
+const lang = "dk";
 const exDays = 30;
 const peek = document.getElementById("peek");
 const github = document.getElementById("github");
@@ -27,30 +28,28 @@ peek.innerHTML = `
 `;
 github.innerHTML = `Koderessourcerne kan findes på <a class="link-external en" href="https://github.com/ivan-fan-dk/Arithmetic_Problems" target="_blank" lang="en">GitHub</a>.`;
 
-function dk(cname,cvalue){
+function changeName(cname,cvalue){
     let it = document.querySelector(cname);
     it.textContent = cvalue;
 }
-function dkButton(cname,cvalue){
+function changeButtonName(cname,cvalue){
     let it = document.querySelector(cname);
     it.value = cvalue;
 }
 
 document.documentElement.setAttribute('lang', "da-DK");
-dk("#h13 h1", arithmetricProblemsTitleName);
-dk("#h13 h3", versionName + "：1.4.0");
-dk("#customize h2", "Personlig tilpasning");
-dk("#NOQName", "Antal spørgsmål");
-dk("#difficultyName", "Sværhedsgrad");
-dk("#right_afterName", "Øjeblikkelig vurdering");
-dk("#calculationTypeName", "Beregningstype:");
-dk("#close", "Luk")
-dkButton("#setCookies", "Gem præferencer i cookies");
-dkButton("#clearCookies", "Ryd cookies");
-dkButton("#submit", "Start");
-dkButton("#reset", "Nulstil");
-dkButton("#timeTrial", timeTrialModeName);
-dkButton("#stop", "Stop tidtagning");
-dkButton("#checkAnswer", "Vurder svar");
-dkButton("#score", "Resultat");
-dkButton("#time", "Tid");
+changeName("#customize h2", "Personlig tilpasning");
+changeName("#NOQName", "Antal spørgsmål");
+changeName("#difficultyName", "Sværhedsgrad");
+changeName("#right_afterName", "Øjeblikkelig vurdering");
+changeName("#calculationTypeName", "Beregningstype:");
+changeName("#close", "Luk")
+changeButtonName("#setCookies", "Gem præferencer i cookies");
+changeButtonName("#clearCookies", "Ryd cookies");
+changeButtonName("#submit", "Start");
+changeButtonName("#reset", "Nulstil");
+changeButtonName("#timeTrial", timeTrialModeName);
+changeButtonName("#stop", "Stop tidtagning");
+changeButtonName("#checkAnswer", "Vurder svar");
+changeButtonName("#score", "Resultat");
+changeButtonName("#time", "Tid");

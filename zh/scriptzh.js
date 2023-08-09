@@ -1,3 +1,4 @@
+const lang = "zh";
 const exDays = 30;
 const peek = document.getElementById("peek");
 const github = document.getElementById("github");
@@ -27,30 +28,28 @@ peek.innerHTML = `
 `;
 github.innerHTML = `代码资源可以在<a class="link-external en" href="https://github.com/ivan-fan-dk/Arithmetic_Problems" target="_blank" lang="en">GitHub</a>上找到.`;
 
-function zh(cname,cvalue){
+function changeName(cname,cvalue){
     let it = document.querySelector(cname);
     it.textContent = cvalue;
 }
-function zhButton(cname,cvalue){
+function changeButtonName(cname,cvalue){
     let it = document.querySelector(cname);
     it.value = cvalue;
 }
 
 document.documentElement.setAttribute('lang', "zh-Hans");
-zh("#h13 h1", arithmetricProblemsTitleName);
-zh("#h13 h3", versionName + "：1.4.0");
-zh("#customize h2","私人定制");
-zh("#NOQName","题目数量");
-zh("#difficultyName","难度");
-zh("#right_afterName","即时评估");
-zh("#calculationTypeName","计算类型:");
-zh("#close","关闭")
-zhButton("#setCookies","记录喜好在cookies");
-zhButton("#clearCookies","清除cookies");
-zhButton("#submit", "开始");
-zhButton("#reset", "重置");
-zhButton("#timeTrial", timeTrialModeName);
-zhButton("#stop", "停止计时");
-zhButton("#checkAnswer", "评估答案");
-zhButton("#score", "成绩");
-zhButton("#time", "计时");
+changeName("#customize h2","私人定制");
+changeName("#NOQName","题目数量");
+changeName("#difficultyName","难度");
+changeName("#right_afterName","即时评估");
+changeName("#calculationTypeName","计算类型:");
+changeName("#close","关闭")
+changeButtonName("#setCookies","记录喜好在cookies");
+changeButtonName("#clearCookies","清除cookies");
+changeButtonName("#submit", "开始");
+changeButtonName("#reset", "重置");
+changeButtonName("#timeTrial", timeTrialModeName);
+changeButtonName("#stop", "停止计时");
+changeButtonName("#checkAnswer", "评估答案");
+changeButtonName("#score", "成绩");
+changeButtonName("#time", "计时");

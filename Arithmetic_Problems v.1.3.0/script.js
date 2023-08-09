@@ -1,20 +1,12 @@
-// Some variables are defined in the relevant language javascript.
-
-// Add titleName and versionName
-const currentVersion = "1.4.1";
-const h13 = document.getElementById("h13");
-h13.appendChild(document.createElement("h1"));
-h13.appendChild(document.createElement("h3"));
-changeName("#h13 h1", arithmetricProblemsTitleName);
-changeName("#h13 h3", versionName + "：" + currentVersion);
-
+// peek and exDays are defined in the relevant language javascript.
 const defaultNOQ = "20";
 const defaultRight_after = true;
-const versions = ["1.3.0","1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.2","1.0.0"];
+const versions = ["1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.3","1.0.2","1.0.1","1.0.0"];
 
 var result;
 let scoreList;
 var printTime;
+const body = document.querySelector("body");
 const right_after = document.getElementById("right_after");
 const checkAnswer = document.getElementById("checkAnswer");
 const score = document.getElementById("score");
@@ -26,8 +18,10 @@ const header_h1 = document.querySelector("header h1");
 const time = document.getElementById("time");
 const stop = document.getElementById("stop");
 const submit = document.getElementById("submit");
+const customize = document.getElementById("customize");
 const reset = document.getElementById("reset");
 const options = document.querySelectorAll("options");
+const header = document.querySelector("header");
 const backgroundColor = ["#cbffcd","#ffe1c8"];
 const closeButton = document.getElementById("close");
 const navigationMenu = document.getElementById("navigationMenu");
@@ -825,40 +819,6 @@ function generate(){
                     aInputField.focus();
                 }
             }
-            // Press and hold ArrowUp key or ArrowDown key to display your answer beautifully (LaTeX supported).
-            else if (event.key == "ArrowDown" || event.key == "ArrowUp"){
-                event.preventDefault();
-                if (!event.repeat){
-                    let span = inputField.parentElement.appendChild(document.createElement("span"));
-                    span.className = "spanMath";
-                    let str = inputField.value;
-                    if (str != ""){
-                        let frac = true;
-                        if (str.includes("/")){
-                            for (let i of str){
-                                if (!("0123456789/-.".includes(i))){
-                                    frac = false;
-                                }
-                            }
-                            if (frac){
-                                s = str.split("/");
-                                if (s.length == 2){
-                                    str = `\\frac{${s[0]}}{${s[1]}}`;
-                                }
-                            }
-                        }
-                        span.innerHTML = " \\(" + str + "\\)";
-                        MathJax.typeset([span]);
-                        window.addEventListener("keyup", function(){
-                            let elems = document.getElementsByClassName("spanMath");
-                            for (let elem of elems){
-                                elem.parentElement.removeChild(elem);
-                            }
-                        })
-                    }
-                }
-            }
-            
         });
     });
 

@@ -1,5 +1,9 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
+## v.1.4.1
+- v.1.3.0 is added in Navigation Bar. Some minor updates or patches are deleted from Navigation Bar.
+- Add variable **currentVersion**.
+- Delete the unnecessary.
 ## v.1.4.0
 - Functionaility: Press and hold ArrowUp key (&#11014;) or ArrowDown key (&#11015;) to display your answer beautifully (LaTeX supported).&#128516;
 - v.1.3.0 is temporarily not added in Navigation Bar.
