@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.4.1";
+const currentVersion = "1.4.2";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));
@@ -833,17 +833,25 @@ function generate(){
                     span.className = "spanMath";
                     let str = inputField.value;
                     if (str != ""){
-                        let frac = true;
+                        // convert cases like 1/2 to \frac{1}{2}
+                        let valid = true;   // check if it is a valid input in general.
                         if (str.includes("/")){
                             for (let i of str){
                                 if (!("0123456789/-.".includes(i))){
-                                    frac = false;
+                                    valid = false;
                                 }
                             }
-                            if (frac){
+                            if (valid){
                                 s = str.split("/");
+                                // One "/" splits string in two
                                 if (s.length == 2){
-                                    str = `\\frac{${s[0]}}{${s[1]}}`;
+                                    // cases like -1/2.
+                                    if (str[0] == "-"){
+                                        str = `-\\frac{${s[0].slice(1)}}{${s[1]}}`;
+                                    }
+                                    else{
+                                        str = `\\frac{${s[0]}}{${s[1]}}`;
+                                    }
                                 }
                             }
                         }

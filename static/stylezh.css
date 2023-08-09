@@ -348,13 +348,11 @@ select {
 }
 
 #buttonfield {
-    justify-content:left;
     margin-top: 1%;
     margin-bottom: 0.5%;
     width: 100%;
     text-align: center;
     overflow: auto;
-    align-items: center;
     padding: 8px 0px;
 }
 
@@ -367,8 +365,9 @@ select {
 }
 
 .sticky-bottom{
-    position:sticky;
+    position: sticky;
     bottom: 0px;
+    margin: 5px 0px calc(8px + 0.5%) 0px;
 }
 
 .link-external {
