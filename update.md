@@ -1,5 +1,7 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
+## v.1.4.3
+- issue fixed: Can handle not-common-written fraction input like "1/-2", "-1/-2". Can detect error like "-/2", "-2/-", "../.." etc.
 ## v.1.4.2
 - issue fixed: display negative fraction correctly.
 - design: narrow margin for #github and #currentTime.

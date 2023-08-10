@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.4.2";
+const currentVersion = "1.4.3";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));
@@ -1009,17 +1009,32 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
     }
     else{
         // typo check mechanism. Only these chars "0123456789/-." are valid.
-        for (var i of userInput){
-            if (!("0123456789/-.".includes(i))){
+        let nonNumber = "/-.";
+        for (var i of Array(userInput.length).keys()){
+            if (!("0123456789/-.".includes(userInput[i]))){
                 imgWarning(img);
                 invalidInput = true;
+                return singleScore;
+            }
+            // check cases where nonNumber stick together, "/-?" is exempted. (? is a number)
+            if (nonNumber.includes(userInput[i])){
+                if (nonNumber.includes(userInput[i + 1]) && !(userInput[i] == "/" && userInput[i + 1] == "-" && "0123456789".includes(userInput[i + 2]))){
+                    imgWarning(img);
+                    invalidInput = true;
+                    return singleScore;
+                }
             }
         }
 
         // '-' that does not placed first as regular minus sign is considered invalid.
-        if(userInput.includes('-') && userInput[0] != '-'){
+        let minusSignCount = countOneChar("-", userInput);
+        let firstMinusSign = (userInput[0] == '-');
+        let slashMinusincluded = userInput.includes("/-");
+        // if there is only one "-", it should either be first or "/-". if there are two "-", it should be "-?/-?". if there are more than two, then it is not valid.
+        if ((minusSignCount == 1 && !(firstMinusSign || slashMinusincluded)) || (minusSignCount == 2 && !(firstMinusSign && slashMinusincluded)) || (minusSignCount > 2)){
             imgWarning(img);
             invalidInput = true;
+            return singleScore;
         }
 
         // if input is considered valid,
@@ -1520,6 +1535,16 @@ function confettiSchoolPride(){
 }
 
 const repeat = (arr, n) => [].concat(...Array(n).fill(arr));
+
+function countOneChar(char, str) {
+    let count = 0;
+    for (let c of str) {
+        if (char == c){
+            count += 1;
+        }
+    }
+    return count;
+}
 /*
 from numpy import *
 a = linspace(0,100,101)
