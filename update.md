@@ -5,7 +5,7 @@ Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https:
 - Issue fixed: fix the problem where favicon is not shown in _dk_ and _zh_ version.
 ## v.1.4.4 (2023-08-11)
 - Performance: Create minified files for every html and javascript by using vscode extension **[MinifyAll](https://marketplace.visualstudio.com/items?itemName=josee9988.minifyall)**.
-## v.1.4.3 (2023-08-11)
+## v.1.4.3 (2023-08-10)
 - Issue fixed: Can handle not-common-written fraction input like "1/-2", "-1/-2". Can detect error like "-/2", "-2/-", "../.." etc.
 ## v.1.4.2 (2023-08-09)
 - Issue fixed: Display negative fraction correctly.
