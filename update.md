@@ -1,25 +1,28 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
-## v.1.4.4
+## v.1.4.5 (2023-08-11)
+- Issue fixed: **[Markup Validation Service](https://validator.w3.org/)** is used to check possible errors.
+- Issue fixed: fix the problem where favicon is not shown in _dk_ and _zh_ version.
+## v.1.4.4 (2023-08-11)
 - Performance: Create minified files for every html and javascript by using vscode extension **[MinifyAll](https://marketplace.visualstudio.com/items?itemName=josee9988.minifyall)**.
-## v.1.4.3
+## v.1.4.3 (2023-08-11)
 - Issue fixed: Can handle not-common-written fraction input like "1/-2", "-1/-2". Can detect error like "-/2", "-2/-", "../.." etc.
-## v.1.4.2
+## v.1.4.2 (2023-08-09)
 - Issue fixed: Display negative fraction correctly.
 - Design: Narrow margin for #github and #currentTime.
-## v.1.4.1
+## v.1.4.1 (2023-08-09)
 - v.1.3.0 is added in Navigation Bar. Some minor updates or patches are deleted from Navigation Bar.
 - Add variable **currentVersion**.
 - Delete the unnecessary.
-## v.1.4.0
+## v.1.4.0 (2023-08-08)
 - Functionaility: Press and hold ArrowUp key (&#11014;) or ArrowDown key (&#11015;) to display your answer beautifully (LaTeX supported).&#128516;
 - v.1.3.0 is temporarily not added in Navigation Bar.
-## v.1.3.0
+## v.1.3.0 (2023-08-07)
 - Add **Quadratic equation**. Rearrange static folders and css files.
-## v.1.2.0
+## v.1.2.0 (2023-08-03)
 - Add **linear equation**
 - Add **[difficulty.md](difficulty.md)**.
-## v.1.1.4
+## v.1.1.4 (first on 2023-07-28)
 - Introduce **danish version**. 
 - When "Enter" is pressed on one textfield, it will move to the next textfield.
 - When "Shift + Enter" is pressed on one textfield, it will move to the previous textfield.
@@ -28,26 +31,26 @@ Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https:
 - Rewrite code in "addition" such that "zero plus some number" exist higest once.
 - In the easiest two difficulty levels in "Fraction(+-)", only fractions with the same denominator are generated.
 - Add confetti (Thanks to **catdad**'s project. Link to the project [https://github.com/catdad/canvas-confetti](https://github.com/catdad/canvas-confetti))
-## v.1.1.3
+## v.1.1.3 (first on 2023-07-22)
 - Add sponsorship and Paypal donation links on the webpage.
 - Eliminate negative results for subtraction and fraction subtraction when it comes to "Beginner" and "Easy" mode.
 - Split fraction calculation into fraction(+-) and fraction(/*).
 - Adjust difficulty for fraction calculations.
-## v.1.1.2
+## v.1.1.2 (first on 2023-07-17)
 - Enable functionality to take a peek at the answers by right clicking on a text field. 
 - Correct severe errors and improve algorithms.
 - Introduce **Chinese-Simplified version**.
 ## v.1.1.1
 - Make a navigation menu of older versions.
 - Extend expiration for cookies to 30 days.
-## v.1.1.0
+## v.1.1.0 (first on 2023-07-12)
 - Add **Time Trial Mode** with timer
 - Redesign webpage
-## v.1.0.3
+## v.1.0.3 (2023-07-12)
 - Increase accessibility on mobile devices
-## v.1.0.2
+## v.1.0.2 (2023-07-08)
 - Add cookies and score evaluation
-## v.1.0.1
+## v.1.0.1 (2023-07-06)
 - Increase accessibility
-## v.1.0.0
+## v.1.0.0 (2023-07-06)
 - Original
