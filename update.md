@@ -1,10 +1,12 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
+## v.1.4.4
+- Performance: Create minified files for every html and javascript by using vscode extension **[MinifyAll](https://marketplace.visualstudio.com/items?itemName=josee9988.minifyall)**.
 ## v.1.4.3
-- issue fixed: Can handle not-common-written fraction input like "1/-2", "-1/-2". Can detect error like "-/2", "-2/-", "../.." etc.
+- Issue fixed: Can handle not-common-written fraction input like "1/-2", "-1/-2". Can detect error like "-/2", "-2/-", "../.." etc.
 ## v.1.4.2
-- issue fixed: display negative fraction correctly.
-- design: narrow margin for #github and #currentTime.
+- Issue fixed: Display negative fraction correctly.
+- Design: Narrow margin for #github and #currentTime.
 ## v.1.4.1
 - v.1.3.0 is added in Navigation Bar. Some minor updates or patches are deleted from Navigation Bar.
 - Add variable **currentVersion**.
