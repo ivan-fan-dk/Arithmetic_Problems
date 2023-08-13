@@ -2,7 +2,7 @@ const lang = "en";
 const exDays = 30;
 const peek = document.getElementById("peek");
 const github = document.getElementById("github");
-const inAFolder = "";    //used when this script is in a folder.
+const inAFolder = ".";    //used when this script is in a folder.
 // English version
 const defaultDifficulty = "Easy";
 const defaultCalculationTypes = ["Addition", "Subtraction", "Multiplication", "Division"];

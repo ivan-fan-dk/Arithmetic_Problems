@@ -2,6 +2,7 @@
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
 ## v.1.4.6 (2023-08-13)
 - Design: add animations.
+- Issue fixed: cookies between different language website do not conflict.
 ## v.1.4.5 (2023-08-11)
 - Issue fixed: **[Markup Validation Service](https://validator.w3.org/)** is used to check possible errors.
 - Issue fixed: fix the problem where favicon is not shown in _dk_ and _zh_ version.
