@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.4.5";
+const currentVersion = "1.4.6";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));
@@ -15,6 +15,7 @@ const versions = ["1.3.0","1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.2
 var result;
 let scoreList;
 var printTime;
+const body = document.querySelector("body");
 const right_after = document.getElementById("right_after");
 const checkAnswer = document.getElementById("checkAnswer");
 const score = document.getElementById("score");
@@ -172,7 +173,10 @@ function timeTrialMode(){
 //Start button
 submit.addEventListener("click", generate);
 
-window.addEventListener("DOMContentLoaded", confettiSchoolPride, false);
+window.addEventListener("DOMContentLoaded", function(){
+    confettiSchoolPride();
+    body.classList.toggle('shown');
+}, false);
 
 function generate(){
     changeBackgroundColor();
