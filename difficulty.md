@@ -1,15 +1,17 @@
-Here are some clarifications of different difficulty levels. (Updated july 6th, 2023)
+Here are some clarifications of different difficulty levels. (Updated 2023-08-15)
+
+**Note: All variables presented below $\in \mathbb{Z}$.**
 
 # Overview
-||Addition|Subtraction|Multiplication|Division|Fraction(+-)|Fraction(*/)|Linear equation|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|_Notations_|$$a+b$$|$$a-b$$|$$a \times b$$|$$a \div b$$|$$\frac{a}{b}+\frac{c}{d}$$ $$\frac{a}{b}+\frac{c}{d}$$|$$\frac{a}{b}\times \frac{c}{d}$$ $$\frac{a}{b}\div \frac{c}{d}$$|$$\frac{a}{b} \times \frac{c}{d}$$ $$\frac{a}{b} \div \frac{c}{d}$$|
-|**Beginner**|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 5$$ $$0 \leq b \leq 5$$|$$0 \leq a \leq 20$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$ $$b=d$$|$$0 \leq a \leq 5$$ $$0 \leq b \leq 5$$|$$1 \leq x \leq 5$$ $$1 \leq \text{coef}[0] \leq 5$$ $$-5 \leq \text{coef}[1] \leq 5$$|
-|**Easy**|$$0 \leq a \leq 30$$ $$0 \leq b \leq 30$$|$$0 \leq a \leq 30$$ $$0 \leq b \leq 30$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 50$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$ $$b=d$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$1 \leq x \leq 10$$ $$1 \leq \text{coef}[0] \leq 10$$ $$-10 \leq \text{coef}[1] \leq 10$$|
-|**Intermediate**|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$0 \leq a \leq 80$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$-5 \leq x \leq 5$$ $$-5 \leq \text{coef}[0] \leq 5$$ $$-10 \leq \text{coef}[1] \leq 10$$|
-|**Hard**|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 100$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$-10 \leq x \leq 10$$ $$-10 \leq \text{coef}[0] \leq 10$$ $$-10 \leq \text{coef}[1] \leq 10$$|$$-30 \leq x \leq 30$$ $$-30 \leq \text{coef}[0] \leq 30$$ $$-100 \leq \text{coef}[1] \leq 100$$|
-|**Hell**|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 1000$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$-30 \leq x \leq 30$$ $$-30 \leq \text{coef}[0] \leq 30$$ $$-100 \leq \text{coef}[1] \leq 100$$|
-|**Asian**|$$0 \leq a \leq 10000$$ $$0 \leq b \leq 10000$$|$$0 \leq a \leq 10000$$ $$0 \leq b \leq 10000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 100000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$-100 \leq x \leq 1000$$ $$-100 \leq \text{coef}[0] \leq 100$$ $$-100 \leq \text{coef}[1] \leq 100$$|
+||[Addition](#Addition)|[Subtraction](#Subtraction)|[Multiplication](#Multiplication)|[Division](#Division)|[Fraction(+-)](#Fraction(+-))|[Fraction(*/)](#Fraction(*/))|[Linear equation](<#Linear equation>)|[Quadratic equation](<#Quadratic equation>)|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|_Notations_|$$a+b$$|$$a-b$$|$$a \times b$$|$$a \div b$$|$$\frac{a}{b}+\frac{c}{d}$$ $$\frac{a}{b}+\frac{c}{d}$$|$$\frac{a}{b}\times \frac{c}{d}$$ $$\frac{a}{b}\div \frac{c}{d}$$|$$\frac{a}{b} \times \frac{c}{d}$$ $$\frac{a}{b} \div \frac{c}{d}$$|$$a_{2}x^{2} + a_{1}x + a_{0} = 0$$Derived from$$\text{coef} \cdot (x - \text{answer}[0])(x - \text{answer}[1]) = 0$$|
+|**Beginner**|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 5$$ $$0 \leq b \leq 5$$|$$0 \leq a \leq 20$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$ $$b=d$$|$$0 \leq a \leq 5$$ $$0 \leq b \leq 5$$|$$1 \leq x \leq 5$$ $$1 \leq \text{coef}[0] \leq 5$$ $$-5 \leq \text{coef}[1] \leq 5$$|$$1 \leq \text{answer}[0] \leq 5$$ $$1 \leq \text{answer}[1] \leq 5$$ $$\text{coef} = 1$$|
+|**Easy**|$$0 \leq a \leq 30$$ $$0 \leq b \leq 30$$|$$0 \leq a \leq 30$$ $$0 \leq b \leq 30$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 50$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$ $$b=d$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$1 \leq x \leq 10$$ $$1 \leq \text{coef}[0] \leq 10$$ $$-10 \leq \text{coef}[1] \leq 10$$|$$1 \leq \text{answer}[0] \leq 10$$ $$1 \leq \text{answer}[1] \leq 10$$ $$\text{coef} = 1$$|
+|**Intermediate**|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$0 \leq a \leq 80$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$-5 \leq x \leq 5$$ $$-5 \leq \text{coef}[0] \leq 5$$ $$-10 \leq \text{coef}[1] \leq 10$$|$$-5 \leq \text{answer}[0] \leq 5$$ $$-5 \leq \text{answer}[1] \leq 5$$ $$-1 \leq \text{coef} \leq 1$$|
+|**Hard**|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 100$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$-10 \leq x \leq 10$$ $$-10 \leq \text{coef}[0] \leq 10$$ $$-10 \leq \text{coef}[1] \leq 10$$|$$-5 \leq \text{answer}[0] \leq 5$$ $$-5 \leq \text{answer}[1] \leq 5$$ $$-5 \leq \text{coef} \leq 5$$|
+|**Hell**|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 1000$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$-30 \leq x \leq 30$$ $$-30 \leq \text{coef}[0] \leq 30$$ $$-100 \leq \text{coef}[1] \leq 100$$|$$-10 \leq \text{answer}[0] \leq 10$$ $$-10 \leq \text{answer}[1] \leq 10$$ $$-5 \leq \text{coef} \leq 5$$|
+|**Asian**|$$0 \leq a \leq 10000$$ $$0 \leq b \leq 10000$$|$$0 \leq a \leq 10000$$ $$0 \leq b \leq 10000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 100000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$-100 \leq x \leq 1000$$ $$-100 \leq \text{coef}[0] \leq 100$$ $$-100 \leq \text{coef}[1] \leq 100$$|$$-10 \leq \text{answer}[0] \leq 10$$ $$-10 \leq \text{answer}[1] \leq 10$$ $$-10 \leq \text{coef} \leq 10$$|
 
 # Addition
 <details>
@@ -558,5 +560,102 @@ $$-10 \leq x \leq 10, -10 \leq \text{coef}[0] \leq 10, -10 \leq \text{coef}[1] \
 $$-30 \leq x \leq 30, -30 \leq \text{coef}[0] \leq 30, -100 \leq \text{coef}[1] \leq 100$$
 ## Asian
 $$-100 \leq x \leq 1000, -100 \leq \text{coef}[0] \leq 100, -100 \leq \text{coef}[1] \leq 100$$
+
+# Quadratic equation
+<details>
+<summary>code snippet</summary>
+
+```
+let answer = [], coef = [];
+let tmp, answerBound, coefBound;
+if (difficultycheck === difficulties[0]){
+    answerBound = [[1,5],[1,5]];
+    coefBound = [1,1];
+}
+else if (difficultycheck === difficulties[1]){
+    answerBound = [[1,10],[1,10]];
+    coefBound = [1,1];
+}
+else if (difficultycheck === difficulties[2]){
+    answerBound = [[-5,5],[-5,5]];
+    coefBound = [-1,1];
+}
+else if (difficultycheck === difficulties[3]){
+    answerBound = [[-5,5],[-5,5]];
+    coefBound = [-5,5];
+}
+else if (difficultycheck === difficulties[4]){
+    answerBound = [[-10,10],[-10,10]];
+    coefBound = [-5,5];
+}
+else if (difficultycheck === difficulties[5]){
+    answerBound = [[-10,10],[-10,10]];
+    coefBound = [-10,10];
+}
+
+for (let i of Array(2).keys()){
+    // determine answer
+    do {
+        tmp = Math.floor(Math.random()*(answerBound[i][1] - answerBound[i][0] + 1)) + answerBound[i][0];    //[answerBound[0], answerBound[1]] without 0
+    } while (tmp == 0);
+    answer.push(tmp);    //[answerBound[0], answerBound[1]]
+}
+
+// make sure answer[0] <= answer[1]
+if (answer[0] > answer[1]){
+    [answer[0], answer[1]] = switchVariablesValues(answer[0], answer[1]);
+}
+
+// generate coefs
+do {
+    tmp = Math.floor(Math.random()*(coefBound[1] - coefBound[0] + 1)) + coefBound[0];
+} while (tmp == 0);
+coef.push(tmp);
+coef.push(-(answer[0]+answer[1])*coef[0]);
+coef.push(answer[0]*answer[1]*coef[0]);
+
+let signInBetween = [];
+for (let i of Array(2).keys()){
+    if (coef[i + 1] < 0){
+        signInBetween.push("");
+    }
+    else{
+        signInBetween.push("+");
+    }
+}
+
+// change 1x and -1x to x and -x.
+for (let i of [0,1]){
+    if (coef[i] == 1 || coef[i] == -1){
+        coef[i] = String(coef[i]).slice(0, -1);
+    }
+}
+let firstOrderTerm = `${coef[1]}x`;
+if (coef[1] === 0){
+    firstOrderTerm = "";
+    signInBetween[0] = "";
+}
+Qlist.push(new exercise(`\\( ${coef[0]} x^2 ${signInBetween[0]}` + firstOrderTerm + `${signInBetween[1]} ${coef[2]} = 0 \\)`, answer));
+```
+</details>
+
+## Notations
+$$a_{2}x^{2} + a_{1}x + a_{0} = 0$$
+Derived from
+$$\text{coef} \cdot (x - \text{answer}[0])(x - \text{answer}[1]) = 0$$
+## General rules
+None
+## Beginner
+$$1 \leq \text{answer}[0] \leq 5, 1 \leq \text{answer}[1] \leq 5, \text{coef} = 1$$
+## Easy
+$$1 \leq \text{answer}[0] \leq 10, 1 \leq \text{answer}[1] \leq 10, \text{coef} = 1$$
+## Intermediate
+$$-5 \leq \text{answer}[0] \leq 5, -5 \leq \text{answer}[1] \leq 5, -1 \leq \text{coef} \leq 1$$
+## Hard
+$$-5 \leq \text{answer}[0] \leq 5, -5 \leq \text{answer}[1] \leq 5, -5 \leq \text{coef} \leq 5$$
+## Hell
+$$-10 \leq \text{answer}[0] \leq 10, -10 \leq \text{answer}[1] \leq 10, -5 \leq \text{coef} \leq 5$$
+## Asian
+$$-10 \leq \text{answer}[0] \leq 10, -10 \leq \text{answer}[1] \leq 10, -10 \leq \text{coef} \leq 10$$
 
 Thanks for watching. &#128536;
