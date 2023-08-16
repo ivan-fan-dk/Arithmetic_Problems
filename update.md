@@ -1,5 +1,7 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
+## v.1.4.8 (2023-08-16)
+- Design: Better style on mobile devices.
 ## v.1.4.7 (2023-08-14)
 - Design: Tailored content is shown based on browser's language settings.
 - Design: Create `./da/` to comply with **Language Code** standards, but the subsite will be redirected to `./dk/`.

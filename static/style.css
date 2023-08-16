@@ -11,6 +11,7 @@ body:after {
 #peek{
     outline: medium dashed #00ff00;
     border-radius: 30px;
+    margin: 7px 0px 16px 0px;
 }
 
 .overlay{
@@ -94,6 +95,7 @@ header h1, header h3 {
 
 #customize {
     margin-top: 10px;
+    margin-bottom: 15px;
     text-align: center;
     background-color: #00220022;
     overflow-x: auto;
@@ -335,12 +337,9 @@ select {
 }
 
 #buttonfield {
-    margin-top: 1%;
-    margin-bottom: 0.5%;
     width: 100%;
     text-align: center;
     overflow: auto;
-    padding: 8px 0px;
 }
 
 .right {
@@ -416,6 +415,15 @@ select {
     transition-duration: 0s;
 }
 
+#buttonfield .button{
+    margin-top: 2px;
+    margin-bottom: 15px;
+}
+
+#buttonfield .customizeTitle{
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
 
 .customizeTitle {
     padding: 5px;

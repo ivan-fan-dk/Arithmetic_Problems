@@ -11,6 +11,7 @@ body:after {
 #peek{
     outline: medium dashed #00ff00;
     border-radius: 30px;
+    margin: 7px 0px 16px 0px;
 }
 
 .overlay{
@@ -106,6 +107,7 @@ header h1, header h3 {
 
 #customize {
     margin-top: 10px;
+    margin-bottom: 15px;
     text-align: center;
     background-color: #00220022;
     overflow-x: auto;
@@ -348,12 +350,9 @@ select {
 }
 
 #buttonfield {
-    margin-top: 1%;
-    margin-bottom: 0.5%;
     width: 100%;
     text-align: center;
     overflow: auto;
-    padding: 8px 0px;
 }
 
 .right {
@@ -418,6 +417,15 @@ select {
     transition-duration: 0s;
 }
 
+#buttonfield .button{
+    margin-top: 2px;
+    margin-bottom: 15px;
+}
+
+#buttonfield .customizeTitle{
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
 
 .customizeTitle {
     padding: 5px;
@@ -478,6 +486,25 @@ select {
     font-family: inherit;
     margin-top: 10px;
     cursor: pointer;
+}
+
+#peek{
+    animation: heading-show 0.5s ease both;
+	transform-origin: 50%;
+}
+
+.section{
+    animation: fade-in 0.5s ease both;
+}
+
+#currentTime{
+    animation: heading-show 0.5s 1s ease both;
+	transform-origin: right;
+}
+
+#github{
+    animation: heading-show 0.5s 1s ease both;
+	transform-origin: left;
 }
 
 @keyframes buttonAnimation {
@@ -896,4 +923,44 @@ select {
     98% {background: linear-gradient(to right, var(--dark) 0% 2%, #0000 2% 100%);}
     99% {background: linear-gradient(to right, var(--dark) 0% 1%, #0000 1% 100%);}
     100% {background: linear-gradient(to right, var(--dark) 0% 0%, #0000 0% 100%); color: black}
+}
+
+@keyframes heading-show {
+	0% {
+		transform: scaleX(0);
+		opacity: 0;
+	}
+	100% {
+        transform: scaleX(1);
+		opacity: 1;
+	}
+}
+
+@keyframes heading-hide {
+	0% {
+        transform: scaleX(1);
+		opacity: 1;
+	}
+	100% {
+        transform: scaleX(0);
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {  
+    from {  
+        opacity:0;  
+    }  
+    to {  
+        opacity:1;  
+    }  
+}
+
+@keyframes fade-out {  
+    from {
+        opacity:1;  
+    }  
+    to {  
+        opacity:0;
+    }  
 }
