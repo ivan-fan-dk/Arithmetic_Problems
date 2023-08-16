@@ -111,7 +111,11 @@ header h1, header h3 {
     text-align: center;
     background-color: #00220022;
     overflow-x: auto;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+#customize .button{
+    margin-bottom: 15px;
 }
 /*
 .gridItem, #customize .button{
