@@ -1,4 +1,4 @@
-const meta = document.querySelector("meta");
+const meta = document.getElementById("refresh");
 const locale = Intl.DateTimeFormat().resolvedOptions().locale;
 if (locale == 'da' || locale == 'da-DK'){
     meta.content = "0; url=./dk/index.min.html";

@@ -20,6 +20,7 @@ const timeTrialModeName = "计时模式";
 const returnToNormalModeName = "回到普通模式";
 const arithmetricProblemsTitleName = "算术";
 const timeName = "时间";
+const alertIPhoneMessage = "致尊贵的iPhone用户：\n\n如果需要的话，您可以输入 '00' 以获得减号。\n\n此致，\n开发者";
 peek.innerHTML = `
     <li>如果想要悄咪咪地瞄一眼答案，可以在想要的文本框内右键。&#128541;按住向上键(&#11014;)或者向下键(&#11015;)可以漂亮地显示您的答案(支持<span lang="da-DK" class="en">LaTeX</span>).&#128516;</li>
     <li><span lang="en" class="en"><a href="../en/index.min.html">English version entrance</a></span>, <span lang="da-DK" class="en"><a href="../dk/index.min.html">Indgang til dansk version</a></span></li>
@@ -38,6 +39,7 @@ function changeButtonName(cname,cvalue){
 }
 
 document.documentElement.setAttribute('lang', "zh-Hans");
+changeName("title", arithmetricProblemsTitleName);
 changeName("#customize h2","私人定制");
 changeName("#NOQName","题目数量");
 changeName("#difficultyName","难度");

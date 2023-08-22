@@ -20,6 +20,7 @@ const timeTrialModeName = "Tidskørseltilstand";
 const returnToNormalModeName = "Tilbage til normal tilstand ";
 const arithmetricProblemsTitleName = "Regnestykker";
 const timeName = "Tid";
+const alertIPhoneMessage = "Til ærede iPhone-brugere:\n\nI kan indtaste '00' for at få et minus-tegn hvis nødvendigt.\n\nMed venlig hilsen,\nUdvikler";
 peek.innerHTML = `
     <li>Hvis du vil tage et kig på svaret, kan du højreklikke i den ønskede tekstboks.&#128541; Tryk og hold kanppen for pil op (&#11014;) eller pil ned (&#11015;) for at vise dit svar smukt (med LaTeX understøttelse).&#128516;</li>
     <li><span lang="en" class="en"><a href="../en/index.min.html">English version entrance</a></span>, <span lang="zh-Hans"><a href="../zh/index.min.html">简体中文版本入口</a></span></li>
@@ -38,6 +39,7 @@ function changeButtonName(cname,cvalue){
 }
 
 document.documentElement.setAttribute('lang', "da-DK");
+changeName("title", arithmetricProblemsTitleName);
 changeName("#customize h2", "Personlig tilpasning");
 changeName("#NOQName", "Antal spørgsmål");
 changeName("#difficultyName", "Sværhedsgrad");

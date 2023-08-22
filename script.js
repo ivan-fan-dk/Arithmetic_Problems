@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.4.8";
+const currentVersion = "1.4.9-alpha";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));
@@ -12,6 +12,7 @@ const defaultNOQ = "20";
 const defaultRight_after = true;
 const versions = ["1.3.0","1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.2","1.0.0"];
 
+var alertIPhoneHasDone = false;
 var result;
 let scoreList;
 var printTime;
@@ -895,7 +896,12 @@ function generate(){
         clearInterval(printTime);
         stop.hidden = false;
         timer();
-    }    
+    }
+    
+    if (isIPhone() && !alertIPhoneHasDone){
+        alert(alertIPhoneMessage);
+        alertIPhoneHasDone = true;
+    }
 }
 
 function answerCheck(){
@@ -911,6 +917,11 @@ function answerCheck(){
         checkAnswer.hidden = true;
         for (let input of inputs){
             input.addEventListener('input', async function() {
+                // iPhone special ("00" to '-')
+                if (isIPhone() && input.value.slice(0,2) == "00"){
+                    input.value = '-' + input.value.slice(2);
+                }
+
                 await sleep(1);
                 answerResponse(input);
                 correctHurray();
@@ -926,7 +937,16 @@ function answerCheck(){
         else{
             checkAnswer.hidden = false;
         }
-        
+
+        // iPhone special ("00" to '-')
+        for (let input of inputs){
+            input.addEventListener('input', async function() {
+                if (isIPhone() && input.value.slice(0,2) == "00"){
+                    input.value = '-' + input.value.slice(2);
+                }
+            });
+        }
+
         checkAnswer.addEventListener("click", async function(){
             for (let input of inputs){
                 answerResponse(input);
@@ -1548,6 +1568,16 @@ function countOneChar(char, str) {
         }
     }
     return count;
+}
+
+function isIPhone(){
+    let UA = navigator.userAgent;
+    if (UA.includes("iPhone")){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 /*
 from numpy import *

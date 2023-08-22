@@ -20,6 +20,7 @@ const timeTrialModeName = "Time Trial Mode";
 const returnToNormalModeName = "Return to normal mode";
 const arithmetricProblemsTitleName = "Arithmetic problems";
 const timeName = "time";
+const alertIPhoneMessage = "To distinguished iPhone users:\n\nYou can input '00' for a minus sign if needed.\n\nRegards,\nDeveloper";
 peek.innerHTML = `
     <li>Right click on a text field if you want to peek at the answer.&#128541; Press and hold ArrowUp key (&#11014;) or ArrowDown key (&#11015;) to display your answer beautifully (LaTeX supported).&#128516;</li>
     <li><span lang="zh-Hans"><a href="../zh/index.min.html">简体中文版本入口</a></span>, <span lang="da-DK"><a href="../dk/index.min.html">Indgang til dansk version</a></span></li>
