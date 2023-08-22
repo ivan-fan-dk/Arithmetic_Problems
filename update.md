@@ -1,9 +1,8 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
-## v.1.4.9-alpha
-- Issue fixed: iPhone users' numeric keypad does not have a minus sign, so '00' is used when users want to get a minus sign.
+## v.1.4.9 (2023-08-22)
+- Issue fixed: iPhone users' numeric keypad does not have a minus sign, so '00' is used when users want to get a minus sign. (Thanks to the feedback from Vincent's family)
 - Add missing meta infomation (`og:image`, `title`) on webpages.
-- 
 ## v.1.4.8 (2023-08-16)
 - Design: Better style on mobile devices.
 ## v.1.4.7 (2023-08-14)
