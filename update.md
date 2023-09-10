@@ -1,5 +1,15 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
+## v.1.5.0-alpha (2023-09-10)
+> [!NOTE]
+> This version is available and can be visited at [https://arithmetic.neocities.org/preview/](https://arithmetic.neocities.org/preview/).
+- Change syntax without changing the meaning of the code.
+- Add **Vectors** calculation.
+- Known bugs:
+    - Answers like `2,-3` are still not accepted in **Vectors** calculation.
+    - No link created to get access to preview website from stable version currently.
+    - Need to update **[difficulty.md](difficulty.md)**.
+    - Ugly view when equations get longer.
 ## v.1.4.9 (2023-08-22)
 - Issue fixed: iPhone users' numeric keypad does not have a minus sign, so '00' is used when users want to get a minus sign. (Thanks to the feedback from Vincent's family)
 - Add missing meta infomation (`og:image`, `title`) on webpages.

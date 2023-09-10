@@ -25,6 +25,9 @@ The project may have future enhancements, although specifics are currently unspe
 ## Difficulty Levels
 Detailed difficulty level descriptions can be found [here](difficulty.md).
 
+## Preview Version
+Visit [https://arithmetic.neocities.org/preview/](https://arithmetic.neocities.org/preview/) for preview version.
+
 ## Final Notes
 - Feel free to download and modify the source code, sharing it for educational or entertainment purposes.
 - Feedback and contributions on GitHub are welcome.

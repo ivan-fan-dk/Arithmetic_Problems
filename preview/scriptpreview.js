@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.4.9";
+const currentVersion = "1.5.0";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));
@@ -10,7 +10,7 @@ changeName("#h13 h3", versionName + ": " + currentVersion);
 
 const defaultNOQ = "20";
 const defaultRight_after = true;
-const versions = ["1.3.0","1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.2","1.0.0"];
+const versions = ["1.4.9","1.3.0","1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.2","1.0.0"];
 
 var alertIPhoneHasDone = false;
 var result;
@@ -219,7 +219,7 @@ function generate(){
     // generate n questions by their calculationtypes randomly.
     var Q = [];
     for (let _ of Array(n).keys()){
-        let random = Math.floor((Math.random() * Qtype.length));
+        let random = randInt(0, Qtype.length - 1);
         Q.push(Qtype[random]);
     }
 
@@ -266,12 +266,12 @@ function generate(){
                 bUpperBound = 10000;
             }
             if (zeroInAddition){
-                a = Math.floor((Math.random() * (aUpperBound - 1))) + 1;
-                b = Math.floor((Math.random() * (bUpperBound - 1))) + 1;
+                a = randInt(1, aUpperBound);
+                b = randInt(1, bUpperBound);
             }
             else{
-                a = Math.floor((Math.random() * aUpperBound));
-                b = Math.floor((Math.random() * bUpperBound));
+                a = randInt(0, aUpperBound);
+                b = randInt(0, bUpperBound);
             }
             if (a == 0 || b == 0){
                 zeroInAddition = true;
@@ -307,8 +307,8 @@ function generate(){
                 aUpperBound = 10000;
                 bUpperBound = 10000;
             }
-            let a = Math.floor((Math.random() * aUpperBound));
-            let b = Math.floor((Math.random() * bUpperBound));
+            let a = randInt(0, aUpperBound);
+            let b = randInt(0, bUpperBound);
             if (a < b && (difficultycheck === difficulties[0]||difficultycheck === difficulties[1])){
                 [a,b] = switchVariablesValues(a,b);
             }
@@ -347,13 +347,13 @@ function generate(){
             if (zeroInMultiplication){
                 // both 0 times non-zero and 1 times non-zero already exist. (do not choose 0 and 1)
                 if (oneInMultiplication){
-                    a = Math.floor((Math.random() * (aUpperBound - 2))) + 2;
-                    b = Math.floor((Math.random() * (bUpperBound - 2))) + 2;
+                    a = randInt(2, aUpperBound);
+                    b = randInt(2, bUpperBound);
                 }
                 // 0 times non-zero already exists, 1 times non-zero does not exist. (do not choose 0)
                 else{
-                    a = Math.floor((Math.random() * (aUpperBound - 1))) + 1;
-                    b = Math.floor((Math.random() * (bUpperBound - 1))) + 1;
+                    a = randInt(1, aUpperBound);
+                    b = randInt(1, bUpperBound);
                 }
             }
             else{
@@ -361,15 +361,15 @@ function generate(){
                 if (oneInMultiplication){
                     do {
                         let candidates = [0].concat([...Array(aUpperBound - 2).keys()].map(i => i + 2));
-                        a = candidates[Math.floor(Math.random() * candidates.length)];
-                        b = candidates[Math.floor(Math.random() * candidates.length)];
+                        a = candidates[randInt(0, candidates.length - 1)];
+                        b = candidates[randInt(0, candidates.length - 1)];
                     } while (a == 0 && b == 0)  // delete possibilities to have 0 times 0
                 }
                 // Neither 0 times non-zero nor 1 times non-zero exist. (choose freely)
                 else{
                     do {
-                        a = Math.floor((Math.random() * aUpperBound));
-                        b = Math.floor((Math.random() * bUpperBound));
+                        a = randInt(0, aUpperBound);
+                        b = randInt(0, bUpperBound);
                     } while (a == 0 && b == 0)  // delete possibilities to have 0 times 0
                 }
             }
@@ -384,7 +384,7 @@ function generate(){
             }
 
             // change sequence of a and b in 50% chance
-            if (Math.floor(Math.random()*2) === 1){
+            if (randInt(0, 1) === 1){
                 [a,b] = switchVariablesValues(a,b);
             }
 
@@ -415,18 +415,18 @@ function generate(){
             let divls = [];
             let a;
             while (divls.length === 0){
-                a = Math.floor((Math.random() * aUpperBound));
+                a = randInt(0, aUpperBound);
                 divls = properFactors(a);
             }
             
-            let b = divls[Math.floor((Math.random() * divls.length))];
+            let b = divls[randInt(0, divls.length - 1)];
             Qlist.push(new exercise(`\\(${a} \\div ${b} = \\)`, Number(a / b)));
         }
         // fraction(+-)
         else if (Q[i] === 4){
             // Caution!!! aUpperBound should always smaller than or equal to bUpperBound.
             let aUpperBound, bUpperBound, firstTerm, secondTerm, firstTermToEvaluate, secondTermToEvaluate, firstTermIsInteger, secondTermIsInteger, a, b, c, d;
-            let calculationTypeForFraction = Math.floor(Math.random() * 2);
+            let calculationTypeForFraction = randInt(0, 1);
             
             if (difficultycheck === difficulties[0]){
                 aUpperBound = 10;
@@ -497,7 +497,7 @@ function generate(){
         else if (Q[i] === 5){
             // Caution!!! aUpperBound should always smaller than or equal to bUpperBound.
             let aUpperBound, bUpperBound, firstTerm, secondTerm, firstTermToEvaluate, secondTermToEvaluate, firstTermIsInteger, secondTermIsInteger, a, b, c, d;
-            let calculationTypeForFraction = Math.floor(Math.random() * 2);
+            let calculationTypeForFraction = randInt(0, 1);
 
             if (difficultycheck === difficulties[0]){
                 aUpperBound = 5;
@@ -578,13 +578,13 @@ function generate(){
             }
             // determine answer
             do {
-                answer = Math.floor(Math.random()*(answerBound[1] - answerBound[0] + 1)) + answerBound[0];    //[answerBound[0], answerBound[1]] without 0
+                answer = randInt(answerBound[0], answerBound[1]);    //[answerBound[0], answerBound[1]] without 0
             } while (answer == 0);
             // determine three coefficients, and register the first two coefficients' signs.
             for (let i of Array(2).keys()){
                 let tmp;
                 do {
-                    tmp = Math.floor(Math.random()*(coefBound[i][1] - coefBound[i][0] + 1)) + coefBound[i][0];    //[coef_1Bound[0], coef_1Bound[0´1]] without 0
+                    tmp = randInt(coefBound[i][0], coefBound[i][1]);    //[coef_1Bound[i][0], coef_1Bound[i][1]] without 0
                 } while (tmp == 0);
                 coef.push(tmp);
                 if (tmp > 0){
@@ -603,7 +603,7 @@ function generate(){
             
             let signInBetween = "";
             // coef[0]*answer + coef[1] = coef[2]
-            if (difficultycheck === difficulties[0] || difficultycheck === difficulties[1] || Math.floor(Math.random()*2) == 0){
+            if (difficultycheck === difficulties[0] || difficultycheck === difficulties[1] || randInt(0, 1) == 0){
                 if (coefSign[1] == "+"){
                     signInBetween = "+";
                 }
@@ -650,7 +650,7 @@ function generate(){
             for (let i of Array(2).keys()){
                 // determine answer
                 do {
-                    tmp = Math.floor(Math.random()*(answerBound[i][1] - answerBound[i][0] + 1)) + answerBound[i][0];    //[answerBound[0], answerBound[1]] without 0
+                    tmp = randInt(answerBound[i][0], answerBound[i][1]);    //[answerBound[i][0], answerBound[i][1]] without 0
                 } while (tmp == 0);
                 answer.push(tmp);    //[answerBound[0], answerBound[1]]
             }
@@ -662,7 +662,7 @@ function generate(){
 
             // generate coefs
             do {
-                tmp = Math.floor(Math.random()*(coefBound[1] - coefBound[0] + 1)) + coefBound[0];
+                tmp = randInt(coefBound[0], coefBound[1]);
             } while (tmp == 0);
             coef.push(tmp);
             coef.push(-(answer[0]+answer[1])*coef[0]);
@@ -691,6 +691,83 @@ function generate(){
             }
             Qlist.push(new exercise(`\\( ${coef[0]} x^2 ${signInBetween[0]}` + firstOrderTerm + `${signInBetween[1]} ${coef[2]} = 0 \\)`, answer));
         }
+        // vector calculation: a*[¤,¤] + b*[¤,¤] =
+        else if (Q[i] === 8){
+            let vectorBound, aBound, bBound;
+            if (difficultycheck === difficulties[0]){
+                vectorBound = [0, 5];
+                aBound = [1, 1];
+                bBound = [1, 1];
+            }
+            else if (difficultycheck === difficulties[1]){
+                vectorBound = [0, 10];
+                aBound = [1, 1];
+                bBound = [-1, 1];
+            }
+            else if (difficultycheck === difficulties[2]){
+                vectorBound = [-5, 5];
+                aBound = [1, 1];
+                bBound = [-1, 1];
+            }
+            else if (difficultycheck === difficulties[3]){
+                vectorBound = [-5, 5];
+                aBound = [-5, 5];
+                bBound = [-5, 5];
+            }
+            else if (difficultycheck === difficulties[4]){
+                vectorBound = [-9, 9];
+                aBound = [-9, 9];
+                bBound = [-9, 9];
+            }
+            else if (difficultycheck === difficulties[5]){
+                vectorBound = [-100, 100];
+                aBound = [-100, 100];
+                bBound = [-100, 100];
+            }
+
+            let coefInVector = [];
+            let a,b;
+            do{
+                a = randInt(aBound[0], aBound[1]);
+            } while (a == 0)
+            do{
+                b = randInt(bBound[0], bBound[1]);
+            } while (b == 0)
+            for (let _ of Array(4).keys()){
+                coefInVector.push(randInt(vectorBound[0], vectorBound[1]));
+            }
+
+            // construct two matrices
+            let matrix = [];
+            let matrixLaTeX;
+            for (let j of Array(2).keys()){
+                matrixLaTeX = "\\begin{bmatrix}";
+                for (let k of Array(2).keys()){
+                    matrixLaTeX = matrixLaTeX.concat(`${coefInVector[j*2+k]} \\\\`);
+                }
+                matrixLaTeX = matrixLaTeX.concat("\\end{bmatrix}");
+                matrix.push(matrixLaTeX);
+            }
+            answer = `${a*coefInVector[0] + b*coefInVector[2]},${a*coefInVector[1] + b*coefInVector[3]}`;
+            let aText = `${a}`;
+            let bText = `${b}`;
+            if (a == 1){
+                aText = "";
+            }
+            else if (a == -1){
+                aText = "-";
+            }
+            if (b == 1){
+                bText = "+";
+            }
+            else if (b == -1){
+                bText = "-";
+            }
+            else if (b > 0){
+                bText = `+ ${b}`;
+            }
+            Qlist.push(new exercise(`\\( ${aText}${matrix[0]} ${bText}${matrix[1]} = \\)`, answer));
+        }
     }
 
     let nby4;
@@ -710,7 +787,7 @@ function generate(){
         for (j of Array(nby4).keys()){
             if (nby4*i + j < n){
                 let li = ol.appendChild(document.createElement("li"));
-                if (Q[nby4*i + j] != 7){
+                if (Q[nby4*i + j] < 7){
                     li.innerHTML = Qlist[nby4*i + j].question + " ";
                     let input = li.appendChild(document.createElement("input"));
                     input.className = "questionbox";
@@ -730,7 +807,7 @@ function generate(){
                     let img = li.appendChild(document.createElement("img"));
                     img.hidden = true
                 }
-                else{
+                else if (Q[nby4*i + j] == 7){
                     // special for quadratic equation
                     li.innerHTML = Qlist[nby4*i + j].question + "<br>";
                     for (let k of Array(2).keys()){
@@ -752,6 +829,28 @@ function generate(){
                         img.id = `img_${nby4*i+j}_${1-k}`;
                         img.hidden = true;
                     }
+                }
+                else if (Q[nby4*i + j] == 8){
+                    // special for Vectors
+                    let span = li.appendChild(document.createElement("span"));
+                    span.innerHTML = Qlist[nby4*i + j].question + " ";
+                    let input = li.appendChild(document.createElement("input"));
+                    input.className = "questionbox";
+                    input.autocomplete = "off";
+                    input.name = "userinput";
+                    input.id = `Q_${nby4*i+j}`;
+                    input.type = "text";
+                    
+                    // determine inputmode (when there are fractions, change to textpad due to stupid Gboard which doesn't have forward slash in numericpad)
+                    if (Q[nby4*i + j] == 4 || Q[nby4*i + j] == 5){
+                        input.inputMode = "text";
+                    }
+                    else{
+                        input.inputMode = "numeric";
+                    }
+
+                    let img = li.appendChild(document.createElement("img"));
+                    img.hidden = true
                 }
             }
         }
@@ -1035,7 +1134,7 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
         // typo check mechanism. Only these chars "0123456789/-." are valid.
         let nonNumber = "/-.";
         for (var i of Array(userInput.length).keys()){
-            if (!("0123456789/-.".includes(userInput[i]))){
+            if (!("0123456789/-.,".includes(userInput[i]))){
                 imgWarning(img);
                 invalidInput = true;
                 return singleScore;
@@ -1093,7 +1192,7 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
                 }
             }
             // if input is just a integer
-            else if (Number(userInput) === Qlist[Q_Number].answer){
+            else if (Number(userInput) === Qlist[Q_Number].answer || userInput == Qlist[Q_Number].answer){
                 imgCorrect(img);
                 singleScore = 1;
             }
@@ -1269,7 +1368,7 @@ function reduceFraction(a,b) {
 function fraction(aUpperBound, bUpperBound, proper=false){
     let bCandidates, a;
     do {
-        a = Math.floor(Math.random()*aUpperBound) + 1;      // [1,aUpperBound]
+        a = randInt(1, aUpperBound);      // [1,aUpperBound]
         if (proper){
             // [a,bUpperBound] where there is only one common factor
             bCandidates = [...Array(bUpperBound - a + 1).keys()].map(i => i + a).filter(number => commonFactors(a,number).length === 1);
@@ -1280,7 +1379,7 @@ function fraction(aUpperBound, bUpperBound, proper=false){
         }
     } while (bCandidates.length == 0)
     
-    b = bCandidates[Math.floor(Math.random() * bCandidates.length)];
+    b = bCandidates[randInt(0, bCandidates.length - 1)];
 
     // b could be 1
     if (b === 1){
@@ -1293,11 +1392,11 @@ function fraction(aUpperBound, bUpperBound, proper=false){
 
 function twoFractionsWithSameDenominator(aUpperBound, bUpperBound){
     let aCandidates, b;
-    b = Math.floor(Math.random()*(bUpperBound - 1)) + 2;      // [2,bUpperBound]
+    b = randInt(2, bUpperBound);      // [2,bUpperBound]
     aCandidates = [...Array(aUpperBound).keys()].map(i => i + 1).filter(number => commonFactors(b,number).length === 1);// [a,bUpperBound] where there is only one common factor
     
     // get two nominators(can be the same).
-    var [a1, a2] = [aCandidates[Math.floor(Math.random() * aCandidates.length)], aCandidates[Math.floor(Math.random() * aCandidates.length)]];
+    var [a1, a2] = [aCandidates[randInt(0, aCandidates.length - 1)], aCandidates[randInt(0, aCandidates.length - 1)]];
 
     return [`\\frac{${a1}}{${b}}`, String(`${a1}/${b}`), `\\frac{${a2}}{${b}}`, String(`${a2}/${b}`)];  // return two fractions 
 }
@@ -1578,6 +1677,10 @@ function isIPhone(){
     else{
         return false;
     }
+}
+
+function randInt(min, max){
+    return Math.floor(Math.random()*(max - min + 1)) + min;
 }
 /*
 from numpy import *
