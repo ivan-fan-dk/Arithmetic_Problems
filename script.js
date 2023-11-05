@@ -175,7 +175,8 @@ function timeTrialMode(){
 submit.addEventListener("click", generate);
 
 window.addEventListener("DOMContentLoaded", function(){
-    confettiSchoolPride();
+    // confettiSchoolPride();
+    snow();
     body.classList.toggle('shown');
 }, false);
 
@@ -1529,9 +1530,9 @@ function confettiCannon(){
     startVelocity: 45,
     });
 }
-
+/*
 function confettiSchoolPride(){
-    // do this for 30 seconds
+    // do this for 2 seconds
     var duration = 2 * 1000;
     var end = Date.now() + duration;
 
@@ -1557,7 +1558,7 @@ function confettiSchoolPride(){
     }
     }());
 }
-
+ */
 const repeat = (arr, n) => [].concat(...Array(n).fill(arr));
 
 function countOneChar(char, str) {
@@ -1579,6 +1580,46 @@ function isIPhone(){
         return false;
     }
 }
+
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+var duration = 17 * 1000;
+var animationEnd = Date.now() + duration;
+var skew = 1;
+
+function randomColor() {
+    let colors = ['#ffffff', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function snow() {
+    var timeLeft = animationEnd - Date.now();
+    var ticks = Math.max(200, 500 * (timeLeft / duration));
+    skew = Math.max(0.8, skew - 0.001);
+    
+    confetti({
+        particleCount: 1,
+        startVelocity: 0,
+        ticks: ticks,
+        origin: {
+            x: Math.random(),
+            // since particles fall down, skew start toward the top
+            y: (Math.random() * skew) - 0.2
+        },
+        colors: ['#ffffff'], // [randomColor()],
+        shapes: ['circle'],
+        gravity: randomInRange(0.4, 0.6),
+        scalar: randomInRange(0.4, 1),
+        drift: randomInRange(-0.4, 0.4)
+    });
+
+    if (timeLeft > 0) {
+        requestAnimationFrame(snow);
+    }
+}
+
 /*
 from numpy import *
 a = linspace(0,100,101)
