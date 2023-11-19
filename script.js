@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.4.10";
+const currentVersion = "1.4.11";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));

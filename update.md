@@ -1,5 +1,7 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
+## v.1.4.11 (2023-11-19)
+- Design: New logo (rounded corners) and favicon.
 ## v.1.4.10 (2023-09-16)
 - Design: Breathing light for title's box-shadow.
 ## v.1.5.0-alpha (2023-09-10)

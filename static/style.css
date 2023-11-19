@@ -63,10 +63,10 @@ header {
     max-width: 100%;
     padding: 10px;
     text-align: center;
-    background-image: url("trust.png");
+    background-image: url("trust-rounded.png");
     background-repeat: no-repeat;
-    background-position: right 4px top 50%;
-    background-size: 80px 80px;
+    background-position: right 6px top 50%;
+    background-size: 85px 85px;
 }
 
 #h13{
@@ -74,7 +74,7 @@ header {
 }
 
 header:hover {
-    background-image: url("closedEyes.jpg");
+    background-image: url("closedEyes-rounded.png");
 }
 
 header h1, header h3 {
