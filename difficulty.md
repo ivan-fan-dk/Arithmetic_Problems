@@ -1,13 +1,13 @@
-Here are some clarifications of different difficulty levels. (Updated 2023-08-15)
+Here are some clarifications of different difficulty levels. (Updated 2023-11-29)
 
 **Note: All variables presented below $\in \mathbb{Z}$.**
 
 # Overview
 ||[Addition](#Addition)|[Subtraction](#Subtraction)|[Multiplication](#Multiplication)|[Division](#Division)|[Fraction(+-)](#Fraction(+-))|[Fraction(*/)](#Fraction(*/))|[Linear equation](<#Linear equation>)|[Quadratic equation](<#Quadratic equation>)|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|_Notations_|$$a+b$$|$$a-b$$|$$a \times b$$|$$a \div b$$|$$\frac{a}{b}+\frac{c}{d}$$ $$\frac{a}{b}+\frac{c}{d}$$|$$\frac{a}{b}\times \frac{c}{d}$$ $$\frac{a}{b}\div \frac{c}{d}$$|$$\frac{a}{b} \times \frac{c}{d}$$ $$\frac{a}{b} \div \frac{c}{d}$$|$$a_{2}x^{2} + a_{1}x + a_{0} = 0$$ Derived from $$\text{coef} \cdot (x - \text{answer}[0])(x - \text{answer}[1]) = 0$$|
-|**Beginner**|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 5$$ $$0 \leq b \leq 5$$|$$0 \leq a \leq 20$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$ $$b=d$$|$$0 \leq a \leq 5$$ $$0 \leq b \leq 5$$|$$1 \leq x \leq 5$$ $$1 \leq \text{coef}[0] \leq 5$$ $$-5 \leq \text{coef}[1] \leq 5$$|$$1 \leq \text{answer}[0] \leq 5$$ $$1 \leq \text{answer}[1] \leq 5$$ $$\text{coef} = 1$$|
-|**Easy**|$$0 \leq a \leq 30$$ $$0 \leq b \leq 30$$|$$0 \leq a \leq 30$$ $$0 \leq b \leq 30$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 50$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$ $$b=d$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$1 \leq x \leq 10$$ $$1 \leq \text{coef}[0] \leq 10$$ $$-10 \leq \text{coef}[1] \leq 10$$|$$1 \leq \text{answer}[0] \leq 10$$ $$1 \leq \text{answer}[1] \leq 10$$ $$\text{coef} = 1$$|
+|_Notations_|$$a+b$$|$$a-b$$|$$a \times b$$|$$a \div b$$|$$\frac{a}{b}+\frac{c}{d}$$ $$\frac{a}{b}-\frac{c}{d}$$|$$\frac{a}{b}\times \frac{c}{d}$$ $$\frac{a}{b}\div \frac{c}{d}$$|Type 1: $$\text{coef}[0]x + \text{coef}[1] = \text{coef}[2]$$ Type 2: $$\text{coef}[1] + \text{coef}[0]x= \text{coef}[2]$$|$$a_{2}x^{2} + a_{1}x + a_{0} = 0$$ Derived from $$\text{coef} \cdot (x - \text{answer}[0])(x - \text{answer}[1]) = 0$$|
+|**Beginner**|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 5$$ $$0 \leq b \leq 5$$|$$0 \leq a \leq 20$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$ $$b=d$$|$$0 \leq a \leq 5$$ $$0 \leq b \leq 5$$|Type 1 only $$1 \leq x \leq 5$$ $$1 \leq \text{coef}[0] \leq 5$$ $$-5 \leq \text{coef}[1] \leq 5$$|$$1 \leq \text{answer}[0] \leq 5$$ $$1 \leq \text{answer}[1] \leq 5$$ $$\text{coef} = 1$$|
+|**Easy**|$$0 \leq a \leq 30$$ $$0 \leq b \leq 30$$|$$0 \leq a \leq 30$$ $$0 \leq b \leq 30$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 50$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$ $$b=d$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|Type 1 only $$1 \leq x \leq 10$$ $$1 \leq \text{coef}[0] \leq 10$$ $$-10 \leq \text{coef}[1] \leq 10$$|$$1 \leq \text{answer}[0] \leq 10$$ $$1 \leq \text{answer}[1] \leq 10$$ $$\text{coef} = 1$$|
 |**Intermediate**|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$0 \leq a \leq 80$$|$$0 \leq a \leq 10$$ $$0 \leq b \leq 10$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$-5 \leq x \leq 5$$ $$-5 \leq \text{coef}[0] \leq 5$$ $$-10 \leq \text{coef}[1] \leq 10$$|$$-5 \leq \text{answer}[0] \leq 5$$ $$-5 \leq \text{answer}[1] \leq 5$$ $$-1 \leq \text{coef} \leq 1$$|
 |**Hard**|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$0 \leq a \leq 100$$|$$0 \leq a \leq 20$$ $$0 \leq b \leq 20$$|$$0 \leq a \leq 50$$ $$0 \leq b \leq 50$$|$$-10 \leq x \leq 10$$ $$-10 \leq \text{coef}[0] \leq 10$$ $$-10 \leq \text{coef}[1] \leq 10$$|$$-5 \leq \text{answer}[0] \leq 5$$ $$-5 \leq \text{answer}[1] \leq 5$$ $$-5 \leq \text{coef} \leq 5$$|
 |**Hell**|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 1000$$ $$0 \leq b \leq 1000$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 1000$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$0 \leq a \leq 100$$ $$0 \leq b \leq 100$$|$$-30 \leq x \leq 30$$ $$-30 \leq \text{coef}[0] \leq 30$$ $$-100 \leq \text{coef}[1] \leq 100$$|$$-10 \leq \text{answer}[0] \leq 10$$ $$-10 \leq \text{answer}[1] \leq 10$$ $$-5 \leq \text{coef} \leq 5$$|
@@ -117,7 +117,7 @@ Qlist.push(new exercise(`\\(${a} - ${b} = \\)`, Number(a - b)));
 </details>
 
 ## Notations
-$$ a - b$$
+$$a - b$$
 ## General rules
 For **Beginner** and **Easy** mode, $a \geq b$.
 ## Beginner
@@ -368,6 +368,7 @@ else if (calculationTypeForFraction === 1){
 
 ## Notations
 $$\frac{a}{b} + \frac{c}{d}$$
+
 $$\frac{a}{b} - \frac{c}{d}$$
 ## General rules
 - Higest one integer can appear in equations, which means that $1+\frac{1}{2}$ is acceptable.
@@ -446,6 +447,7 @@ else if (calculationTypeForFraction === 1){
 
 ## Notations
 $$\frac{a}{b} \times \frac{c}{d}$$
+
 $$\frac{a}{b} \div \frac{c}{d}$$
 ## General rules
 There are highest one integer in a equation.
@@ -544,7 +546,9 @@ else{
 </details>
 
 ## Notations
+Type 1:
 $$\text{coef}[0]x + \text{coef}[1] = \text{coef}[2]$$
+Type 2:
 $$\text{coef}[1] + \text{coef}[0]x= \text{coef}[2]$$
 ## General rules
 None
