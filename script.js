@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.4.11";
+const currentVersion = "1.4.12";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));
@@ -142,7 +142,7 @@ clearCookies.addEventListener("click",()=>{
 });
 
 // mode code (0: normal mode, 1: time trial mode)
-let mode;
+var mode;
 
 //timeTrial button
 normalMode();
@@ -830,6 +830,12 @@ function generate(){
                 if (aInputField) {
                     aInputField.focus();
                 }
+                else if (!event.shiftKey && mode == 1){
+                    /* stop.scrollIntoView(); */
+                    stop.focus();
+                    /* window.scrollTo({top: 0}); */
+                    event.preventDefault();
+                }
             }
             // Press and hold ArrowUp key or ArrowDown key to display your answer beautifully (LaTeX supported).
             else if (event.key == "ArrowDown" || event.key == "ArrowUp"){
@@ -875,6 +881,9 @@ function generate(){
             
         });
     });
+
+    // focus on the first question after clicking "Start" button.
+    document.querySelector("#questions input").focus();
 
     // Load Katex, if Katex is used.
     // renderMathInElement(document.body);  
@@ -1473,6 +1482,7 @@ function stopper(){
     clearInterval(printTime);
     stop.hidden=true;
     checkAnswer.hidden=false;
+    checkAnswer.focus();
 }
 
 function changeBackgroundColor(){

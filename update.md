@@ -1,5 +1,11 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
+## v.1.4.12 (2023-12-29)
+- Name change: **Rgenestykker** is changed to **Færdighedsregning**.
+- UX: Automatically focus on the first question after clicking *Start* button.
+- UX: Automatically focus on **time stop** and afterwards **Assess answer** after finishing all questions in **Time Trial Mode**.
+- Design: while focusing on a textfield, the textfield will be highlighted with black outline.
+- Design: All scroll behavior is set to `smooth`.
 ## v.1.4.11 (2023-11-19)
 - Design: New logo (rounded corners) and favicon.
 ## v.1.4.10 (2023-09-16)
