@@ -8,6 +8,10 @@ body:after {
 }
 */
 
+html {
+    scroll-behavior: smooth;
+}
+
 #peek{
     outline: medium dashed #00ff00;
     border-radius: 30px;
@@ -340,6 +344,10 @@ li:hover{
     font-size: 22px;
     border-radius: 5px;
     text-align: center;
+}
+
+.questionbox:focus{
+    outline: black solid thin;
 }
 
 .questionboxForQuadraticEquation{
