@@ -1,6 +1,13 @@
 # Version update (v.MAJOR.MINOR.PATCH)
 Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https://semver.org/)**.
-## v.1.4.12 (2023-12-29)
+## v.1.5.0 (2023-12-20)
+- **NEW FEATURE**: **unit conversion** questions are added to the website. Unit types includes **length, area, volume, mass, time, speed**.
+- Scientific notation is supported.
+- Minor design changes.
+- **print beautifully** function is not removed, but the hint on the webpage is removed.
+- For developer: Helper functions `randomInRange`, `randomInClosedRange`, `randomIntInRange`, `randomIntInClosedRange`, `randomChoice` are added.
+- Lesson learned: Math calculation in JavaScript is not accurate. For example, `71.6*360*10` is not equal to `257760`. 
+## v.1.4.12 (2023-12-19)
 - Name change: **Rgenestykker** is changed to **Færdighedsregning**.
 - UX: Automatically focus on the first question after clicking *Start* button.
 - UX: Automatically focus on **time stop** and afterwards **Assess answer** after finishing all questions in **Time Trial Mode**.

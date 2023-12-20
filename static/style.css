@@ -12,12 +12,6 @@ html {
     scroll-behavior: smooth;
 }
 
-#peek{
-    outline: medium dashed #00ff00;
-    border-radius: 30px;
-    margin: 7px 0px 16px 0px;
-}
-
 .overlay{
     height: 100%;
     width: 100%;
@@ -40,7 +34,7 @@ html {
     --textfont: "Comic Sans MS", "KaiTi";
     --buttonfontsize: 22px;
     --textfontsize: 22.3px;
-    --questionsfontsize: 24px;
+    --questionsfontsize: 23px;
     --outline1: inset 0px 0px 4px yellow, 0px 0px 15px yellow;
     --outline2: inset 0px 0px 4px magenta, 0px 0px 15px magenta;
     --outline3: inset 0px 0px 4px cyan, 0px 0px 15px cyan;
@@ -153,8 +147,8 @@ header h1, header h3 {
 #gridCustom {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 20px;
-    padding: 20px;
+    gap: 18px;
+    padding: 10px 18px 18px 18px;
 }
 
 .gridItem {
@@ -194,9 +188,9 @@ header h1, header h3 {
 
 #calculationType {
     display: grid;
-    gap: 10px;
+    gap: 7px;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: 0.8fr 0.8fr 1fr 1.1fr;
+    grid-template-columns: 1fr 0.8fr 1fr 1.1fr;
 }
 
 #questions{
@@ -205,10 +199,10 @@ header h1, header h3 {
 }
 
 .section{
-    width: 23%;
+    width: 23.4%;
     float: left;
     margin: 0.5%;
-    padding: 0.5%;
+    padding: 0.3%;
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
@@ -344,7 +338,11 @@ li:hover{
     text-align: center;
 }
 
-.section span{
+.spanForQuadraticEquation{
+    font-size: 20px;
+}
+
+.spanForUnitConversion{
     font-size: 20px;
 }
 
@@ -513,8 +511,16 @@ select {
 }
 
 #peek{
+    font-size: 17px;
     animation: heading-show 0.5s ease both;
 	transform-origin: 50%;
+    outline: medium dashed #00ff00;
+    border-radius: 30px;
+    margin: 7px 0px 16px 0px;
+}
+
+#peek li{
+    padding: 7px;
 }
 
 .section{

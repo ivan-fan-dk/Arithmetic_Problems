@@ -12,6 +12,12 @@ html {
     scroll-behavior: smooth;
 }
 
+#peek{
+    outline: medium dashed #00ff00;
+    border-radius: 30px;
+    margin: 7px 0px 16px 0px;
+}
+
 .overlay{
     height: 100%;
     width: 100%;
@@ -31,18 +37,14 @@ html {
 :root {
     --dark: #333;
     --light: #00002222;
-    --textfont: "KaiTi";
-    --buttonfontsize: 27px;
-    --textfontsize: 27px;
-    --questionsfontsize: 23px;
+    --textfont: "Comic Sans MS", "KaiTi";
+    --buttonfontsize: 22px;
+    --textfontsize: 22.3px;
+    --questionsfontsize: 24px;
     --outline1: inset 0px 0px 4px yellow, 0px 0px 15px yellow;
     --outline2: inset 0px 0px 4px magenta, 0px 0px 15px magenta;
     --outline3: inset 0px 0px 4px cyan, 0px 0px 15px cyan;
     --outline4: inset 0px 0px 4px chartreuse, 0px 0px 15px chartreuse;
-}
-
-.en{
-    font-family: "Comic Sans MS";
 }
 
 body {
@@ -77,14 +79,6 @@ header {
 
 header:hover {
     background-image: url("closedEyes-rounded.png");
-}
-
-header h1 {
-    font-size: 39px;
-}
-
-header h3 {
-    font-size: 23px;
 }
 
 header h1, header h3 {
@@ -145,7 +139,6 @@ header h1, header h3 {
     animation-name: reverseCustomizeTitleAnimation;
     animation-duration: 1s;
     animation-iteration-count: 1;
-    font-size: 30px;
 }
 
 #customize h2:hover{
@@ -160,8 +153,8 @@ header h1, header h3 {
 #gridCustom {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 18px;
-    padding: 10px 20px 20px 20px;
+    gap: 20px;
+    padding: 20px;
 }
 
 .gridItem {
@@ -201,9 +194,9 @@ header h1, header h3 {
 
 #calculationType {
     display: grid;
-    gap: 7px;
+    gap: 10px;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 0.8fr 0.8fr 1fr 1.1fr;
 }
 
 #questions{
@@ -212,10 +205,10 @@ header h1, header h3 {
 }
 
 .section{
-    width: 23.4%;
+    width: 23%;
     float: left;
     margin: 0.5%;
-    padding: 0.3%;
+    padding: 0.5%;
 }
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
@@ -238,16 +231,16 @@ header h1, header h3 {
     }
 
     header h1{
-        font-size: 30px;
+        font-size: 24px;
         margin-bottom: 0px;
     }
 
     header h3{
-        font-size: 13px;
+        font-size: 10px;
     }
 
     #customize h2{
-        font-size: 20px;
+        font-size: 16px;
     }
 
     #navigationBar {
@@ -351,11 +344,7 @@ li:hover{
     text-align: center;
 }
 
-.spanForQuadraticEquation{
-    font-size: 20px;
-}
-
-.spanForUnitConversion{
+.section span{
     font-size: 20px;
 }
 
@@ -392,6 +381,17 @@ select {
     bottom: 0px;
     margin: 5px 0px calc(8px + 0.5%) 0px;
 }
+
+/* if github icon is used
+.link-external {
+    background-image: url(github-mark.svg), url(link-external.svg);
+    background-position: center left, center right;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 0.95em, 0.857em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+*/
 
 .link-external {
     background-image: url(link-external.svg);
@@ -513,16 +513,8 @@ select {
 }
 
 #peek{
-    font-size: 18px;
     animation: heading-show 0.5s ease both;
 	transform-origin: 50%;
-    outline: medium dashed #00ff00;
-    border-radius: 30px;
-    margin: 7px 0px 16px 0px;
-}
-
-#peek li{
-    padding: 7px;
 }
 
 .section{

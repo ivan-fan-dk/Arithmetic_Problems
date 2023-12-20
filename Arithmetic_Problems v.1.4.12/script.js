@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.5.0";
+const currentVersion = "1.4.12";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));
@@ -10,7 +10,7 @@ changeName("#h13 h3", versionName + ": " + currentVersion);
 
 const defaultNOQ = "20";
 const defaultRight_after = true;
-const versions = ["1.4.12","1.3.0","1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.2","1.0.0"];
+const versions = ["1.3.0","1.2.0","1.1.4","1.1.3","1.1.2","1.1.1","1.1.0","1.0.2","1.0.0"];
 
 var alertIPhoneHasDone = false;
 var result;
@@ -180,61 +180,6 @@ window.addEventListener("DOMContentLoaded", function(){
     body.classList.toggle('shown');
 }, false);
 
-// Some preparation for unit conversion questions
-var lengthUnitsConversion = new Map([
-    ["mm", 1],
-    ["cm", 10],
-    ["dm", 1e2],
-    ["m", 1e3],
-    ["km", 1e6],
-]);
-var areaUnitsConversion = new Map([
-    ["mm^2", 1],
-    ["cm^2", 1e2],
-    ["dm^2", 1e4],
-    ["m^2", 1e6],
-    ["km^2", 1e12],
-]);
-var volumeUnits_m_Conversion = new Map([
-    ["mm^3", 1],
-    ["cm^3", 1e3],
-    ["dm^3", 1e6],
-    ["m^3", 1e9],
-    ["km^3", 1e18],
-]);
-var volumeUnits_L_Conversion = new Map([
-    ["L", 1e3],
-    ["mL", 1],
-]);
-var volumeUnits_Extended_Conversion = new Map([
-    ["mm^3", 1],
-    ["cm^3", 1e3],
-    ["dm^3", 1e6],
-    ["m^3", 1e9],
-    ["km^3", 1e18],
-    ["L", 1e6],
-    ["mL", 1e3],
-]);
-var massUnitsConversion = new Map([
-    ["mg", 1],
-    ["g", 1e3],
-    ["kg", 1e6],
-    ["t", 1e9],
-]);
-var timeUnitsConversion = new Map([
-    ["s", 1],
-    ["min", 60],
-    ["h", 3600],
-]);
-var speedUnitsConversion = new Map([
-    ["m/s", 3600],
-    ["m/min", 60],
-    ["m/h", 1],
-    ["km/s", 3600e3],
-    ["km/min", 60e3],
-    ["km/h", 1e3],
-]);
-
 function generate(){
     changeBackgroundColor();
     
@@ -275,7 +220,8 @@ function generate(){
     // generate n questions by their calculationtypes randomly.
     var Q = [];
     for (let _ of Array(n).keys()){
-        Q.push(randomChoice(Qtype));
+        let random = Math.floor((Math.random() * Qtype.length));
+        Q.push(Qtype[random]);
     }
 
     // construct a class named exercise
@@ -292,11 +238,6 @@ function generate(){
     let zeroInAddition = false;
     let zeroInMultiplication = false;
     let oneInMultiplication = false;
-    let answerFieldForLinearEquation = "<br>\\(x=\\)";
-    let unitIndex = 0;
-    let aValueInUnitList = [];
-    let aUnitInLatexList = [];
-    let bUnitInLatexList = [];
     for (let i of Array(n).keys()){
         // Addition
         if (Q[i] === 0){
@@ -326,12 +267,12 @@ function generate(){
                 bUpperBound = 10000;
             }
             if (zeroInAddition){
-                a = randomIntInRange(1, aUpperBound);    // [1, aUpperBound)
-                b = randomIntInRange(1, bUpperBound);    // [1, bUpperBound)
+                a = Math.floor((Math.random() * (aUpperBound - 1))) + 1;
+                b = Math.floor((Math.random() * (bUpperBound - 1))) + 1;
             }
             else{
-                a = randomIntInRange(0, aUpperBound);  // [0, aUpperBound)
-                b = randomIntInRange(0, bUpperBound);  // [0, bUpperBound)
+                a = Math.floor((Math.random() * aUpperBound));
+                b = Math.floor((Math.random() * bUpperBound));
             }
             if (a == 0 || b == 0){
                 zeroInAddition = true;
@@ -367,8 +308,8 @@ function generate(){
                 aUpperBound = 10000;
                 bUpperBound = 10000;
             }
-            let a = randomIntInRange(0, aUpperBound);  // [0, aUpperBound)
-            let b = randomIntInRange(0, bUpperBound);  // [0, bUpperBound)
+            let a = Math.floor((Math.random() * aUpperBound));
+            let b = Math.floor((Math.random() * bUpperBound));
             if (a < b && (difficultycheck === difficulties[0]||difficultycheck === difficulties[1])){
                 [a,b] = switchVariablesValues(a,b);
             }
@@ -407,28 +348,29 @@ function generate(){
             if (zeroInMultiplication){
                 // both 0 times non-zero and 1 times non-zero already exist. (do not choose 0 and 1)
                 if (oneInMultiplication){
-                    a = randomIntInRange(2, aUpperBound);    // [2, aUpperBound)
-                    b = randomIntInRange(2, bUpperBound);    // [2, bUpperBound)
+                    a = Math.floor((Math.random() * (aUpperBound - 2))) + 2;
+                    b = Math.floor((Math.random() * (bUpperBound - 2))) + 2;
                 }
                 // 0 times non-zero already exists, 1 times non-zero does not exist. (do not choose 0)
                 else{
-                    a = randomIntInRange(1, aUpperBound);    // [1, aUpperBound)
-                    b = randomIntInRange(1, bUpperBound);    // [1, bUpperBound)
+                    a = Math.floor((Math.random() * (aUpperBound - 1))) + 1;
+                    b = Math.floor((Math.random() * (bUpperBound - 1))) + 1;
                 }
             }
             else{
                 // 0 times non-zero does not exist, 1 times non-zero already exist. (do not choose 1)
                 if (oneInMultiplication){
                     do {
-                        let candidates = [0].concat([...Array(aUpperBound - 2).keys()].map(i => i + 2));    // [0] + [2, aUpperBound)
-                        [a, b] = Array(2).fill(randomChoice(candidates));   // Noice that a and b are the same here, thus it works.
+                        let candidates = [0].concat([...Array(aUpperBound - 2).keys()].map(i => i + 2));
+                        a = candidates[Math.floor(Math.random() * candidates.length)];
+                        b = candidates[Math.floor(Math.random() * candidates.length)];
                     } while (a == 0 && b == 0)  // delete possibilities to have 0 times 0
                 }
                 // Neither 0 times non-zero nor 1 times non-zero exist. (choose freely)
                 else{
                     do {
-                        a = randomIntInRange(0, aUpperBound);  // [0, aUpperBound)
-                        b = randomIntInRange(0, bUpperBound);  // [0, bUpperBound)
+                        a = Math.floor((Math.random() * aUpperBound));
+                        b = Math.floor((Math.random() * bUpperBound));
                     } while (a == 0 && b == 0)  // delete possibilities to have 0 times 0
                 }
             }
@@ -443,7 +385,7 @@ function generate(){
             }
 
             // change sequence of a and b in 50% chance
-            if (randomChoice([0, 1]) === 1){
+            if (Math.floor(Math.random()*2) === 1){
                 [a,b] = switchVariablesValues(a,b);
             }
 
@@ -474,18 +416,18 @@ function generate(){
             let divls = [];
             let a;
             while (divls.length === 0){
-                a = randomIntInRange(0, aUpperBound);  // [0, aUpperBound)
+                a = Math.floor((Math.random() * aUpperBound));
                 divls = properFactors(a);
             }
             
-            let b = randomChoice(divls);
+            let b = divls[Math.floor((Math.random() * divls.length))];
             Qlist.push(new exercise(`\\(${a} \\div ${b} = \\)`, Number(a / b)));
         }
         // fraction(+-)
         else if (Q[i] === 4){
             // Caution!!! aUpperBound should always smaller than or equal to bUpperBound.
             let aUpperBound, bUpperBound, firstTerm, secondTerm, firstTermToEvaluate, secondTermToEvaluate, firstTermIsInteger, secondTermIsInteger, a, b, c, d;
-            let calculationTypeForFraction = randomChoice([0, 1]); // 0: addition, 1: subtraction
+            let calculationTypeForFraction = Math.floor(Math.random() * 2);
             
             if (difficultycheck === difficulties[0]){
                 aUpperBound = 10;
@@ -517,13 +459,21 @@ function generate(){
                 [firstTerm, firstTermToEvaluate, secondTerm, secondTermToEvaluate] = twoFractionsWithSameDenominator(aUpperBound, bUpperBound);
             }
             else{
-                // make sure that there is highest one integer in the question.
+                // make sure that there are highest one integer in the question.
                 do{
                     [firstTerm, firstTermToEvaluate, firstTermIsInteger] = fraction(aUpperBound, bUpperBound, proper=false);
                     [secondTerm, secondTermToEvaluate, secondTermIsInteger] = fraction(aUpperBound, bUpperBound, proper=false);
                 } while (firstTermIsInteger && secondTermIsInteger);
             }
             
+            /*
+            // change sequence of a and b in 50% chance
+            if (Math.floor(Math.random()*2) === 1){
+                [firstTerm, secondTerm] = switchVariablesValues(firstTerm, secondTerm);
+                [firstTermToEvaluate, secondTermToEvaluate] = switchVariablesValues(firstTermToEvaluate, secondTermToEvaluate);
+            }
+            */
+
             [a,b] = firstTermToEvaluate.split("/");
             [c,d] = secondTermToEvaluate.split("/");
             [a,b,c,d] = [Number(a),Number(b),Number(c),Number(d)];
@@ -548,7 +498,7 @@ function generate(){
         else if (Q[i] === 5){
             // Caution!!! aUpperBound should always smaller than or equal to bUpperBound.
             let aUpperBound, bUpperBound, firstTerm, secondTerm, firstTermToEvaluate, secondTermToEvaluate, firstTermIsInteger, secondTermIsInteger, a, b, c, d;
-            let calculationTypeForFraction = randomChoice([0, 1]);   // 0: multiplication, 1: division
+            let calculationTypeForFraction = Math.floor(Math.random() * 2);
 
             if (difficultycheck === difficulties[0]){
                 aUpperBound = 5;
@@ -600,6 +550,8 @@ function generate(){
             let coef = [];
             let coefBound = [];
             let coefSign = [];
+            
+            let answerField = "<br>\\(x=\\)";
 
             if (difficultycheck === difficulties[0]){
                 answerBound = [1,5];
@@ -627,13 +579,13 @@ function generate(){
             }
             // determine answer
             do {
-                answer = randomIntInClosedRange(answerBound[0], answerBound[1]);    //[answerBound[0], answerBound[1]] without 0
+                answer = Math.floor(Math.random()*(answerBound[1] - answerBound[0] + 1)) + answerBound[0];    //[answerBound[0], answerBound[1]] without 0
             } while (answer == 0);
             // determine three coefficients, and register the first two coefficients' signs.
             for (let i of Array(2).keys()){
                 let tmp;
                 do {
-                    tmp = randomIntInClosedRange(coefBound[i][0], coefBound[i][1]);    //[coefBound[i][0], coefBound[i][1]] without 0
+                    tmp = Math.floor(Math.random()*(coefBound[i][1] - coefBound[i][0] + 1)) + coefBound[i][0];    //[coef_1Bound[0], coef_1Bound[0´1]] without 0
                 } while (tmp == 0);
                 coef.push(tmp);
                 if (tmp > 0){
@@ -652,18 +604,19 @@ function generate(){
             
             let signInBetween = "";
             // coef[0]*answer + coef[1] = coef[2]
-            if (difficultycheck === difficulties[0] || difficultycheck === difficulties[1] || randomChoice([0, 1]) == 0){
+            if (difficultycheck === difficulties[0] || difficultycheck === difficulties[1] || Math.floor(Math.random()*2) == 0){
                 if (coefSign[1] == "+"){
                     signInBetween = "+";
                 }
-                Qlist.push(new exercise(`\\( ${coef[0]}x ${signInBetween} ${coef[1]} = ${coef[2]} \\)` + answerFieldForLinearEquation, answer));
+
+                Qlist.push(new exercise(`\\( ${coef[0]}x ${signInBetween} ${coef[1]} = ${coef[2]} \\)` + answerField, answer));
             }
             // coef[1] + coef[0]*answer = coef[2]
             else{
                 if (coefSign[0] == "+"){
                     signInBetween = "+";
                 }
-                Qlist.push(new exercise(`\\( ${coef[1]} ${signInBetween} ${coef[0]}x = ${coef[2]} \\)` + answerFieldForLinearEquation, answer));
+                Qlist.push(new exercise(`\\( ${coef[1]} ${signInBetween} ${coef[0]}x = ${coef[2]} \\)` + answerField, answer));
             }
         }
         // Quadratic equation
@@ -698,7 +651,7 @@ function generate(){
             for (let i of Array(2).keys()){
                 // determine answer
                 do {
-                    tmp = randomIntInClosedRange(answerBound[i][0], answerBound[i][1]);    //[answerBound[0], answerBound[1]] without 0
+                    tmp = Math.floor(Math.random()*(answerBound[i][1] - answerBound[i][0] + 1)) + answerBound[i][0];    //[answerBound[0], answerBound[1]] without 0
                 } while (tmp == 0);
                 answer.push(tmp);    //[answerBound[0], answerBound[1]]
             }
@@ -710,7 +663,7 @@ function generate(){
 
             // generate coefs
             do {
-                tmp = randomIntInClosedRange(coefBound[0], coefBound[1]);    //[coefBound[0], coefBound[1]] without 0
+                tmp = Math.floor(Math.random()*(coefBound[1] - coefBound[0] + 1)) + coefBound[0];
             } while (tmp == 0);
             coef.push(tmp);
             coef.push(-(answer[0]+answer[1])*coef[0]);
@@ -739,72 +692,8 @@ function generate(){
             }
             Qlist.push(new exercise(`\\( ${coef[0]} x^2 ${signInBetween[0]}` + firstOrderTerm + `${signInBetween[1]} ${coef[2]} = 0 \\)`, answer));
         }
-        // Unit conversion
-        else if (Q[i] === 8){
-            let unitsConversionSample
-            let aValueUnitConversion = randomIntInClosedRange(1, 20);   // [1, 20]
-            let fixedDigits = 1;
-            if (difficultycheck === difficulties[0]){
-                unitsConversionSample = [massUnitsConversion, timeUnitsConversion];
-            }
-            else if (difficultycheck === difficulties[1]){
-                unitsConversionSample = [massUnitsConversion, timeUnitsConversion, lengthUnitsConversion];
-            }
-            else if (difficultycheck === difficulties[2]){
-                unitsConversionSample = [massUnitsConversion, timeUnitsConversion, lengthUnitsConversion, areaUnitsConversion];
-            }
-            else if (difficultycheck === difficulties[3]){
-                unitsConversionSample = [massUnitsConversion, timeUnitsConversion, lengthUnitsConversion, areaUnitsConversion, volumeUnits_m_Conversion, volumeUnits_L_Conversion];
-                aValueUnitConversion = randomInClosedRange(1, 10).toFixed(fixedDigits);
-            }
-            else if (difficultycheck === difficulties[4] || difficultycheck === difficulties[5]){
-                unitsConversionSample = [lengthUnitsConversion, areaUnitsConversion, volumeUnits_m_Conversion, volumeUnits_L_Conversion, volumeUnits_Extended_Conversion, massUnitsConversion, timeUnitsConversion, speedUnitsConversion];
-                aValueUnitConversion = randomInClosedRange(1, 100).toFixed(fixedDigits);
-            }
-            
-            unitConversion = randomChoice(unitsConversionSample);
-            units = [...unitConversion.keys()];
-
-            // randomly pick two units from lengthUnits
-            aUnit = randomChoice(units);
-            units.splice(units.indexOf(aUnit), 1);
-            bUnit = randomChoice(units);
-            let [aUnitNumber, bUnitNumber] = [unitConversion.get(aUnit), unitConversion.get(bUnit)];
-            let [aUnitInLatex, bUnitInLatex] = [aUnit, bUnit];
-            
-            // unitInLatex
-            aValueInUnitList.push(aValueUnitConversion);
-            aUnitInLatexList.push(unit2Latex(aUnitInLatex));
-            bUnitInLatexList.push(unit2Latex(bUnitInLatex));
-
-            let answer = aValueUnitConversion*aUnitNumber/bUnitNumber;
-            // Making sure the answer is an integer if it is an integer. (Stupid JavaScript)
-            if (aUnitNumber >= bUnitNumber || ((difficultycheck === difficulties[4] || difficultycheck === difficulties[5]) && aUnitNumber >= bUnitNumber*10**fixedDigits)){
-                answer = Math.round(answer);
-                printOut = String(answer);
-            }            
-            else if (unitConversion == timeUnitsConversion || unitConversion == speedUnitsConversion){
-                // If the answer is not an integer(only in time and speed unit conversion it might not be terminating), use fraction.
-                // reduceFraction can only work when arguments it takes are integers.
-                // Math.round is used because of the precision problem. JavaScript cannot even calculate 71.6*360*10 correctly. Solution is to make sure the number I give are integers, then small errors can just be rounded
-                printOut = reduceFraction(Math.round(aValueUnitConversion*aUnitNumber*10**fixedDigits), Math.round(bUnitNumber*10**fixedDigits));
-                if (printOut.includes("/")){
-                    answer = printOut.split("/")[0]/printOut.split("/")[1];
-                }
-            }
-            else{
-                // If the answer is a terminating decimal, in our case when it is divided by 整十数, use the tailered exponentialCalculator.
-                answer = exponentialCalculator(aValueUnitConversion, aUnitNumber, bUnitNumber);
-                printOut = String(answer);
-            }
-
-            if (!printOut.includes("/") && (answer >= 1e4 || answer <= 1e-4)){
-                // If the answer is too large to be displayed, use exponential notation.
-                printOut = answer.toExponential();
-            }
-            Qlist.push(new exercise(`\\( ${aValueUnitConversion} ${aUnitInLatex} = ? ${bUnitInLatex}\\)`, answer, printOut));
-        }
     }
+
     let nby4;
     // it's time to print it out
     if (Number.isInteger(n/4)){
@@ -822,7 +711,7 @@ function generate(){
         for (j of Array(nby4).keys()){
             if (nby4*i + j < n){
                 let li = ol.appendChild(document.createElement("li"));
-                if (Q[nby4*i + j] in [...Array(7).keys()]){
+                if (Q[nby4*i + j] != 7){
                     li.innerHTML = Qlist[nby4*i + j].question + " ";
                     let input = li.appendChild(document.createElement("input"));
                     input.className = "questionbox";
@@ -842,12 +731,11 @@ function generate(){
                     let img = li.appendChild(document.createElement("img"));
                     img.hidden = true
                 }
-                else if (Q[nby4*i + j] == 7){
+                else{
                     // special for quadratic equation
                     li.innerHTML = Qlist[nby4*i + j].question + "<br>";
                     for (let k of Array(2).keys()){
                         let span = li.appendChild(document.createElement("span"));
-                        span.className = "spanForQuadraticEquation";
                         if (k == 0){
                             span.textContent = `\\(x_{1}=\\) `;
                         }
@@ -865,25 +753,6 @@ function generate(){
                         img.id = `img_${nby4*i+j}_${1-k}`;
                         img.hidden = true;
                     }
-                }
-                else if (Q[nby4*i + j] == 8){
-                    // special for unit conversion
-                    li.innerHTML = "\\(" + aValueInUnitList[unitIndex] + `~\\)`;
-                    let span = li.appendChild(document.createElement("span"));
-                    span.className = "spanForUnitConversion";
-                    span.textContent = "\\(" + aUnitInLatexList[unitIndex] + `=~\\)`;
-                    let input = li.appendChild(document.createElement("input"));
-                    input.className = "questionbox";
-                    input.autocomplete = "off";
-                    input.name = "userinput";
-                    input.id = `Q_${nby4*i+j}`;
-                    input.type = "text";
-                    span = li.appendChild(document.createElement("span"));
-                    span.className = "spanForUnitConversion";
-                    span.textContent = "\\(~" + bUnitInLatexList[unitIndex] + `\\)`;
-                    let img = li.appendChild(document.createElement("img"));
-                    img.hidden = true;
-                    unitIndex += 1;
                 }
             }
         }
@@ -1173,10 +1042,10 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
         singleScore = 1;
     }
     else{
-        // typo check mechanism. Only these chars "0123456789/+-.e" are valid.
+        // typo check mechanism. Only these chars "0123456789/-." are valid.
         let nonNumber = "/-.";
         for (var i of Array(userInput.length).keys()){
-            if (!("0123456789/+-.e".includes(userInput[i]))){
+            if (!("0123456789/-.".includes(userInput[i]))){
                 imgWarning(img);
                 invalidInput = true;
                 return singleScore;
@@ -1195,9 +1064,8 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
         let minusSignCount = countOneChar("-", userInput);
         let firstMinusSign = (userInput[0] == '-');
         let slashMinusincluded = userInput.includes("/-");
-        let eMinusincluded = userInput.includes("e-");
-        // if there is only one "-", it should be first or "/-" or "e-". if there are two "-", it should be "-?/-?". if there are more than two, then it is not valid.
-        if ((minusSignCount == 1 && !(firstMinusSign || slashMinusincluded || eMinusincluded)) || (minusSignCount == 2 && !(firstMinusSign && slashMinusincluded)) || (minusSignCount > 2)){
+        // if there is only one "-", it should either be first or "/-". if there are two "-", it should be "-?/-?". if there are more than two, then it is not valid.
+        if ((minusSignCount == 1 && !(firstMinusSign || slashMinusincluded)) || (minusSignCount == 2 && !(firstMinusSign && slashMinusincluded)) || (minusSignCount > 2)){
             imgWarning(img);
             invalidInput = true;
             return singleScore;
@@ -1383,7 +1251,7 @@ function reduceFraction(a,b) {
     }
 
     let cF = commonFactors(a,b);    // commonfactors of a and b as an array
-    // handle special case, no common factors, meaning one of them is zero or both. 0/0 will be defined as 0 because it might exist in situation like 3/2-3/2.
+    // handle special case, no common factors, meaning one of them is zero or both. 0/0 will be define as 0 because it might exist in situation like 3/2-3/2.
     if (cF.length == 0){
         return '0';
     }
@@ -1411,7 +1279,7 @@ function reduceFraction(a,b) {
 function fraction(aUpperBound, bUpperBound, proper=false){
     let bCandidates, a;
     do {
-        a = randomIntInClosedRange(1, aUpperBound);      // [1,aUpperBound]
+        a = Math.floor(Math.random()*aUpperBound) + 1;      // [1,aUpperBound]
         if (proper){
             // [a,bUpperBound] where there is only one common factor
             bCandidates = [...Array(bUpperBound - a + 1).keys()].map(i => i + a).filter(number => commonFactors(a,number).length === 1);
@@ -1422,7 +1290,7 @@ function fraction(aUpperBound, bUpperBound, proper=false){
         }
     } while (bCandidates.length == 0)
     
-    b = randomChoice(bCandidates);
+    b = bCandidates[Math.floor(Math.random() * bCandidates.length)];
 
     // b could be 1
     if (b === 1){
@@ -1435,45 +1303,17 @@ function fraction(aUpperBound, bUpperBound, proper=false){
 
 function twoFractionsWithSameDenominator(aUpperBound, bUpperBound){
     let aCandidates, b;
-    b = randomIntInClosedRange(2, bUpperBound);      // [2,bUpperBound]
+    b = Math.floor(Math.random()*(bUpperBound - 1)) + 2;      // [2,bUpperBound]
     aCandidates = [...Array(aUpperBound).keys()].map(i => i + 1).filter(number => commonFactors(b,number).length === 1);// [a,bUpperBound] where there is only one common factor
     
     // get two nominators(can be the same).
-    var [a1, a2] = [randomChoice(aCandidates), randomChoice(aCandidates)];
+    var [a1, a2] = [aCandidates[Math.floor(Math.random() * aCandidates.length)], aCandidates[Math.floor(Math.random() * aCandidates.length)]];
 
     return [`\\frac{${a1}}{${b}}`, String(`${a1}/${b}`), `\\frac{${a2}}{${b}}`, String(`${a2}/${b}`)];  // return two fractions 
 }
 
 function switchVariablesValues(a, b){
     return [b, a];
-}
-
-// Not a perfect function in general cases, but enough for this program.
-function unit2Latex(string){
-    if (string.includes("^")){
-        return "\\text{" + string.replace("^", "}^");
-    }
-    if (string.includes("/")){
-        let s = string.split("/");
-        return `\\frac{\\text{${s[0]}}}{\\text{${s[1]}}}`;
-    }
-    else{
-        return `\\text{${string}}`;
-    }
-}
-
-function toExp(n){
-    return Number.parseFloat(n).toExponential();
-}
-
-// exponential calculator a*b/c
-function exponentialCalculator(a, b, c){
-    [a, b, c] = [String(toExp(a)), String(toExp(b)), String(toExp(c))];
-    let [a1, a2] = a.split("e");
-    let [b1, b2] = b.split("e");
-    let [c1, c2] = c.split("e");
-    let [res1, res2] = [Number(a1)*Number(b1)/Number(c1), Number(a2)+Number(b2)-Number(c2)];
-    return Number(`${res1}e${res2}`);
 }
 
 // setCookie function
@@ -1751,29 +1591,8 @@ function isIPhone(){
     }
 }
 
-// Get a number in range [min, max)
 function randomInRange(min, max) {
   return Math.random() * (max - min) + min;
-}
-
-// Get a number in closed range [min, max]
-function randomInClosedRange(min, max) {
-    return Math.random() * (max - min + 1) + min;
-}
-
-// Get an integer in range [min, max)
-function randomIntInRange(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-// Get an integer in closed range [min, max]
-function randomIntInClosedRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Get a random element from an array
-function randomChoice(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 var duration = 17 * 1000;
@@ -1782,7 +1601,7 @@ var skew = 1;
 
 function randomColor() {
     let colors = ['#ffffff', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
-    return randomChoice(colors);
+    return colors[Math.floor(Math.random() * colors.length)];
 }
 
 function snow() {
