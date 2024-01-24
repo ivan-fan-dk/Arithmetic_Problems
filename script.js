@@ -1,7 +1,7 @@
 // Some variables are defined in the relevant language javascript.
 
 // Add titleName and versionName
-const currentVersion = "1.5.0";
+const currentVersion = "1.5.1";
 const h13 = document.getElementById("h13");
 h13.appendChild(document.createElement("h1"));
 h13.appendChild(document.createElement("h3"));
@@ -341,8 +341,7 @@ function generate(){
         }
         // Subtraction
         else if (Q[i] === 1){
-            let aUpperBound;
-            let bUpperBound;
+            let aUpperBound, bUpperBound;
             if (difficultycheck === difficulties[0]){
                 aUpperBound = 10;
                 bUpperBound = 10;
@@ -597,9 +596,7 @@ function generate(){
         // Linear equation (coef[0]*answer + coef[1] = coef[2], or coef[1] + coef[0]*answer = coef[2])
         else if (Q[i] === 6){
             let answerBound, answer;
-            let coef = [];
-            let coefBound = [];
-            let coefSign = [];
+            let coef = [], coefBound = [], coefSign = [];
 
             if (difficultycheck === difficulties[0]){
                 answerBound = [1,5];
@@ -741,7 +738,7 @@ function generate(){
         }
         // Unit conversion
         else if (Q[i] === 8){
-            let unitsConversionSample
+            let unitsConversionSample;
             let aValueUnitConversion = randomIntInClosedRange(1, 20);   // [1, 20]
             let fixedDigits = 1;
             if (difficultycheck === difficulties[0]){
@@ -804,6 +801,81 @@ function generate(){
             }
             Qlist.push(new exercise(`\\( ${aValueUnitConversion} ${aUnitInLatex} = ? ${bUnitInLatex}\\)`, answer, printOut));
         }
+        else if (Q[i] === 9){
+            let vectorBound, aBound, bBound, a, b, matrixLaTeX;
+            let [coefInVector, matrix] = [[], []];
+            if (difficultycheck === difficulties[0]){
+                vectorBound = [0, 5];
+                aBound = [1, 1];
+                bBound = [1, 1];
+            }
+            else if (difficultycheck === difficulties[1]){
+                vectorBound = [0, 10];
+                aBound = [1, 1];
+                bBound = [-1, 1];
+            }
+            else if (difficultycheck === difficulties[2]){
+                vectorBound = [-5, 5];
+                aBound = [1, 1];
+                bBound = [-1, 1];
+            }
+            else if (difficultycheck === difficulties[3]){
+                vectorBound = [-5, 5];
+                aBound = [-5, 5];
+                bBound = [-5, 5];
+            }
+            else if (difficultycheck === difficulties[4]){
+                vectorBound = [-10, 10];
+                aBound = [-10, 10];
+                bBound = [-10, 10];
+            }
+            else if (difficultycheck === difficulties[5]){
+                vectorBound = [-100, 100];
+                aBound = [-100, 100];
+                bBound = [-100, 100];
+            }
+
+            // determine a and b
+            do{
+                a = randomIntInClosedRange(aBound[0], aBound[1]);
+            } while (a == 0)
+            do{
+                b = randomIntInClosedRange(bBound[0], bBound[1]);
+            } while (b == 0)
+            // determine coefficients in vector
+            for (let _ of Array(4).keys()){
+                coefInVector.push(randomIntInClosedRange(vectorBound[0], vectorBound[1]));
+            }
+
+            // construct two matrices
+            for (let j of [0,1]){
+                matrixLaTeX = "\\begin{bmatrix}";
+                for (let k of [0,1]){
+                    matrixLaTeX = matrixLaTeX.concat(`${coefInVector[j*2+k]} \\\\`);
+                }
+                matrixLaTeX = matrixLaTeX.concat("\\end{bmatrix}");
+                matrix.push(matrixLaTeX);
+            }
+            answer = `${a*coefInVector[0] + b*coefInVector[2]},${a*coefInVector[1] + b*coefInVector[3]}`;
+            let aText = `${a}`;
+            let bText = `${b}`;
+            if (a == 1){
+                aText = "";
+            }
+            else if (a == -1){
+                aText = "-";
+            }
+            if (b == 1){
+                bText = "+";
+            }
+            else if (b == -1){
+                bText = "-";
+            }
+            else if (b > 0){
+                bText = `+ ${b}`;
+            }
+            Qlist.push(new exercise(`\\( ${aText}${matrix[0]} ${bText}${matrix[1]} = \\)`, answer));
+        }
     }
     let nby4;
     // it's time to print it out
@@ -820,10 +892,11 @@ function generate(){
         ol.type = "1";
         ol.start = nby4*i + 1;
         for (j of Array(nby4).keys()){
-            if (nby4*i + j < n){
+            Qindex = nby4*i + j;
+            if (Qindex < n){
                 let li = ol.appendChild(document.createElement("li"));
-                if (Q[nby4*i + j] in [...Array(7).keys()]){
-                    li.innerHTML = Qlist[nby4*i + j].question + " ";
+                if (Q[Qindex] in [...Array(7).keys()] || Q[Qindex] == 9){
+                    li.innerHTML = Qlist[Qindex].question + " ";
                     let input = li.appendChild(document.createElement("input"));
                     input.className = "questionbox";
                     input.autocomplete = "off";
@@ -832,7 +905,7 @@ function generate(){
                     input.type = "text";
                     
                     // determine inputmode (when there are fractions, change to textpad due to stupid Gboard which doesn't have forward slash in numericpad)
-                    if (Q[nby4*i + j] == 4 || Q[nby4*i + j] == 5){
+                    if (Q[Qindex] == 4 || Q[Qindex] == 5){
                         input.inputMode = "text";
                     }
                     else{
@@ -840,11 +913,11 @@ function generate(){
                     }
 
                     let img = li.appendChild(document.createElement("img"));
-                    img.hidden = true
+                    img.hidden = true;
                 }
-                else if (Q[nby4*i + j] == 7){
+                else if (Q[Qindex] == 7){
                     // special for quadratic equation
-                    li.innerHTML = Qlist[nby4*i + j].question + "<br>";
+                    li.innerHTML = Qlist[Qindex].question + "<br>";
                     for (let k of Array(2).keys()){
                         let span = li.appendChild(document.createElement("span"));
                         span.className = "spanForQuadraticEquation";
@@ -866,7 +939,7 @@ function generate(){
                         img.hidden = true;
                     }
                 }
-                else if (Q[nby4*i + j] == 8){
+                else if (Q[Qindex] == 8){
                     // special for unit conversion
                     li.innerHTML = "\\(" + aValueInUnitList[unitIndex] + `~\\)`;
                     let span = li.appendChild(document.createElement("span"));
@@ -878,6 +951,7 @@ function generate(){
                     input.name = "userinput";
                     input.id = `Q_${nby4*i+j}`;
                     input.type = "text";
+                    input.inputMode = "numeric";
                     span = li.appendChild(document.createElement("span"));
                     span.className = "spanForUnitConversion";
                     span.textContent = "\\(~" + bUnitInLatexList[unitIndex] + `\\)`;
@@ -1110,7 +1184,7 @@ function getAnswer(input){
     if (inputIdInfo.length == 2){
         let img = input.parentElement.querySelector("img"); // make image element inside parent element of input
         input.value = String(Qlist[Q_Number].printOutAnswer);
-        imgQuestion(img);
+        imgResponse(img, "Reveal");
         scoreList[Q_Number] = 0;
     }
     else{
@@ -1118,7 +1192,7 @@ function getAnswer(input){
         let subNumber = Number(inputIdInfo[2]);
         let img = document.getElementById(`img_${Q_Number}_${subNumber}`)
         input.value = String(Qlist[Q_Number].printOutAnswer[subNumber]);
-        imgQuestion(img);
+        imgResponse(img, "Reveal");
         scoreList[Q_Number][subNumber] = 0;
     }
     
@@ -1148,8 +1222,8 @@ function answerResponse(input){
         if (Qlist[Q_Number].answer.includes(Number(userInput)) && Qlist[Q_Number].answer.includes(Number(anotherInput))){
             if ((Number(userInput) == Number(anotherInput)) && (Qlist[Q_Number].answer[0] != Qlist[Q_Number].answer[1])){
                 // half right, half wrong
-                imgCorrect(anotherImg);
-                imgWrong(img);
+                imgResponse(anotherImg, "Correct");
+                imgResponse(img, "Wrong");
                 [singleScore_0, singleScore_1] = [0, 0.5];
             }
         }
@@ -1162,6 +1236,9 @@ function answerResponse(input){
 
 // check answer for every input
 function inputCheck(userInput, img, Q_Number, singleScore=0){
+    // trim whitespaces from both ends of a string
+    userInput = userInput.trim();
+
     let invalidInput = false;
     // if the user didn't type anything in input, don't judge them (be kind).
     if (userInput === ""){
@@ -1169,22 +1246,22 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
     }
     // Ester Egg: if "spare me" is typed, then it counts as correct.
     else if (userInput === spareMe){
-        imgCorrect(img);
+        imgResponse(img, "Correct");
         singleScore = 1;
     }
     else{
-        // typo check mechanism. Only these chars "0123456789/+-.e" are valid.
+        // typo check mechanism. Only these chars "0123456789/+-.e," are valid.
         let nonNumber = "/-.";
         for (var i of Array(userInput.length).keys()){
-            if (!("0123456789/+-.e".includes(userInput[i]))){
-                imgWarning(img);
+            if (!("0123456789/+-.e,".includes(userInput[i]))){
+                imgResponse(img, "Invalid");
                 invalidInput = true;
                 return singleScore;
             }
             // check cases where nonNumber stick together, "/-?" is exempted. (? is a number)
             if (nonNumber.includes(userInput[i])){
                 if (nonNumber.includes(userInput[i + 1]) && !(userInput[i] == "/" && userInput[i + 1] == "-" && "0123456789".includes(userInput[i + 2]))){
-                    imgWarning(img);
+                    imgResponse(img, "Invalid");
                     invalidInput = true;
                     return singleScore;
                 }
@@ -1196,9 +1273,10 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
         let firstMinusSign = (userInput[0] == '-');
         let slashMinusincluded = userInput.includes("/-");
         let eMinusincluded = userInput.includes("e-");
-        // if there is only one "-", it should be first or "/-" or "e-". if there are two "-", it should be "-?/-?". if there are more than two, then it is not valid.
-        if ((minusSignCount == 1 && !(firstMinusSign || slashMinusincluded || eMinusincluded)) || (minusSignCount == 2 && !(firstMinusSign && slashMinusincluded)) || (minusSignCount > 2)){
-            imgWarning(img);
+        let commaMinusincluded = userInput.includes(",-");
+        // if there is only one "-", it should be first or "/-" or "e-" or ",-". if there are two "-", it should be "-?/-?" or "-?,-?". if there are more than two, then it is not valid.
+        if ((minusSignCount == 1 && !(firstMinusSign || slashMinusincluded || eMinusincluded || commaMinusincluded)) || (minusSignCount == 2 && !((firstMinusSign && slashMinusincluded) || (firstMinusSign && commaMinusincluded))) || (minusSignCount > 2)){
+            imgResponse(img, "Invalid");
             invalidInput = true;
             return singleScore;
         }
@@ -1211,64 +1289,63 @@ function inputCheck(userInput, img, Q_Number, singleScore=0){
                 // if there is and only one "/" which divide userinput in two strings, and first string is non-zero long, and second is not equal to 0 nor empty.
                 if (str.length === 2 && str[0].length != 0 && str[1] != 0){
                     if (eval(userInput) === Qlist[Q_Number].answer){
-                        imgCorrect(img);
+                        imgResponse(img, "Correct");
                         singleScore = 1;
                     }
                     else{
-                        imgWrong(img);
+                        imgResponse(img, "Wrong");
                     }
                 }
                 else{
                     // Wrong expression
-                    imgWarning(img);
+                    imgResponse(img, "Invalid");
                 }
             }
             // if there are two answers (special for Quadratic equation)
             else if (Qlist[Q_Number].answer.length === 2){
                 if (Qlist[Q_Number].answer.includes(Number(userInput))){
                     // every correct input in Quadratic equation counts 0.5 point.
-                    imgCorrect(img);
+                    imgResponse(img, "Correct");
                     singleScore = 0.5;
                 }
                 else{
-                    imgWrong(img);
+                    imgResponse(img, "Wrong");
                 }
             }
-            // if input is just a integer
-            else if (Number(userInput) === Qlist[Q_Number].answer){
-                imgCorrect(img);
+            // if input is just a integer or userInput is the same as the string of answer.
+            else if (Number(userInput) === Qlist[Q_Number].answer || userInput == Qlist[Q_Number].answer){
+                imgResponse(img, "Correct");
                 singleScore = 1;
             }
             else{
-                imgWrong(img);
+                imgResponse(img, "Wrong");
             }
         }
     }
     return singleScore;
 }
 
-function imgCorrect (img) {
+function imgResponse(img, answerIs) {
     img.hidden = false;
-    img.src = inAFolder + "./static/accept.png";
-    img.alt = "Correct";
-}
-
-function imgWrong (img) {
-    img.hidden = false;
-    img.src = inAFolder + "./static/cross.png";
-    img.alt = "Wrong";
-}
-
-function imgWarning (img) {
-    img.hidden = false;
-    img.src = inAFolder + "./static/warning.png";
-    img.alt = "Invalid";
-}
-
-function imgQuestion (img){
-    img.hidden = false;
-    img.src = inAFolder + "./static/common-answers.png";
-    img.alt = "Explore further";
+    if (answerIs === "Correct"){
+        img.src = inAFolder + "./static/accept.png";
+        img.alt = "Correct";
+    }
+    else if (answerIs === "Wrong"){
+        img.src = inAFolder + "./static/cross.png";
+        img.alt = "Wrong";
+    }
+    else if (answerIs === "Invalid"){
+        img.src = inAFolder + "./static/warning.png";
+        img.alt = "Invalid";
+    }
+    else if (answerIs === "Reveal"){
+        img.src = inAFolder + "./static/common-answers.png";
+        img.alt = "Explore further";
+    }
+    else{
+        captureUnexpected("imgResponse");
+    }
 }
 
 function getOption(arg) {
