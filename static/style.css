@@ -189,7 +189,6 @@ header h1, header h3 {
 #calculationType {
     display: grid;
     gap: 7px;
-    grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 1fr 0.8fr 1fr 1.1fr;
 }
 
