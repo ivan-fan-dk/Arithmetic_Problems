@@ -3,7 +3,7 @@ Note: From v.1.4.0, application will follow **[semantic versioning 2.0.0](https:
 ## v.1.5.1 (2024-01-24)
 - **NEW FEATURE**: **Vectors** questions are added to the website.
 - UX: Whitespaces from both ends of user's input are ignored automatically.
-- For developer: `imgResponse` function is added.
+- For developer: `imgResponse` function is added. `stylezh.css` is simplified.
 ## v.1.5.0 (2023-12-20)
 - **NEW FEATURE**: **Unit conversion** questions are added to the website. Unit types includes **length, area, volume, mass, time, speed**.
 - Scientific notation is supported.
